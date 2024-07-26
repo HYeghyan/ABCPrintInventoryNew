@@ -64,7 +64,7 @@ namespace ABCPrintInventory.Add
         public void FillGrid()
         {
             con.Open();
-            da = new SqlDataAdapter("select * from TblOrders order by [Պատվ. համ] asc", con);
+            da = new SqlDataAdapter("select * from TblOrders order by Ամսաթիվ desc, [Պատվ. համ] desc", con);
             con.Close();
 
             SqlCommandBuilder cb = new SqlCommandBuilder(da);
@@ -242,6 +242,26 @@ namespace ABCPrintInventory.Add
                 e.Value = ""; // Clear the value of the merged cells
                 e.FormattingApplied = true;
             }
+
+            foreach (DataGridViewRow row in dgvOrders.Rows)
+            {
+                if (!row.IsNewRow) // Skip the new row if present
+                {
+                    // Check if the cell value in the "ԴՀ" column is "yes"
+                    if (row.Cells["Սևագիր"].Value?.ToString() == "Ս")
+                    {
+                        // Set the cell value to "yes"
+                        row.Cells["Սևագիր"].Value = "Ս";
+
+                        // Set the row's background color to yellow
+                        row.DefaultCellStyle.BackColor = Color.IndianRed;
+                    }
+                    else
+                    {
+                        row.DefaultCellStyle.BackColor = Color.White;
+                    }
+                }
+            }
         }
 
         private void dgvOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -254,10 +274,13 @@ namespace ABCPrintInventory.Add
             newOrder.cmbNOclientText = selectedRow.Cells[2].Value?.ToString();
             newOrder.txtNOagentText = selectedRow.Cells[3].Value?.ToString();
             newOrder.txtPayTypeText = selectedRow.Cells[4].Value?.ToString();
+            newOrder.txtDraftText = selectedRow.Cells[33].Value?.ToString();
+            newOrder.txtDebtidText = selectedRow.Cells[34].Value?.ToString();
             newOrder.GetRbtSelect();
 
             string condition = $"SomeColumn = '{newOrder.TxtNOidText}'"; // Example condition
             newOrder.PopulateDgvNOorderFromDatabase();
+            newOrder.BtnNOAddEnabled = false;
         }
         //Թաբի դիզայնը
         private void tabOrders_DrawItem(object sender, DrawItemEventArgs e)
@@ -299,6 +322,10 @@ namespace ABCPrintInventory.Add
                 tabFont.Dispose();
             }
         }
-        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Orders_Load(sender, e);
+        }
     }
 }

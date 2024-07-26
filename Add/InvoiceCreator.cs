@@ -27,12 +27,7 @@ namespace ABCPrintInventory.Add
             get { return cmbICclient.Text; }
             set { cmbICclient.Text = value; }
         }
-
-        //2 Չեքբոքսերի նշելը
-        private void checkBoxDH_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }     
+ 
         private void btnICAdd_Click(object sender, EventArgs e)
         {
             AddItemToGridview();
@@ -54,7 +49,7 @@ namespace ABCPrintInventory.Add
                     {
                         if (!row.IsNewRow) // Skip the new row if present
                         {
-                            cmd = new SqlCommand("UPDATE TblOrderForDeptsTA SET ԴՀ = @DhValue WHERE [Պատվ. համ] = @KodValue", con);
+                            cmd = new SqlCommand("UPDATE TblDebtsControl SET ԴՀ = @DhValue WHERE Կոդ = @KodValue", con);
                             cmd.Parameters.AddWithValue("@KodValue", row.Cells[3].Value?.ToString());
                             cmd.Parameters.AddWithValue("@DhValue", row.Cells[4].Value?.ToString());
                             cmd.ExecuteNonQuery();
@@ -88,19 +83,19 @@ namespace ABCPrintInventory.Add
                     // Set the corresponding cell in dgvClientDebtsTA based on the checkbox state
                     if ((bool)chkCell.Value)
                     {
-                        dgvClientDebtsTA.Rows[e.RowIndex].Cells[4].Value = "yes";
+                        dgvClientDebtsTA.Rows[e.RowIndex].Cells[5].Value = "yes";
                         txtICval.Text = dgvClientDebtsTA.Rows.Cast<DataGridViewRow>()
                            .Where(a => Convert.ToBoolean(a.Cells[0].Value).Equals(true))
-                           .Sum(t => Convert.ToDouble(t.Cells[7].Value))
+                           .Sum(t => Convert.ToDouble(t.Cells[6].Value))
                            .ToString("#,0");
                         CalculateNDS();
                     }
                     else
                     {
-                        dgvClientDebtsTA.Rows[e.RowIndex].Cells[4].Value = null; // Or set it to empty string as needed
+                        dgvClientDebtsTA.Rows[e.RowIndex].Cells[5].Value = null; // Or set it to empty string as needed
                         txtICval.Text = dgvClientDebtsTA.Rows.Cast<DataGridViewRow>()
                            .Where(a => Convert.ToBoolean(a.Cells[0].Value).Equals(true))
-                           .Sum(t => Convert.ToDouble(t.Cells[7].Value))
+                           .Sum(t => Convert.ToDouble(t.Cells[6].Value))
                            .ToString("#,0");
                         CalculateNDS();
                     }
@@ -124,14 +119,14 @@ namespace ABCPrintInventory.Add
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT CONVERT(varchar(10), Ամսաթիվ, 105) AS ShortDate, [Պատվ. համ], Հաճախորդ, Արժեք, [Վճարել է] FROM TblOrderForDeptsTA WHERE Հաճախորդ = @Cell2Value", con);
+                SqlCommand cmd = new SqlCommand("SELECT hh, ԴՀ, CONVERT(varchar(10), Ամսաթիվ, 105) AS ShortDate, Կոդ, Հաճախորդ, Արժեք, Մուտք FROM TblOrderForDeptsTA WHERE Հաճախորդ = @Cell2Value AND (ԴՀ IS NULL OR ԴՀ = '')", con);
                 cmd.Parameters.AddWithValue("@Cell2Value", cmbICclient.Text);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable table = new DataTable();
                 adapter.Fill(table);
 
                 var groupedData = from row in table.AsEnumerable()
-                                  group row by row.Field<string>("Պատվ. համ") into grp
+                                  group row by row.Field<string>("Կոդ") into grp
                                   select new
                                   {
                                       OrderNumber = grp.Key,
@@ -143,36 +138,52 @@ namespace ABCPrintInventory.Add
                                       }),
                                       TotalPaymentAmount = grp.Sum(r =>
                                       {
-                                          var paymentAmount = string.IsNullOrEmpty(r["Վճարել է"].ToString()) ? 0 : Convert.ToDecimal(r["Վճարել է"]);
+                                          var paymentAmount = string.IsNullOrEmpty(r["Մուտք"].ToString()) ? 0 : Convert.ToDecimal(r["Մուտք"]);
                                           return paymentAmount;
                                       }),
                                   };
 
                 foreach (var group in groupedData)
                 {
-                    decimal remainingBalance = group.TotalOrderAmount - group.TotalPaymentAmount;
-                    if (remainingBalance != 0) // Show only orders with non-zero remaining balance
-                    {
-                        int rowIndex = dgvClientDebtsTA.Rows.Add();
-                        DataGridViewRow dgvRow = dgvClientDebtsTA.Rows[rowIndex];
+                    int rowIndex = dgvClientDebtsTA.Rows.Add();
+                    DataGridViewRow dgvRow = dgvClientDebtsTA.Rows[rowIndex];
 
-                        dgvRow.Cells[0].Value = false;
-                        dgvRow.Cells[2].Value = group.Orders.FirstOrDefault()["ShortDate"]; 
-                        dgvRow.Cells[3].Value = group.Orders.FirstOrDefault()["Պատվ. համ"];
-                        dgvRow.Cells[1].Value = group.Orders.FirstOrDefault()["Հաճախորդ"];
-                        dgvRow.Cells[5].Value = group.TotalOrderAmount.ToString("#,0");
-                        dgvRow.Cells[6].Value = group.TotalPaymentAmount.ToString("#,0");
-                        dgvRow.Cells[7].Value = remainingBalance.ToString("#,0");
-                        dgvRow.Cells[8].Value = 0;
-                    }
+                    dgvRow.Cells[0].Value = false;
+                    dgvRow.Cells[3].Value = group.Orders.FirstOrDefault()["ShortDate"];
+                    dgvRow.Cells[4].Value = group.Orders.FirstOrDefault()["Կոդ"];
+                    dgvRow.Cells[5].Value = group.Orders.FirstOrDefault()["ԴՀ"];
+                    dgvRow.Cells[1].Value = group.Orders.FirstOrDefault()["hh"];
+                    dgvRow.Cells[2].Value = group.Orders.FirstOrDefault()["Հաճախորդ"];
+                    dgvRow.Cells[6].Value = group.TotalOrderAmount.ToString("#,0");
                 }
-
-                con.Close();
+                
+                con.Close();               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+        public void DeactivCheckBoxes()
+        {
+            foreach (DataGridViewRow row in dgvClientDebtsTA.Rows)
+            {
+                if (row.Cells[5].Value != null && row.Cells[5].Value.ToString() == "yes")
+                {
+                    // Make the checkbox in the first column inactive (disabled)
+                    DataGridViewCheckBoxCell checkBoxCell = (DataGridViewCheckBoxCell)row.Cells[0];
+                    checkBoxCell.Value = true; // Ensure the checkbox is unchecked
+                    row.Cells[0].ReadOnly = true; // Make it read-only
+                    row.Cells[0].Style.ForeColor = Color.Gray; // Optionally change color to indicate it's inactive
+                    row.DefaultCellStyle.BackColor = Color.White;
+                }
+                else 
+                {
+                    // Change the row color to blue
+                    row.DefaultCellStyle.BackColor = Color.LightBlue;
+                }
+            }
+        }
+
     }
 }

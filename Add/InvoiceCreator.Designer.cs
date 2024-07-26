@@ -35,20 +35,18 @@
             this.cmbICclient = new System.Windows.Forms.ComboBox();
             this.btnICAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtICtot = new System.Windows.Forms.TextBox();
+            this.txtICaah = new System.Windows.Forms.TextBox();
+            this.txtICval = new System.Windows.Forms.TextBox();
             this.dgvClientDebtsTA = new Zuby.ADGV.AdvancedDataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ԴՀ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtICval = new System.Windows.Forms.TextBox();
-            this.txtICaah = new System.Windows.Forms.TextBox();
-            this.txtICtot = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientDebtsTA)).BeginInit();
             this.SuspendLayout();
@@ -132,19 +130,61 @@
             this.panel1.Size = new System.Drawing.Size(854, 147);
             this.panel1.TabIndex = 56;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(142, 100);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 13);
+            this.label1.TabIndex = 108;
+            this.label1.Text = "Ընդհանուր արժեք";
+            // 
+            // txtICtot
+            // 
+            this.txtICtot.BackColor = System.Drawing.Color.White;
+            this.txtICtot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtICtot.Location = new System.Drawing.Point(478, 95);
+            this.txtICtot.Multiline = true;
+            this.txtICtot.Name = "txtICtot";
+            this.txtICtot.Size = new System.Drawing.Size(90, 25);
+            this.txtICtot.TabIndex = 107;
+            this.txtICtot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtICaah
+            // 
+            this.txtICaah.BackColor = System.Drawing.Color.White;
+            this.txtICaah.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtICaah.Location = new System.Drawing.Point(387, 95);
+            this.txtICaah.Multiline = true;
+            this.txtICaah.Name = "txtICaah";
+            this.txtICaah.Size = new System.Drawing.Size(69, 25);
+            this.txtICaah.TabIndex = 106;
+            this.txtICaah.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtICval
+            // 
+            this.txtICval.BackColor = System.Drawing.Color.White;
+            this.txtICval.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtICval.Location = new System.Drawing.Point(275, 95);
+            this.txtICval.Multiline = true;
+            this.txtICval.Name = "txtICval";
+            this.txtICval.Size = new System.Drawing.Size(90, 25);
+            this.txtICval.TabIndex = 105;
+            this.txtICval.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // dgvClientDebtsTA
             // 
             this.dgvClientDebtsTA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClientDebtsTA.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
+            this.Column6,
             this.Column2,
             this.Column5,
             this.Column3,
             this.ԴՀ,
-            this.Column4,
-            this.Column6,
-            this.Column7,
-            this.Column8});
+            this.Column4});
             this.dgvClientDebtsTA.FilterAndSortEnabled = true;
             this.dgvClientDebtsTA.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvClientDebtsTA.Location = new System.Drawing.Point(4, 156);
@@ -163,6 +203,13 @@
             this.Column1.Name = "Column1";
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.Column1.Width = 40;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "hh";
+            this.Column6.MinimumWidth = 22;
+            this.Column6.Name = "Column6";
+            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // Column2
             // 
@@ -205,71 +252,6 @@
             this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Վճարել";
-            this.Column6.MinimumWidth = 22;
-            this.Column6.Name = "Column6";
-            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Մնացորդ";
-            this.Column7.MinimumWidth = 22;
-            this.Column7.Name = "Column7";
-            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Բաշխել";
-            this.Column8.MinimumWidth = 22;
-            this.Column8.Name = "Column8";
-            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // txtICval
-            // 
-            this.txtICval.BackColor = System.Drawing.Color.White;
-            this.txtICval.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtICval.Location = new System.Drawing.Point(275, 95);
-            this.txtICval.Multiline = true;
-            this.txtICval.Name = "txtICval";
-            this.txtICval.Size = new System.Drawing.Size(90, 25);
-            this.txtICval.TabIndex = 105;
-            this.txtICval.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtICaah
-            // 
-            this.txtICaah.BackColor = System.Drawing.Color.White;
-            this.txtICaah.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtICaah.Location = new System.Drawing.Point(387, 95);
-            this.txtICaah.Multiline = true;
-            this.txtICaah.Name = "txtICaah";
-            this.txtICaah.Size = new System.Drawing.Size(69, 25);
-            this.txtICaah.TabIndex = 106;
-            this.txtICaah.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtICtot
-            // 
-            this.txtICtot.BackColor = System.Drawing.Color.White;
-            this.txtICtot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtICtot.Location = new System.Drawing.Point(478, 95);
-            this.txtICtot.Multiline = true;
-            this.txtICtot.Name = "txtICtot";
-            this.txtICtot.Size = new System.Drawing.Size(90, 25);
-            this.txtICtot.TabIndex = 107;
-            this.txtICtot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(142, 100);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 13);
-            this.label1.TabIndex = 108;
-            this.label1.Text = "Ընդհանուր արժեք";
-            // 
             // InvoiceCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,18 +277,16 @@
         private System.Windows.Forms.Button btnICAdd;
         private System.Windows.Forms.Panel panel1;
         private Zuby.ADGV.AdvancedDataGridView dgvClientDebtsTA;
+        private System.Windows.Forms.TextBox txtICaah;
+        private System.Windows.Forms.TextBox txtICval;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtICtot;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ԴՀ;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.TextBox txtICaah;
-        private System.Windows.Forms.TextBox txtICval;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtICtot;
     }
 }

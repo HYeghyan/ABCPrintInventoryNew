@@ -28,6 +28,7 @@ namespace ABCPrintInventory.Create
         {
             FillGrid();
             GetItemId();
+            BanComboboxComplate();
             Designe();
         }
 
@@ -56,8 +57,8 @@ namespace ABCPrintInventory.Create
             dgvInk.Columns["hh"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvInk.Columns["Ներկ"].Width = 250;
             dgvInk.Columns["Ներկ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvInk.Columns["Չմ"].Width = 60;
-            dgvInk.Columns["Չմ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvInk.Columns["ՏՄ"].Width = 60;
+            dgvInk.Columns["ՏՄ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvInk.Columns["Նկարագիր"].Width = 300;
             dgvInk.Columns["Նկարագիր"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
@@ -87,7 +88,20 @@ namespace ABCPrintInventory.Create
             con.Close();
             txtInkId.Text = prodCatId.ToString();
         }
+        private void BanComboboxComplate()
+        {
+            SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT DISTINCT([Հապ.]) FROM TblPrinter", con);
+            SqlDataReader dr = cmd.ExecuteReader();
 
+            while (dr.Read())
+            {
+                txtInkSize.Items.Add(dr.GetValue(0).ToString());
+            }
+            dr.Close();
+            con.Close();
+        }
         private void Cleartext()
         {
             txtInkName.Text = "";
@@ -111,7 +125,7 @@ namespace ABCPrintInventory.Create
                 try
                 {
                     con.Open();
-                    cmd = new SqlCommand("INSERT INTO TblInk (hh, Ներկ, Չմ, Նկարագիր) VALUES (@ItemId, @ItemName, @ItemSize, @ItemDesc)", con);
+                    cmd = new SqlCommand("INSERT INTO TblInk (hh, Ներկ, ՏՄ, Նկարագիր) VALUES (@ItemId, @ItemName, @ItemSize, @ItemDesc)", con);
                     cmd.Parameters.AddWithValue("@ItemId", txtInkId.Text);
                     cmd.Parameters.AddWithValue("@ItemName", txtInkName.Text);
                     cmd.Parameters.AddWithValue("@ItemSize", txtInkSize.Text);
@@ -155,7 +169,7 @@ namespace ABCPrintInventory.Create
                 try
                 {
                     con.Open();
-                    cmd = new SqlCommand("UPDATE TblInk SET Նկարագիր = @ItemDesc, Չմ = @ItemSize, Ներկ = @ItemName WHERE hh = @ItemId", con);
+                    cmd = new SqlCommand("UPDATE TblInk SET Նկարագիր = @ItemDesc, ՏՄ = @ItemSize, Ներկ = @ItemName WHERE hh = @ItemId", con);
                     cmd.Parameters.AddWithValue("@ItemId", txtInkId.Text);
                     cmd.Parameters.AddWithValue("@ItemName", txtInkName.Text);
                     cmd.Parameters.AddWithValue("@ItemSize", txtInkSize.Text);

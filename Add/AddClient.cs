@@ -63,7 +63,7 @@ namespace ABCPrintInventory.Create
         private void FillGrid()
         {
             con.Open();
-            da = new SqlDataAdapter("select * from TblClient order by hh asc", con);
+            da = new SqlDataAdapter("select * from TblClient order by hh desc", con);
             con.Close();
 
             SqlCommandBuilder cb = new SqlCommandBuilder(da);

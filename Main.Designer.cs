@@ -43,17 +43,13 @@
             this.մատակարարToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.նորՊատվերToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ձեռքԲերումToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.պարտքիՄարումToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newPurchasingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bannerStToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ներկToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ստենդToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.հաշվետվությունToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.վաճառքToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.գնումToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.costPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cashFlowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.newCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,8 +61,9 @@
             this.գործընկերToolStripMenuItem,
             this.նորՊատվերToolStripMenuItem,
             this.StockToolStripMenuItem,
-            this.հաշվետվությունToolStripMenuItem,
-            this.deptsToolStripMenuItem});
+            this.deptsToolStripMenuItem,
+            this.costPayToolStripMenuItem,
+            this.cashFlowToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Padding = new System.Windows.Forms.Padding(3, 12, 0, 12);
@@ -170,80 +167,32 @@
             // 
             this.նորՊատվերToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newOrderToolStripMenuItem,
-            this.ձեռքԲերումToolStripMenuItem,
-            this.պարտքիՄարումToolStripMenuItem});
+            this.newPurchasingToolStripMenuItem,
+            this.newCostToolStripMenuItem});
             this.նորՊատվերToolStripMenuItem.Name = "նորՊատվերToolStripMenuItem";
-            this.նորՊատվերToolStripMenuItem.Size = new System.Drawing.Size(95, 19);
-            this.նորՊատվերToolStripMenuItem.Text = "Նոր պատվեր";
+            this.նորՊատվերToolStripMenuItem.Size = new System.Drawing.Size(81, 19);
+            this.նորՊատվերToolStripMenuItem.Text = "Ավելացնել";
             // 
             // newOrderToolStripMenuItem
             // 
             this.newOrderToolStripMenuItem.Name = "newOrderToolStripMenuItem";
-            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.newOrderToolStripMenuItem.Text = "Նոր վաճառք";
+            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newOrderToolStripMenuItem.Text = "Վաճառք";
             this.newOrderToolStripMenuItem.Click += new System.EventHandler(this.newOrderToolStripMenuItem_Click);
             // 
-            // ձեռքԲերումToolStripMenuItem
+            // newPurchasingToolStripMenuItem
             // 
-            this.ձեռքԲերումToolStripMenuItem.Name = "ձեռքԲերումToolStripMenuItem";
-            this.ձեռքԲերումToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.ձեռքԲերումToolStripMenuItem.Text = "Ձեռք բերում";
-            // 
-            // պարտքիՄարումToolStripMenuItem
-            // 
-            this.պարտքիՄարումToolStripMenuItem.Name = "պարտքիՄարումToolStripMenuItem";
-            this.պարտքիՄարումToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.պարտքիՄարումToolStripMenuItem.Text = "Պարտքի մարում";
+            this.newPurchasingToolStripMenuItem.Name = "newPurchasingToolStripMenuItem";
+            this.newPurchasingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newPurchasingToolStripMenuItem.Text = "Ձեռք բերում";
+            this.newPurchasingToolStripMenuItem.Click += new System.EventHandler(this.newPurchasingToolStripMenuItem_Click);
             // 
             // StockToolStripMenuItem
             // 
-            this.StockToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bannerStToolStripMenuItem,
-            this.ներկToolStripMenuItem,
-            this.ստենդToolStripMenuItem});
             this.StockToolStripMenuItem.Name = "StockToolStripMenuItem";
             this.StockToolStripMenuItem.Size = new System.Drawing.Size(69, 19);
             this.StockToolStripMenuItem.Text = "Պահեստ";
-            // 
-            // bannerStToolStripMenuItem
-            // 
-            this.bannerStToolStripMenuItem.Name = "bannerStToolStripMenuItem";
-            this.bannerStToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.bannerStToolStripMenuItem.Text = "Պաստառ";
-            this.bannerStToolStripMenuItem.Click += new System.EventHandler(this.bannerStToolStripMenuItem_Click);
-            // 
-            // ներկToolStripMenuItem
-            // 
-            this.ներկToolStripMenuItem.Name = "ներկToolStripMenuItem";
-            this.ներկToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ներկToolStripMenuItem.Text = "Ներկ";
-            // 
-            // ստենդToolStripMenuItem
-            // 
-            this.ստենդToolStripMenuItem.Name = "ստենդToolStripMenuItem";
-            this.ստենդToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ստենդToolStripMenuItem.Text = "Ստենդ";
-            // 
-            // հաշվետվությունToolStripMenuItem
-            // 
-            this.հաշվետվությունToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.վաճառքToolStripMenuItem1,
-            this.գնումToolStripMenuItem});
-            this.հաշվետվությունToolStripMenuItem.Name = "հաշվետվությունToolStripMenuItem";
-            this.հաշվետվությունToolStripMenuItem.Size = new System.Drawing.Size(115, 19);
-            this.հաշվետվությունToolStripMenuItem.Text = "Հաշվետվություն";
-            // 
-            // վաճառքToolStripMenuItem1
-            // 
-            this.վաճառքToolStripMenuItem1.Name = "վաճառքToolStripMenuItem1";
-            this.վաճառքToolStripMenuItem1.Size = new System.Drawing.Size(129, 22);
-            this.վաճառքToolStripMenuItem1.Text = "Վաճառք";
-            // 
-            // գնումToolStripMenuItem
-            // 
-            this.գնումToolStripMenuItem.Name = "գնումToolStripMenuItem";
-            this.գնումToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.գնումToolStripMenuItem.Text = "Գնումներ";
+            this.StockToolStripMenuItem.Click += new System.EventHandler(this.StockToolStripMenuItem_Click);
             // 
             // deptsToolStripMenuItem
             // 
@@ -251,6 +200,20 @@
             this.deptsToolStripMenuItem.Size = new System.Drawing.Size(62, 19);
             this.deptsToolStripMenuItem.Text = "Պարտք";
             this.deptsToolStripMenuItem.Click += new System.EventHandler(this.deptsToolStripMenuItem_Click);
+            // 
+            // costPayToolStripMenuItem
+            // 
+            this.costPayToolStripMenuItem.Name = "costPayToolStripMenuItem";
+            this.costPayToolStripMenuItem.Size = new System.Drawing.Size(68, 19);
+            this.costPayToolStripMenuItem.Text = "Ծախսեր";
+            this.costPayToolStripMenuItem.Click += new System.EventHandler(this.costPayToolStripMenuItem_Click);
+            // 
+            // cashFlowToolStripMenuItem
+            // 
+            this.cashFlowToolStripMenuItem.Name = "cashFlowToolStripMenuItem";
+            this.cashFlowToolStripMenuItem.Size = new System.Drawing.Size(118, 19);
+            this.cashFlowToolStripMenuItem.Text = "Դրամական շարժ";
+            this.cashFlowToolStripMenuItem.Click += new System.EventHandler(this.cashFlowToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -262,6 +225,13 @@
             this.tabControl1.TabIndex = 2;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             this.tabControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseClick);
+            // 
+            // newCostToolStripMenuItem
+            // 
+            this.newCostToolStripMenuItem.Name = "newCostToolStripMenuItem";
+            this.newCostToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newCostToolStripMenuItem.Text = "Ծախս";
+            this.newCostToolStripMenuItem.Click += new System.EventHandler(this.newCostToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -290,15 +260,10 @@
         private System.Windows.Forms.ToolStripMenuItem clientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem մատակարարToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StockToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bannerStToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ներկToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ստենդToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem նորՊատվերToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newOrderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ձեռքԲերումToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem հաշվետվությունToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem վաճառքToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem գնումToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newPurchasingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cashFlowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem matBToolStripMenuItem;
@@ -309,6 +274,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ToolStripMenuItem բանկToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem պարտքիՄարումToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem costPayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newCostToolStripMenuItem;
     }
 }

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,11 @@ namespace ABCPrintInventory.Add
             GetCostVal();
             dtpNO.ValueChanged += dtpNO_ValueChanged;
         }
-
+        public bool BtnNOAddEnabled
+        {
+            get { return btnNOAdd.Enabled; }
+            set { btnNOAdd.Enabled = value; }
+        }
         private void NewOrder_Load(object sender, EventArgs e)
         {
             DefCalculateAuto();
@@ -46,7 +51,7 @@ namespace ABCPrintInventory.Add
             GetRbtSelect();
             PopulateDgvNOorderFromDatabase();
             dtpNO_ValueChanged(sender, e);
-
+            GetItemId();
         }
         //Կոմբոբոքսերի լրացնելը
         private void FillComboBoxClient()
@@ -302,14 +307,13 @@ namespace ABCPrintInventory.Add
         {
             if (!string.IsNullOrEmpty(txtNOprW.Text) && !string.IsNullOrEmpty(txtNOprL.Text) && !string.IsNullOrEmpty(txtNOprQnt.Text))
             {
-                decimal prW = Convert.ToDecimal(txtNOprW.Text);
-                decimal prH = Convert.ToDecimal(txtNOprL.Text);
+                decimal prW = Convert.ToDecimal(txtNOprW.Text, CultureInfo.InvariantCulture);
+                decimal prH = Convert.ToDecimal(txtNOprL.Text, CultureInfo.InvariantCulture);
                 int prQnt = Convert.ToInt32(txtNOprQnt.Text);
                 decimal prSM = prW * prH * prQnt;
 
                 txtNOprSM.Text = prSM.ToString("0.00");
             }
-
         }
         //Հաշվում ենք տպագրության արժեքը
         private void CountValPr()
@@ -1158,7 +1162,6 @@ namespace ABCPrintInventory.Add
             txtNOcostQnt.TextChanged += UpdateCostValCalculation;
             txtNOcostPrice.TextChanged += UpdateCostValCalculation;
         }
-
         private void btnNOcostAdd_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < dgvNOorder.Rows.Count; i++)
@@ -1196,6 +1199,7 @@ namespace ABCPrintInventory.Add
             txtNOcostVal.Text = "";
             CountTotaldgvrowVal();
             CountTotalVal();
+            
         }
         private void btnNOcostSave_Click(object sender, EventArgs e)
         {
@@ -1211,6 +1215,7 @@ namespace ABCPrintInventory.Add
             txtNOcostPrice.Text = "";
             txtNOcostVal.Text = "";
         }
+        
         //---------------------------------------- Մեկնաբանություն --------------------------------------
 
         private void btnNOsaleAdd_Click(object sender, EventArgs e)
@@ -1258,7 +1263,6 @@ namespace ABCPrintInventory.Add
         }
         //---------------------------------------- Աղյուսակի համագումար ---------------------------------
 
-
         private void CountTotaldgvrowVal()
         {
             foreach (DataGridViewRow row in dgvNOorder.Rows)
@@ -1283,7 +1287,7 @@ namespace ABCPrintInventory.Add
                     decimal.TryParse(row.Cells[25].Value?.ToString(), out value6);
 
                     // Calculate the sum of the decimal values
-                    decimal sum = value1 + value2 + value3 + value4 + value6 - value5;
+                    decimal sum = value1 + value2 + value3 + value4 + value5 + value6;
 
                     // Convert the sum to an integer
                     int result = Decimal.ToInt32(sum);
@@ -1383,6 +1387,64 @@ namespace ABCPrintInventory.Add
         {
             CountTotalVal();
         }
+        //---------------------------------------Սևագրի փոփոխությունը-------------------------------------
+
+        private void cbDraft_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbDraft.Checked == true) 
+            {
+                txtDraft.Text = "Ս";
+            }
+            else
+            {
+                txtDraft.Text = "Պ";
+            }
+        }
+
+        private void CbdraftbyDubleClick()
+        {
+            if (txtDraft.Text == "Ս")
+            {
+                cbDraft.Checked = true;
+            }
+            else
+            {
+                cbDraft.Checked = false;
+            }
+        }
+
+        //------Պարտքերի կառվարման աղյուսակի համար կոդ
+        private void GetItemId()
+        {
+            string codePrefix = "ՊԿ";
+            string codeNumber;
+
+            con.Open();
+
+            // Use CAST or TRY_CAST to extract the numeric part after the prefix for correct sorting
+            cmd = new SqlCommand(@"SELECT MAX(CAST(SUBSTRING(hh, LEN(@codePrefix) + 1, LEN(hh)) AS INT))
+                                FROM TblDebtsControl WHERE hh LIKE @codePrefix + '%'", con);
+
+            cmd.Parameters.AddWithValue("@codePrefix", codePrefix);
+            object result = cmd.ExecuteScalar();
+            con.Close();
+
+            if (result != DBNull.Value && result != null)
+            {
+                // Increment the numeric part
+                int lastNumber = Convert.ToInt32(result);
+                codeNumber = (lastNumber + 1).ToString();
+            }
+            else
+            {
+                // Start from 1 if no records are found
+                codeNumber = "01";
+            }
+
+            // Combine the prefix and the incremented number
+            string newCode = codePrefix + codeNumber;
+            txtDebtId.Text = newCode;
+        }
 
         //------------------------------------------- Ավելացնել -------------------------------------------
 
@@ -1402,11 +1464,11 @@ namespace ABCPrintInventory.Add
         private void btnNOAdd_Click(object sender, EventArgs e)
         {
             AddItemToGridview();
+            AddItemToDebtsControl();
             AddItemToStock();
             this.Close();
             insert();
-        }
-        
+        }      
         public void AddItemToGridview()
         {
             if (txtNOid.Text == "" || txtNOval.Text == "")
@@ -1418,9 +1480,9 @@ namespace ABCPrintInventory.Add
                 try
                 {
                     con.Open();
-                    cmd = new SqlCommand("INSERT INTO TblOrders (Ամսաթիվ, [Պատվ. համ], Հաճախորդ, Միջնորդ, [Վճ. եղանակ], Արժեք, ԱԱՀ, Ընդհանուր, hh, [տ/մ], Նյութ, Լայնք, [Բարձ.], Քանակ, ՔՄ, Գին, [Տպ. արժեք], [Խոտան քմ], [Խոտան գին], [Խոտան արժեք], [Կոճգամ քան.], [Կոճգամ գին], [Կոճգամ արժեք], Լրացուցիչ, [Լր. քան.], [Լր. գին], [Լր. արժեք], Ծախս, [Ծախս քան.], [Ծախս գին], [Ծախս արժեք], Զեղչ, Մեկնաբանություն) " +
+                    cmd = new SqlCommand("INSERT INTO TblOrders (Ամսաթիվ, [Պատվ. համ], Հաճախորդ, Միջնորդ, [Վճ. եղանակ], Արժեք, ԱԱՀ, Ընդհանուր, hh, [տ/մ], Նյութ, Լայնք, [Բարձ.], Քանակ, ՔՄ, Գին, [Տպ. արժեք], [Խոտան քմ], [Խոտան գին], [Խոտան արժեք], [Կոճգամ քան.], [Կոճգամ գին], [Կոճգամ արժեք], Լրացուցիչ, [Լր. քան.], [Լր. գին], [Լր. արժեք], Ծախս, [Ծախս քան.], [Ծախս գին], [Ծախս արժեք], Զեղչ, Մեկնաբանություն, Սևագիր, ՊԿկոդ) " +
                         "VALUES (@Column1, @Column2, @Column3, @Column4, @Column5, @Column6, @Column7, @Column8, @Column9, @Column10, @Column11, @Column12, @Column13, @Column14, @Column15, @Column16, @Column17, @Column18, @Column19, @Column20," +
-                        " @Column21, @Column22, @Column23, @Column24, @Column25, @Column26, @Column27, @Column28, @Column29, @Column30, @Column31, @Column32, @Column33)", con);
+                        " @Column21, @Column22, @Column23, @Column24, @Column25, @Column26, @Column27, @Column28, @Column29, @Column30, @Column31, @Column32, @Column33, @Column34, @Column35)", con);
 
                     // Loop through dgvNOorder rows
                     foreach (DataGridViewRow row in dgvNOorder.Rows)
@@ -1473,50 +1535,17 @@ namespace ABCPrintInventory.Add
                             cmd.Parameters.AddWithValue("@Column31", row.Cells[24].Value ?? DBNull.Value);
                             cmd.Parameters.AddWithValue("@Column32", row.Cells[25].Value ?? DBNull.Value);
                             cmd.Parameters.AddWithValue("@Column33", row.Cells[27].Value ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@Column34", txtDraft.Text);
+                            cmd.Parameters.AddWithValue("@Column35", txtDebtId.Text);
 
                             cmd.ExecuteNonQuery();
                         }
                         // Clear parameters and re-add them for each row
                         
                     }
-                    if (txtPayType.Text == "Կ")
-                    {
-                        cmd = new SqlCommand("INSERT INTO TblOrderForDepts (Ամսաթիվ, [Պատվ. համ], Հաճախորդ, [Պատվ. արժեք]) VALUES (@Column1, @Column2, @Column3, @Column4)", con);
-                        DateTime selectedDateo = dtpNO.Value;
-                        cmd.Parameters.Clear();
-                        cmd.Parameters.AddWithValue("@Column1", selectedDateo);
-                        cmd.Parameters.AddWithValue("@Column2", txtNOid.Text);
-                        cmd.Parameters.AddWithValue("@Column3", cmbNOclient.Text);
-                        cmd.Parameters.AddWithValue("@Column4", txtNOval.Text);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                    }
-                    else if(txtPayType.Text == "Հ")
-                    {                      
-                        cmd = new SqlCommand("INSERT INTO TblOrderForDepts (Ամսաթիվ, [Պատվ. համ], Հաճախորդ, [Պատվ. արժեք]) VALUES (@Column1, @Column2, @Column3, @Column4)", con);
-                        DateTime selectedDateo = dtpNO.Value;
-                        cmd.Parameters.Clear();
-                        cmd.Parameters.AddWithValue("@Column1", selectedDateo);
-                        cmd.Parameters.AddWithValue("@Column2", txtNOid.Text);
-                        cmd.Parameters.AddWithValue("@Column3", cmbNOclient.Text);
-                        cmd.Parameters.AddWithValue("@Column4", txtNOvalTotal.Text);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                    }
-                    else
-                    {
-                        cmd = new SqlCommand("INSERT INTO TblOrderForDeptsTA (Ամսաթիվ, [Պատվ. համ], Հաճախորդ, Արժեք, ԱԱՀ, Ընդհանուր) VALUES (@Column1, @Column2, @Column3, @Column4, @Column5, @Column6)", con);
-                        DateTime selectedDateo = dtpNO.Value;
-                        cmd.Parameters.Clear();
-                        cmd.Parameters.AddWithValue("@Column1", selectedDateo);
-                        cmd.Parameters.AddWithValue("@Column2", txtNOid.Text);
-                        cmd.Parameters.AddWithValue("@Column3", cmbNOclient.Text);
-                        cmd.Parameters.AddWithValue("@Column4", txtNOval.Text);
-                        cmd.Parameters.AddWithValue("@Column5", txtNOvalNds.Text);
-                        cmd.Parameters.AddWithValue("@Column6", txtNOvalTotal.Text);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                    }
+
+                    con.Close();
+
                     
                 }
                 catch (Exception ex)
@@ -1525,57 +1554,89 @@ namespace ABCPrintInventory.Add
                 }
             }           
         }
-
-        public void AddItemToStock()
+        public void AddItemToDebtsControl()
         {
-            if (txtNOid.Text == "" || txtNOval.Text == "")
+            try
             {
-                MessageBox.Show("Բոլոր պարտադիր դաշտերը լրացված չեն:");
+                con.Open();
+                if (txtNOid != null)
+                {
+                    cmd = new SqlCommand("INSERT INTO TblDebtsControl (hh, Գործողություն, [վ/ե], Ամսաթիվ, Կոդ, Հաճախորդ, Արժեք, ԱԱՀ, Ընդհանուր)" +
+                        "VALUES (@ColumnID, @Column1, @Column2, @Column3, @Column4, @Column5, @Column6, @Column7, @Column8)", con);
+
+                    DateTime selectedDateo = dtpNO.Value;
+                    cmd.Parameters.Clear();
+
+                    cmd.Parameters.AddWithValue("@ColumnID", txtDebtId.Text);
+                    cmd.Parameters.AddWithValue("@Column1", txtAction.Text);
+                    cmd.Parameters.AddWithValue("@Column2", txtPayType.Text);
+                    cmd.Parameters.AddWithValue("@Column3", selectedDateo);
+                    cmd.Parameters.AddWithValue("@Column4", txtNOid.Text);
+                    cmd.Parameters.AddWithValue("@Column5", cmbNOclient.Text);
+                    cmd.Parameters.AddWithValue("@Column6", txtNOval.Text);
+                    cmd.Parameters.AddWithValue("@Column7", txtNOvalNds.Text);
+                    cmd.Parameters.AddWithValue("@Column8", txtNOvalTotal.Text);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                try
-                {
-                    con.Open();
-                    cmd = new SqlCommand("INSERT INTO TblStockFlow (Ամսաթիվ, [Պատվ. համ], [տ/մ], Նյութ, [ՔՄ ելք], [Խոտան քմ], [Կոճգամ ելք], Վահանակ, [Վ ելք] " +
-                        "VALUES (@Column1, @Column2, @Column3, @Column4, @Column5, @Column6, @Column7, @Column8, @Column9",  con);
-
-                    // Loop through dgvNOorder rows
-                    foreach (DataGridViewRow row in dgvNOorder.Rows)
-                    {
-                        if (row.Cells[2].Value != null)
-                        {
-                            DateTime selectedDateo = dtpNO.Value;
-                            cmd.Parameters.Clear();
-
-                            cmd.Parameters.AddWithValue("@Column1", selectedDateo);
-                            cmd.Parameters.AddWithValue("@Column2", txtNOid.Text);
-                            cmd.Parameters.AddWithValue("@Column3", row.Cells[3].Value ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue("@Column4", row.Cells[4].Value ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue("@Column5", row.Cells[8].Value ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue("@Column6", row.Cells[11].Value ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue("@Column7", row.Cells[14].Value ?? DBNull.Value);
-                            if(row.Cells[27].Value == "Վ")
-                            {
-                                cmd.Parameters.AddWithValue("@Column8", row.Cells[17].Value ?? DBNull.Value);
-                                cmd.Parameters.AddWithValue("@Column9", row.Cells[18].Value ?? DBNull.Value);
-                            }    
-                            
-
-                            cmd.ExecuteNonQuery();
-                        }
-                        // Clear parameters and re-add them for each row
-
-                    }
-                    
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
             }
         }
+        public void AddItemToStock()
+        {
+            try
+            {
+                con.Open();
+                foreach (DataGridViewRow row in dgvNOorder.Rows)
+                {
+                    if (row.Cells[2].Value != null)
+                    {
+                        cmd = new SqlCommand("INSERT INTO TblStockFlow (Ամսաթիվ, Կոդ, [տ/մ], Նյութ, [ՔՄ տպ], [Խոտան քմ], [Կոճգամ ելք], Վահանակ, [Վ ելք])" +
+                            "VALUES (@Column1, @Column2, @Column3, @Column4, @Column5, @Column6, @Column7, @Column8, @Column9)", con);
+
+                        DateTime selectedDateo = dtpNO.Value;
+                        cmd.Parameters.Clear();
+
+                        cmd.Parameters.AddWithValue("@Column1", selectedDateo);
+                        cmd.Parameters.AddWithValue("@Column2", txtNOid.Text);
+                        cmd.Parameters.AddWithValue("@Column3", row.Cells[3].Value ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Column4", row.Cells[4].Value ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Column5", row.Cells[8].Value ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Column6", row.Cells[11].Value ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Column7", row.Cells[14].Value ?? DBNull.Value);
+
+                        if (row.Cells[28].Value?.ToString() == "Վ")
+                        {
+                            cmd.Parameters.AddWithValue("@Column8", row.Cells[17].Value ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@Column9", row.Cells[18].Value ?? DBNull.Value);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@Column8", DBNull.Value);
+                            cmd.Parameters.AddWithValue("@Column9", DBNull.Value);
+                        }
+
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }        
 
         //------------------------------------------ Խմբագրել --------------------------------------------
 
@@ -1604,6 +1665,16 @@ namespace ABCPrintInventory.Add
         {
             get { return txtPayType.Text; }
             set { txtPayType.Text = value; }
+        }
+        public string txtDraftText
+        {
+            get { return txtDraft.Text; }
+            set { txtDraft.Text = value; }
+        }
+        public string txtDebtidText
+        {
+            get { return txtDebtId.Text; }
+            set { txtDebtId.Text = value; }
         }
         //radiobutton-ը ընտրել
         public void GetRbtSelect()
@@ -1698,6 +1769,7 @@ namespace ABCPrintInventory.Add
         private void dgvNOorder_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             EditgridviewItem(sender, e);
+            //btnNOAdd.Enabled = false;
         }       
         int i;
         private void EditgridviewItem(object sender, DataGridViewCellEventArgs e)
@@ -1766,129 +1838,17 @@ namespace ABCPrintInventory.Add
             cmd = new SqlCommand("DELETE FROM TblOrders WHERE [Պատվ. համ] = '" + txtNOid.Text + "'", con);
             int rowsAffectedOrders = cmd.ExecuteNonQuery();
 
-            SqlCommand cmdForDepts = new SqlCommand("DELETE FROM TblOrderForDepts WHERE [Պատվ. համ] = '" + txtNOid.Text + "'", con);
+            SqlCommand cmdForDepts = new SqlCommand("DELETE FROM TblDebtsControl WHERE hh = @DebtId", con);
+            cmdForDepts.Parameters.AddWithValue("@DebtId", txtDebtId.Text);
             int rowsAffectedDepts = cmdForDepts.ExecuteNonQuery();
 
-            //SqlCommand cmdForDeptsTA = new SqlCommand("DELETE FROM TblOrderForDeptsTA WHERE [Պատվ. համ] = '" + txtNOid.Text + "'", con);
-            //int rowsAffectedDeptsTA = cmdForDeptsTA.ExecuteNonQuery();
+            SqlCommand cmdForStock = new SqlCommand("DELETE FROM TblStockFlow WHERE Կոդ = '" + txtNOid.Text + "'", con);
+            int rowsAffectedDeptsTA = cmdForStock.ExecuteNonQuery();
             con.Close();
-            con.Open();
-            cmd = new SqlCommand("INSERT INTO TblOrders (Ամսաթիվ, [Պատվ. համ], Հաճախորդ, Միջնորդ, [Վճ. եղանակ], Արժեք, ԱԱՀ, Ընդհանուր, hh, [տ/մ], Նյութ, Լայնք, [Բարձ.], Քանակ, ՔՄ, Գին, [Տպ. արժեք], [Խոտան քմ], [Խոտան գին], [Խոտան արժեք], [Կոճգամ քան.], [Կոճգամ գին], [Կոճգամ արժեք], Լրացուցիչ, [Լր. քան.], [Լր. գին], [Լր. արժեք], Ծախս, [Ծախս քան.], [Ծախս գին], [Ծախս արժեք], Զեղչ, Մեկնաբանություն) " +
-                "VALUES (@Column1, @Column2, @Column3, @Column4, @Column5, @Column6, @Column7, @Column8, @Column9, @Column10, @Column11, @Column12, @Column13, @Column14, @Column15, @Column16, @Column17, @Column18, @Column19, @Column20," +
-                " @Column21, @Column22, @Column23, @Column24, @Column25, @Column26, @Column27, @Column28, @Column29, @Column30, @Column31, @Column32, @Column33)", con);
-
-            //DateTimePicker dtp = new DateTimePicker();
-
-
-            // Loop through dgvNOorder rows
-            foreach (DataGridViewRow row in dgvNOorder.Rows)
-            {
-                if (row.Cells[2].Value != null)
-                {
-                    DateTime selectedDateo = dtpNO.Value;
-                    cmd.Parameters.Clear();
-
-                    cmd.Parameters.AddWithValue("@Column1", selectedDateo);
-                    cmd.Parameters.AddWithValue("@Column2", txtNOid.Text);
-                    cmd.Parameters.AddWithValue("@Column3", cmbNOclient.Text);
-                    cmd.Parameters.AddWithValue("@Column4", txtNOagent.Text);
-                    cmd.Parameters.AddWithValue("@Column5", txtPayType.Text);
-                    if (txtPayType.Text == "Հ")
-                    {
-                        cmd.Parameters.AddWithValue("@Column6", txtNOvalTotal.Text);
-                        cmd.Parameters.AddWithValue("@Column7", "");
-                        cmd.Parameters.AddWithValue("@Column8", "");
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@Column6", txtNOval.Text);
-                        cmd.Parameters.AddWithValue("@Column7", txtNOvalNds.Text);
-                        cmd.Parameters.AddWithValue("@Column8", txtNOvalTotal.Text);
-                    }
-                    cmd.Parameters.AddWithValue("@Column9", row.Cells[2].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column10", row.Cells[3].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column11", row.Cells[4].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column12", row.Cells[5].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column13", row.Cells[6].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column14", row.Cells[7].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column15", row.Cells[8].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column16", row.Cells[9].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column17", row.Cells[10].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column18", row.Cells[11].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column19", row.Cells[12].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column20", row.Cells[13].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column21", row.Cells[14].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column22", row.Cells[15].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column23", row.Cells[16].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column24", row.Cells[17].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column25", row.Cells[18].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column26", row.Cells[19].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column27", row.Cells[20].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column28", row.Cells[21].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column29", row.Cells[22].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column30", row.Cells[23].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column31", row.Cells[24].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column32", row.Cells[25].Value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Column33", row.Cells[27].Value ?? DBNull.Value);
-
-                    cmd.ExecuteNonQuery();
-                }
-                // Clear parameters and re-add them for each row
-
-            }
-            if (txtPayType.Text == "Կ")
-            {               
-                cmd = new SqlCommand("INSERT INTO TblOrderForDepts (Ամսաթիվ, [Պատվ. համ], Հաճախորդ, [Պատվ. արժեք]) VALUES (@Column1, @Column2, @Column3, @Column4)", con);
-                DateTime selectedDateo = dtpNO.Value;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@Column1", selectedDateo);
-                cmd.Parameters.AddWithValue("@Column2", txtNOid.Text);
-                cmd.Parameters.AddWithValue("@Column3", cmbNOclient.Text);
-                cmd.Parameters.AddWithValue("@Column4", txtNOval.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            else if (txtPayType.Text == "Հ")
-            {              
-                cmd = new SqlCommand("INSERT INTO TblOrderForDepts (Ամսաթիվ, [Պատվ. համ], Հաճախորդ, [Պատվ. արժեք]) VALUES (@Column1, @Column2, @Column3, @Column4)", con);
-                DateTime selectedDateo = dtpNO.Value;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@Column1", selectedDateo);
-                cmd.Parameters.AddWithValue("@Column2", txtNOid.Text);
-                cmd.Parameters.AddWithValue("@Column3", cmbNOclient.Text);
-                cmd.Parameters.AddWithValue("@Column4", txtNOvalTotal.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            else
-            {
-                try
-                {
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
-
-                    cmd = new SqlCommand("UPDATE TblOrderForDeptsTA SET Ամսաթիվ = @Column1, Հաճախորդ = @Column3, Արժեք = @Column4, ԱԱՀ = @Column5, Ընդհանուր = @Column6 WHERE [Պատվ. համ] = @Column2", con);
-                    DateTime selectedDateo = dtpNO.Value;
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@Column1", selectedDateo);
-                    cmd.Parameters.AddWithValue("@Column2", txtNOid.Text);
-                    cmd.Parameters.AddWithValue("@Column3", cmbNOclient.Text);
-                    cmd.Parameters.AddWithValue("@Column4", txtNOval.Text);
-                    cmd.Parameters.AddWithValue("@Column5", txtNOvalNds.Text);
-                    cmd.Parameters.AddWithValue("@Column6", txtNOvalTotal.Text);
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    // Handle or log the exception
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-                finally
-                {
-                    if (con.State == ConnectionState.Open)
-                        con.Close();
-                }
-            }
+            
+            AddItemToGridview();
+            AddItemToDebtsControl();
+            AddItemToStock();
             this.Close();
 
         }
@@ -1905,18 +1865,15 @@ namespace ABCPrintInventory.Add
                         cmd = new SqlCommand("DELETE FROM TblOrders WHERE [Պատվ. համ] = '" + txtNOid.Text + "'", con);
                         int rowsAffectedOrders = cmd.ExecuteNonQuery();
 
-                        SqlCommand cmdForDepts = new SqlCommand("DELETE FROM TblOrderForDepts WHERE [Պատվ. համ] = '" + txtNOid.Text + "'", con);
+                        SqlCommand cmdForDepts = new SqlCommand("DELETE FROM TblDebtsControl WHERE hh = @DebtId", con);
+                        cmdForDepts.Parameters.AddWithValue("@DebtId", txtDebtId.Text);
                         int rowsAffectedDepts = cmdForDepts.ExecuteNonQuery();
 
-                        SqlCommand cmdForDeptsTA = new SqlCommand("DELETE FROM TblOrderForDeptsTA WHERE [Պատվ. համ] = '" + txtNOid.Text + "'", con);
-                        int rowsAffectedDeptsTa = cmdForDeptsTA.ExecuteNonQuery();
-
-                        SqlCommand cmdForStock = new SqlCommand("DELETE FROM TblStockFlow WHERE [Պատվ. համ] = '" + txtNOid.Text + "'", con);
-                        int rowsAffectedStock = cmdForStock.ExecuteNonQuery();
-
+                        SqlCommand cmdForStock = new SqlCommand("DELETE FROM TblStockFlow WHERE Կոդ = '" + txtNOid.Text + "'", con);
+                        int rowsAffectedDeptsTA = cmdForStock.ExecuteNonQuery();
                         con.Close();
 
-                        if (rowsAffectedOrders > 0)
+                        if (rowsAffectedOrders > 0 && rowsAffectedDepts > 0 && rowsAffectedDeptsTA > 0)
                         {
                             MessageBox.Show("Պատվերը հեռացվե՛ց");
                         }

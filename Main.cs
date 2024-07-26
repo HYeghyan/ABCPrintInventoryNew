@@ -216,7 +216,30 @@ namespace ABCPrintInventory
             depts.Show();
         }
 
-        private void bannerStToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newPurchasingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewPurchasing newPurchasing = new NewPurchasing();
+            newPurchasing.MdiParent = this; 
+            TabPage newTabPage = new TabPage("Ձեռք բերում");
+            newTabPage.Controls.Add(newPurchasing);
+
+            tabControl1.TabPages.Add(newTabPage);
+            tabControl1.SelectedTab = newTabPage;
+            newPurchasing.Show();
+        }
+        private void newCostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewCost newCost = new NewCost();
+            newCost.MdiParent = this;
+            TabPage newTabPage = new TabPage("Ծախս");
+            newTabPage.Controls.Add(newCost);
+
+            tabControl1.TabPages.Add(newTabPage);
+            tabControl1.SelectedTab = newTabPage;
+            newCost.Show();
+        }
+
+        private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StockFlow stockFlow = new StockFlow();
             stockFlow.MdiParent = this;
@@ -227,6 +250,32 @@ namespace ABCPrintInventory
             tabControl1.SelectedTab = newTabPage;
             stockFlow.Show();
         }
+
+        private void costPayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PurchDepts purchDepts = new PurchDepts();
+            purchDepts.MdiParent = this;
+            TabPage newTabPage = new TabPage("Վճարումներ");
+            newTabPage.Controls.Add(purchDepts);
+
+            tabControl1.TabPages.Add(newTabPage);
+            tabControl1.SelectedTab = newTabPage;
+            purchDepts.Show();
+        }
+
+        private void cashFlowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CashFlow cashFlow = new CashFlow();
+            cashFlow.MdiParent = this;
+            TabPage newTabPage = new TabPage("Դրամական շարժ");
+            newTabPage.Controls.Add(cashFlow);
+
+            tabControl1.TabPages.Add(newTabPage);
+            tabControl1.SelectedTab = newTabPage;
+            cashFlow.Show();
+        }
+
+       
     }
     
 }

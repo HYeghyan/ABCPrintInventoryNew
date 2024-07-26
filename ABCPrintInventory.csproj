@@ -90,6 +90,12 @@
     <Compile Include="Add\AddClient.Designer.cs">
       <DependentUpon>AddClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add\AddPartner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add\AddPartner.Designer.cs">
+      <DependentUpon>AddPartner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add\Depts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,12 @@
     </Compile>
     <Compile Include="Add\InvoiceCreator.Designer.cs">
       <DependentUpon>InvoiceCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add\NewCost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add\NewCost.Designer.cs">
+      <DependentUpon>NewCost.cs</DependentUpon>
     </Compile>
     <Compile Include="Add\NewOrder.cs">
       <SubType>Form</SubType>
@@ -137,6 +149,18 @@
     </Compile>
     <Compile Include="Add\Orders.Designer.cs">
       <DependentUpon>Orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add\PayPurchDebts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add\PayPurchDebts.Designer.cs">
+      <DependentUpon>PayPurchDebts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add\PurchDepts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add\PurchDepts.Designer.cs">
+      <DependentUpon>PurchDepts.cs</DependentUpon>
     </Compile>
     <Compile Include="Add\Test.cs">
       <SubType>Form</SubType>
@@ -189,14 +213,29 @@
     <Compile Include="Member.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stock\CashFlow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\CashFlow.Designer.cs">
+      <DependentUpon>CashFlow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stock\StockFlow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Stock\StockFlow.Designer.cs">
       <DependentUpon>StockFlow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\WalTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\WalTransfer.Designer.cs">
+      <DependentUpon>WalTransfer.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Add\AddClient.resx">
       <DependentUpon>AddClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add\AddPartner.resx">
+      <DependentUpon>AddPartner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Add\Depts.resx">
       <DependentUpon>Depts.cs</DependentUpon>
@@ -206,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add\InvoiceCreator.resx">
       <DependentUpon>InvoiceCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add\NewCost.resx">
+      <DependentUpon>NewCost.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Add\NewOrder.resx">
       <DependentUpon>NewOrder.cs</DependentUpon>
@@ -221,6 +263,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add\Orders.resx">
       <DependentUpon>Orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add\PayPurchDebts.resx">
+      <DependentUpon>PayPurchDebts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add\PurchDepts.resx">
+      <DependentUpon>PurchDepts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Add\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
@@ -256,8 +304,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Stock\CashFlow.resx">
+      <DependentUpon>CashFlow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stock\StockFlow.resx">
       <DependentUpon>StockFlow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\WalTransfer.resx">
+      <DependentUpon>WalTransfer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -325,6 +379,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AddRow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ref1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WalTr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WalTr2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

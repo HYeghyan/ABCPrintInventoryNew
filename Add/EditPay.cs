@@ -27,10 +27,27 @@ namespace ABCPrintInventory.Add
             get { return txtEPid.Text; }
             set { txtEPid.Text = value; }
         }
+        public string cmbPaySysText
+        {
+            get { return cmbPaySys.Text; }
+            set { cmbPaySys.Text = value; }
+        }
         public string dtpEPText
         {
-            get { return dtpEP.Text; }
-            set { dtpEP.Text = value; }
+            get { return dtpEP.Value.ToString("yyyy-MM-dd"); }  // Customize the format as needed
+            set
+            {
+                DateTime dateValue;
+                if (DateTime.TryParse(value, out dateValue))
+                {
+                    dtpEP.Value = dateValue;  // Set the date value if parsing is successful
+                }
+                else
+                {
+                    // Handle invalid date string if needed
+                    throw new ArgumentException("Invalid date format.");
+                }
+            }
         }
         public string txtEPnumText
         {
@@ -47,12 +64,31 @@ namespace ABCPrintInventory.Add
             get { return txtEPval.Text; }
             set { txtEPval.Text = value; }
         }
-        public string txtEPdeptText
+        public string txtEPwallet
         {
-            get { return txtEPval.Text; }
-            set { txtEPval.Text = value; }
+            get { return cmbEPWallet.Text; }
+            set { cmbEPWallet.Text = value; }
         }
+        public string txtPDInvComText
+        {
+            get { return txtPDInvCom.Text; }
+            set { txtPDInvCom.Text = value; }
+        }
+        //Դրամարկղի կոմբոն
+        private void ProdComboboxComplate()
+        {
+            SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT DISTINCT(Դրամարկղ) FROM TblWallet", con);
+            SqlDataReader dr = cmd.ExecuteReader();
 
+            while (dr.Read())
+            {
+                cmbEPWallet.Items.Add(dr.GetValue(0).ToString());
+            }
+            dr.Close();
+            con.Close();
+        }
         private void btnNODel_Click(object sender, EventArgs e)
         {
             try
@@ -62,9 +98,9 @@ namespace ABCPrintInventory.Add
                     if (MessageBox.Show("Ցանկանո՞ւմ եք հեռացնել Վճարումը:", "Հեռացնել վճարումը", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         con.Open();
-                        cmd = new SqlCommand("DELETE FROM TblOrderForDepts WHERE hh = '" + txtEPid.Text + "'", con);
-
+                        cmd = new SqlCommand("DELETE FROM TblDebtsControl WHERE hh = '" + txtEPid.Text + "'", con);
                         int rowsAffected = cmd.ExecuteNonQuery();
+                      
                         con.Close();
 
                         if (rowsAffected > 0)
@@ -104,7 +140,7 @@ namespace ABCPrintInventory.Add
                 try
                 {
                     con.Open();
-                    cmd = new SqlCommand("UPDATE TblOrderForDepts SET Ամսաթիվ = @Column1, [Պատվ. համ] = @Column2, Հաճախորդ = @Column3, [Վճարել է] = @Column5 WHERE hh = @ItemId", con);
+                    cmd = new SqlCommand("UPDATE TblOrderForDepts SET Ամսաթիվ = @Column1, [Պատվ. համ] = @Column2, Հաճախորդ = @Column3, [Վճարել է] = @Column5, Դրամարկղ = @Column6  WHERE hh = @ItemId", con);
                     cmd.Parameters.AddWithValue("@ItemId", txtEPid.Text);
                     DateTimePicker dtp = new DateTimePicker();
                     DateTime orderDate = dtp.Value;
@@ -112,6 +148,7 @@ namespace ABCPrintInventory.Add
                     cmd.Parameters.AddWithValue("@Column2", txtEPnum.Text);
                     cmd.Parameters.AddWithValue("@Column3", cmbEPclient.Text);
                     cmd.Parameters.AddWithValue("@Column5", txtEPval.Text);
+                    cmd.Parameters.AddWithValue("@Column6", cmbEPWallet.Text);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     con.Close();
@@ -130,5 +167,11 @@ namespace ABCPrintInventory.Add
                 }
             }
         }
+
+        private void EditPay_Load(object sender, EventArgs e)
+        {
+            ProdComboboxComplate();
+        }
+
     }
 }

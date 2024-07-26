@@ -66,6 +66,8 @@
             this.dgvDebtsInvByOrders = new Zuby.ADGV.AdvancedDataGridView();
             this.dataGridViewButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dgvTransAction = new Zuby.ADGV.AdvancedDataGridView();
+            this.btnRef = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.debtsCash.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCashFlow)).BeginInit();
@@ -96,10 +98,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.debtsCash);
             this.tabControl1.Controls.Add(this.debtsAccount);
-            this.tabControl1.Location = new System.Drawing.Point(2, 12);
+            this.tabControl1.Location = new System.Drawing.Point(2, 68);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1225, 700);
+            this.tabControl1.Size = new System.Drawing.Size(1225, 644);
             this.tabControl1.TabIndex = 0;
             // 
             // debtsCash
@@ -109,7 +111,7 @@
             this.debtsCash.Location = new System.Drawing.Point(4, 22);
             this.debtsCash.Name = "debtsCash";
             this.debtsCash.Padding = new System.Windows.Forms.Padding(3);
-            this.debtsCash.Size = new System.Drawing.Size(1217, 674);
+            this.debtsCash.Size = new System.Drawing.Size(1217, 618);
             this.debtsCash.TabIndex = 0;
             this.debtsCash.Text = "Կանխիկ";
             this.debtsCash.UseVisualStyleBackColor = true;
@@ -128,13 +130,13 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCashFlow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvCashFlow.ColumnHeadersHeight = 24;
+            this.dgvCashFlow.ColumnHeadersHeight = 30;
             this.dgvCashFlow.FilterAndSortEnabled = true;
             this.dgvCashFlow.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvCashFlow.Location = new System.Drawing.Point(1, 72);
             this.dgvCashFlow.Name = "dgvCashFlow";
             this.dgvCashFlow.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dgvCashFlow.Size = new System.Drawing.Size(379, 602);
+            this.dgvCashFlow.Size = new System.Drawing.Size(379, 546);
             this.dgvCashFlow.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvCashFlow.TabIndex = 0;
             this.dgvCashFlow.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCashFlow_CellDoubleClick);
@@ -150,7 +152,7 @@
             this.TabDebts.Location = new System.Drawing.Point(386, 39);
             this.TabDebts.Name = "TabDebts";
             this.TabDebts.SelectedIndex = 0;
-            this.TabDebts.Size = new System.Drawing.Size(824, 639);
+            this.TabDebts.Size = new System.Drawing.Size(824, 583);
             this.TabDebts.TabIndex = 2;
             this.TabDebts.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TabDebts_DrawItem);
             // 
@@ -161,7 +163,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(816, 613);
+            this.tabPage1.Size = new System.Drawing.Size(816, 557);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Պարտքերն ըստ հաճախորդի";
             // 
@@ -190,7 +192,7 @@
             this.dgvDebtsByClient.ReadOnly = true;
             this.dgvDebtsByClient.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvDebtsByClient.RowHeadersVisible = false;
-            this.dgvDebtsByClient.Size = new System.Drawing.Size(816, 552);
+            this.dgvDebtsByClient.Size = new System.Drawing.Size(816, 496);
             this.dgvDebtsByClient.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvDebtsByClient.TabIndex = 1;
             this.dgvDebtsByClient.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDebtsCash_CellClick);
@@ -213,7 +215,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(816, 613);
+            this.tabPage2.Size = new System.Drawing.Size(816, 557);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Պարտքերն ըստ պատվերների";
             // 
@@ -242,7 +244,7 @@
             this.dgvDebtsbyOrderNums.ReadOnly = true;
             this.dgvDebtsbyOrderNums.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvDebtsbyOrderNums.RowHeadersVisible = false;
-            this.dgvDebtsbyOrderNums.Size = new System.Drawing.Size(816, 552);
+            this.dgvDebtsbyOrderNums.Size = new System.Drawing.Size(816, 496);
             this.dgvDebtsbyOrderNums.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvDebtsbyOrderNums.TabIndex = 2;
             this.dgvDebtsbyOrderNums.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDebtsbyOrderNums_CellClick);
@@ -254,7 +256,7 @@
             this.DebtsPayOrd.Name = "DebtsPayOrd";
             this.DebtsPayOrd.ReadOnly = true;
             this.DebtsPayOrd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.DebtsPayOrd.Text = "Մարել";
+            this.DebtsPayOrd.Text = "Դիտել";
             this.DebtsPayOrd.UseColumnTextForButtonValue = true;
             this.DebtsPayOrd.Width = 70;
             // 
@@ -265,7 +267,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(816, 613);
+            this.tabPage3.Size = new System.Drawing.Size(816, 557);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Բոլոր Հաճախորդները";
             // 
@@ -294,7 +296,7 @@
             this.dgvDebtsbyClientAll.ReadOnly = true;
             this.dgvDebtsbyClientAll.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvDebtsbyClientAll.RowHeadersVisible = false;
-            this.dgvDebtsbyClientAll.Size = new System.Drawing.Size(816, 552);
+            this.dgvDebtsbyClientAll.Size = new System.Drawing.Size(816, 496);
             this.dgvDebtsbyClientAll.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvDebtsbyClientAll.TabIndex = 2;
             this.dgvDebtsbyClientAll.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDebtsbyClientAll_CellClick);
@@ -316,7 +318,7 @@
             this.tabPage4.Controls.Add(this.dgvDebtsbyOrderAll);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(816, 613);
+            this.tabPage4.Size = new System.Drawing.Size(816, 557);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Բոլոր Պատվերները";
             // 
@@ -345,9 +347,10 @@
             this.dgvDebtsbyOrderAll.ReadOnly = true;
             this.dgvDebtsbyOrderAll.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvDebtsbyOrderAll.RowHeadersVisible = false;
-            this.dgvDebtsbyOrderAll.Size = new System.Drawing.Size(816, 552);
+            this.dgvDebtsbyOrderAll.Size = new System.Drawing.Size(816, 496);
             this.dgvDebtsbyOrderAll.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvDebtsbyOrderAll.TabIndex = 3;
+            this.dgvDebtsbyOrderAll.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDebtsbyOrderAll_CellClick);
             // 
             // DebtsPayOrdII
             // 
@@ -356,7 +359,7 @@
             this.DebtsPayOrdII.Name = "DebtsPayOrdII";
             this.DebtsPayOrdII.ReadOnly = true;
             this.DebtsPayOrdII.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.DebtsPayOrdII.Text = "Մարել";
+            this.DebtsPayOrdII.Text = "Դիտել";
             this.DebtsPayOrdII.UseColumnTextForButtonValue = true;
             this.DebtsPayOrdII.Width = 70;
             // 
@@ -367,7 +370,7 @@
             this.debtsAccount.Location = new System.Drawing.Point(4, 22);
             this.debtsAccount.Name = "debtsAccount";
             this.debtsAccount.Padding = new System.Windows.Forms.Padding(3);
-            this.debtsAccount.Size = new System.Drawing.Size(1217, 674);
+            this.debtsAccount.Size = new System.Drawing.Size(1217, 618);
             this.debtsAccount.TabIndex = 1;
             this.debtsAccount.Text = "Փոխանցում";
             this.debtsAccount.UseVisualStyleBackColor = true;
@@ -568,11 +571,38 @@
             this.dgvTransAction.TabIndex = 1;
             this.dgvTransAction.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTransAction_CellFormatting);
             // 
+            // btnRef
+            // 
+            this.btnRef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRef.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnRef.BackgroundImage = global::ABCPrintInventory.Properties.Resources.ref1;
+            this.btnRef.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnRef.ForeColor = System.Drawing.Color.Khaki;
+            this.btnRef.Location = new System.Drawing.Point(1130, 28);
+            this.btnRef.Name = "btnRef";
+            this.btnRef.Size = new System.Drawing.Size(49, 45);
+            this.btnRef.TabIndex = 69;
+            this.btnRef.UseVisualStyleBackColor = false;
+            this.btnRef.Click += new System.EventHandler(this.btnRef_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(465, 38);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(197, 34);
+            this.button1.TabIndex = 70;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Depts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1225, 710);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRef);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Depts";
@@ -621,8 +651,6 @@
         private Zuby.ADGV.AdvancedDataGridView dgvCashFlow;
         private System.Windows.Forms.DataGridViewButtonColumn DebtsPay;
         private System.Windows.Forms.DataGridViewButtonColumn DebtsPayII;
-        private System.Windows.Forms.DataGridViewButtonColumn DebtsPayOrd;
-        private System.Windows.Forms.DataGridViewButtonColumn DebtsPayOrdII;
         private Zuby.ADGV.AdvancedDataGridView dgvTransAction;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage5;
@@ -634,5 +662,9 @@
         private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
         private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn2;
         private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn3;
+        private System.Windows.Forms.DataGridViewButtonColumn DebtsPayOrd;
+        private System.Windows.Forms.DataGridViewButtonColumn DebtsPayOrdII;
+        private System.Windows.Forms.Button btnRef;
+        private System.Windows.Forms.Button button1;
     }
 }

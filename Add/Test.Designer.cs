@@ -28,114 +28,147 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Test));
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.txtDebt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dtpNO = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbNOclient = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnNOAdd = new System.Windows.Forms.Button();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.txtAc = new System.Windows.Forms.TextBox();
+            this.cmbPaySys = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // txtCode
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5});
-            this.dataGridView1.Location = new System.Drawing.Point(31, 58);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(541, 258);
-            this.dataGridView1.TabIndex = 0;
+            this.txtCode.Location = new System.Drawing.Point(225, 112);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(103, 20);
+            this.txtCode.TabIndex = 1;
             // 
-            // Column1
+            // txtDebt
             // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Column5";
-            this.Column5.Name = "Column5";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(304, 364);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(46, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(413, 364);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(46, 20);
-            this.textBox2.TabIndex = 2;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(742, 59);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(77, 20);
-            this.textBox3.TabIndex = 3;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(742, 99);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(77, 20);
-            this.textBox4.TabIndex = 4;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(742, 144);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(77, 20);
-            this.textBox5.TabIndex = 5;
+            this.txtDebt.Location = new System.Drawing.Point(672, 112);
+            this.txtDebt.Name = "txtDebt";
+            this.txtDebt.Size = new System.Drawing.Size(77, 20);
+            this.txtDebt.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(677, 62);
+            this.label1.Location = new System.Drawing.Point(469, 96);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "քանակ";
+            this.label1.Text = "Հաճախորդ";
+            // 
+            // dtpNO
+            // 
+            this.dtpNO.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNO.Location = new System.Drawing.Point(44, 112);
+            this.dtpNO.Name = "dtpNO";
+            this.dtpNO.Size = new System.Drawing.Size(139, 20);
+            this.dtpNO.TabIndex = 101;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(89, 96);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 102;
+            this.label3.Text = "Ամսաթիվ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(242, 96);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 13);
+            this.label4.TabIndex = 103;
+            this.label4.Text = "Պատվ․ համ";
+            // 
+            // cmbNOclient
+            // 
+            this.cmbNOclient.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmbNOclient.FormattingEnabled = true;
+            this.cmbNOclient.Location = new System.Drawing.Point(361, 110);
+            this.cmbNOclient.Name = "cmbNOclient";
+            this.cmbNOclient.Size = new System.Drawing.Size(278, 24);
+            this.cmbNOclient.TabIndex = 104;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(694, 102);
+            this.label2.Location = new System.Drawing.Point(687, 96);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "գին";
+            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.TabIndex = 105;
+            this.label2.Text = "Պարտք";
+            // 
+            // btnNOAdd
+            // 
+            this.btnNOAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNOAdd.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnNOAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNOAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNOAdd.FlatAppearance.BorderSize = 0;
+            this.btnNOAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnNOAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnNOAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnNOAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnNOAdd.Image")));
+            this.btnNOAdd.Location = new System.Drawing.Point(794, 112);
+            this.btnNOAdd.Name = "btnNOAdd";
+            this.btnNOAdd.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnNOAdd.Size = new System.Drawing.Size(133, 40);
+            this.btnNOAdd.TabIndex = 106;
+            this.btnNOAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNOAdd.UseVisualStyleBackColor = false;
+            this.btnNOAdd.Click += new System.EventHandler(this.btnNOAdd_Click);
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(44, 47);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(139, 20);
+            this.txtID.TabIndex = 107;
+            // 
+            // txtAc
+            // 
+            this.txtAc.Location = new System.Drawing.Point(225, 47);
+            this.txtAc.Name = "txtAc";
+            this.txtAc.Size = new System.Drawing.Size(139, 20);
+            this.txtAc.TabIndex = 108;
+            this.txtAc.Text = "Վաճառք";
+            // 
+            // cmbPaySys
+            // 
+            this.cmbPaySys.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmbPaySys.FormattingEnabled = true;
+            this.cmbPaySys.Items.AddRange(new object[] {
+            "Կ",
+            "Հ",
+            "Ք",
+            "Փ"});
+            this.cmbPaySys.Location = new System.Drawing.Point(408, 45);
+            this.cmbPaySys.Name = "cmbPaySys";
+            this.cmbPaySys.Size = new System.Drawing.Size(90, 24);
+            this.cmbPaySys.TabIndex = 115;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(379, 218);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(195, 83);
+            this.button1.TabIndex = 116;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Test
             // 
@@ -143,36 +176,40 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1199, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cmbPaySys);
+            this.Controls.Add(this.txtAc);
+            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.btnNOAdd);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmbNOclient);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dtpNO);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.txtDebt);
+            this.Controls.Add(this.txtCode);
             this.Name = "Test";
             this.Text = "Test";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Test_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtCode;
+        private System.Windows.Forms.TextBox txtDebt;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtpNO;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbNOclient;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnNOAdd;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.TextBox txtAc;
+        private System.Windows.Forms.ComboBox cmbPaySys;
+        private System.Windows.Forms.Button button1;
     }
 }

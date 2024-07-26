@@ -14,105 +14,113 @@ namespace ABCPrintInventory.Add
 {
     public partial class Test : Form
     {
+        SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon);
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        DataTable dt;
         public Test()
         {
             InitializeComponent();
         }
-        private void CalculateOptim()
+
+        private void Test_Load(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    // Step 1: Retrieve material width from textBox1
-            //    decimal materialWidth = decimal.Parse(textBox1.Text);
+            GetItemId();
+            GetDebtId();
+            BanComboboxComplate();
+        }
+        private void GetItemId()
+        {
+            string codePrefix = "ՊԿ";
+            string codeNumber;
 
-            //    // Step 2: Retrieve file sizes from dataGridView
-            //    List<File> files = new List<File>();
-            //    foreach (DataGridViewRow row in dataGridView1.Rows)
-            //    {
-            //        decimal width = 0;
-            //        decimal length = 0;
-            //        int quantity = 0;
+            con.Open();
 
-            //        if (row.Cells[2].Value != null)
-            //        {
-            //            decimal.TryParse(row.Cells[2].Value.ToString(), out width);
-            //        }
-            //        if (row.Cells[3].Value != null)
-            //        {
-            //            decimal.TryParse(row.Cells[3].Value.ToString(), out length);
-            //        }
-            //        if (row.Cells[4].Value != null)
-            //        {
-            //            int.TryParse(row.Cells[4].Value.ToString(), out quantity);
-            //        }
+            cmd = new SqlCommand("SELECT MAX(hh) FROM TblDebtsControl WHERE hh LIKE @codePrefix", con);
+            cmd.Parameters.AddWithValue("@codePrefix", codePrefix + "%");
+            object result = cmd.ExecuteScalar();
+            con.Close();
 
-            //        files.Add(new File(width, length, quantity));
-            //    }
+            if (result != DBNull.Value && result != null)
+            {
+                string lastCode = result.ToString();
+                string lastNumberStr = lastCode.Substring(codePrefix.Length);
+                int lastNumber = int.Parse(lastNumberStr);
+                codeNumber = (lastNumber + 1).ToString("00");
+            }
+            else
+            {
+                codeNumber = "01";
+            }
 
-            //    // Step 3: Generate all possible orientations of files
-            //    List<File> allFiles = new List<File>();
-            //    foreach (var file in files)
-            //    {
-            //        allFiles.Add(file);
-            //        allFiles.Add(new File(file.Length, file.Width, file.Quantity)); // Rotate file
-            //    }
+            string newCode = codePrefix + codeNumber;
+            txtID.Text = newCode;
+        }
+        private int currentCodeNumber = 3;
+        private void GetDebtId()
+        {
+            string codePrefix = "300924-";
+            string codeNumber = currentCodeNumber.ToString("00"); // Convert current number to a 2-digit string
 
-            //    // Step 4: Optimize placement of files
-            //    decimal totalWidth = 0;
-            //    decimal totalLength = 0;
-            //    foreach (var file in allFiles)
-            //    {
-            //        totalWidth += file.Width * file.Quantity;
-            //        totalLength = Math.Max(totalLength, file.Length);
-            //    }
+            string newCode = codePrefix + codeNumber;
+            txtCode.Text = newCode;
 
-            //    // Step 5: Calculate minimum length of the material needed
-            //    decimal minLengthNeeded = 0;
-            //    decimal currentWidth = 0;
-            //    decimal currentLength = 0;
-            //    foreach (var file in allFiles.OrderByDescending(f => f.Length))
-            //    {
-            //        if (currentWidth + (file.Width * file.Quantity) <= materialWidth)
-            //        {
-            //            currentWidth += file.Width * file.Quantity;
-            //        }
-            //        else
-            //        {
-            //            minLengthNeeded += currentLength;
-            //            currentWidth = file.Width * file.Quantity;
-            //            currentLength = file.Length;
-            //        }
-            //    }
-            //    minLengthNeeded += currentLength;
+            currentCodeNumber++;
+        }
+        private void BanComboboxComplate()
+        {
+            SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT DISTINCT(Անուն) FROM TblClient", con);
+            SqlDataReader dr = cmd.ExecuteReader();
 
-            //    // Step 6: Display the result in textBox2
-            //    textBox2.Text = minLengthNeeded.ToString();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error: " + ex.Message);
-            //}
+            while (dr.Read())
+            {
+                cmbNOclient.Items.Add(dr.GetValue(0).ToString());
+            }
+            dr.Close();
+            con.Close();
+        }
+        private void Cleartext()
+        {
+            cmbNOclient.Text = "";
+            txtDebt.Text = "";
+        }
+        private void btnNOAdd_Click(object sender, EventArgs e)
+        {
+            AddItemToGridview();
+            GetItemId();
+            GetDebtId();
+        }
+        private void AddItemToGridview()
+        {
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand("INSERT INTO TblDebtsControl (hh, Գործողություն, [վ/ե], Ամսաթիվ, Կոդ, Հաճախորդ, Արժեք) VALUES (@ColumnID, @ColumnAC, @ColumnP, @Column1, @Column2, @Column3, @Column4)", con);
+                DateTime selectedDateo = dtpNO.Value;
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ColumnID", txtID.Text);
+                cmd.Parameters.AddWithValue("@ColumnAC", txtAc.Text);
+                cmd.Parameters.AddWithValue("@ColumnP", cmbPaySys.Text);
+                cmd.Parameters.AddWithValue("@Column1", selectedDateo);
+                cmd.Parameters.AddWithValue("@Column2", txtCode.Text);
+                cmd.Parameters.AddWithValue("@Column3", cmbNOclient.Text);
+                cmd.Parameters.AddWithValue("@Column4", txtDebt.Text);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                Cleartext();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    CalculateOptim();
-            //}
+
         }
     }
-    //public class File
-    //{
-    //    public decimal Width { get; set; }
-    //    public decimal Length { get; set; }
-    //    public int Quantity { get; set; }
 
-    //    public File(decimal width, decimal length, int quantity)
-    //    {
-    //        Width = width;
-    //        Length = length;
-    //        Quantity = quantity;
-    //    }
-    //}
 }

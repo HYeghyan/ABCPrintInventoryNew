@@ -32,6 +32,35 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewOrder));
             this.dgvNOorder = new System.Windows.Forms.DataGridView();
+            this.NOdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderMat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderpW = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderpH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderQnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderpSM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderpPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderpValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderDefSM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderDefPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderDefVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOlyuv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOlyuvprc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOlyuvval = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderAdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderAdtQnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderAdtPrc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderAdtVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderCostQnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderCostPrc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrderCostVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOsale = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOtot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOcomment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbNOprMash = new System.Windows.Forms.ComboBox();
             this.cmbNOprMat = new System.Windows.Forms.ComboBox();
             this.txtNOprW = new System.Windows.Forms.TextBox();
@@ -67,6 +96,11 @@
             this.txtNOdefWightMat = new System.Windows.Forms.TextBox();
             this.txtNOdefLenghtNeed = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtDebtId = new System.Windows.Forms.TextBox();
+            this.txtAction = new System.Windows.Forms.TextBox();
+            this.txtDraft = new System.Windows.Forms.TextBox();
+            this.cbDraft = new System.Windows.Forms.CheckBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.txtPayType = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -85,7 +119,6 @@
             this.dtpNO = new System.Windows.Forms.DateTimePicker();
             this.txtNOval = new System.Windows.Forms.TextBox();
             this.cmbNOclient = new System.Windows.Forms.ComboBox();
-            this.button17 = new System.Windows.Forms.Button();
             this.txtNOid = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNOagent = new System.Windows.Forms.TextBox();
@@ -150,35 +183,6 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtServKoxm = new System.Windows.Forms.TextBox();
             this.txtStandKoxm = new System.Windows.Forms.TextBox();
-            this.NOdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderMat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderpW = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderpH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderQnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderpSM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderpPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderpValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderDefSM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderDefPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderDefVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOlyuv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOlyuvprc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOlyuvval = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderAdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderAdtQnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderAdtPrc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderAdtVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderCostQnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderCostPrc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrderCostVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOsale = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOtot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOcomment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNOorder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNOdefect)).BeginInit();
             this.panel1.SuspendLayout();
@@ -233,6 +237,177 @@
             this.dgvNOorder.TabIndex = 0;
             this.dgvNOorder.TabStop = false;
             this.dgvNOorder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNOorder_CellDoubleClick);
+            // 
+            // NOdate
+            // 
+            this.NOdate.HeaderText = "Ամսաթիվ";
+            this.NOdate.Name = "NOdate";
+            // 
+            // dgvOrderN
+            // 
+            this.dgvOrderN.HeaderText = "Պատ. համար";
+            this.dgvOrderN.Name = "dgvOrderN";
+            this.dgvOrderN.Width = 80;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Տող";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 30;
+            // 
+            // dgvOrderPr
+            // 
+            this.dgvOrderPr.HeaderText = "ՏՄ";
+            this.dgvOrderPr.Name = "dgvOrderPr";
+            this.dgvOrderPr.Width = 40;
+            // 
+            // dgvOrderMat
+            // 
+            this.dgvOrderMat.HeaderText = "Նյութ";
+            this.dgvOrderMat.Name = "dgvOrderMat";
+            this.dgvOrderMat.Width = 200;
+            // 
+            // dgvOrderpW
+            // 
+            this.dgvOrderpW.HeaderText = "Լայնք";
+            this.dgvOrderpW.Name = "dgvOrderpW";
+            this.dgvOrderpW.Width = 40;
+            // 
+            // dgvOrderpH
+            // 
+            this.dgvOrderpH.HeaderText = "Բարձ.";
+            this.dgvOrderpH.Name = "dgvOrderpH";
+            this.dgvOrderpH.Width = 40;
+            // 
+            // dgvOrderQnt
+            // 
+            this.dgvOrderQnt.HeaderText = "Քանակ";
+            this.dgvOrderQnt.Name = "dgvOrderQnt";
+            this.dgvOrderQnt.Width = 50;
+            // 
+            // dgvOrderpSM
+            // 
+            this.dgvOrderpSM.HeaderText = "ՔՄ";
+            this.dgvOrderpSM.Name = "dgvOrderpSM";
+            this.dgvOrderpSM.Width = 60;
+            // 
+            // dgvOrderpPrice
+            // 
+            this.dgvOrderpPrice.HeaderText = "Գին";
+            this.dgvOrderpPrice.Name = "dgvOrderpPrice";
+            this.dgvOrderpPrice.Width = 80;
+            // 
+            // dgvOrderpValue
+            // 
+            this.dgvOrderpValue.HeaderText = "Տպ արժեք";
+            this.dgvOrderpValue.Name = "dgvOrderpValue";
+            // 
+            // dgvOrderDefSM
+            // 
+            this.dgvOrderDefSM.HeaderText = "Խոտան քմ";
+            this.dgvOrderDefSM.Name = "dgvOrderDefSM";
+            this.dgvOrderDefSM.Width = 40;
+            // 
+            // dgvOrderDefPr
+            // 
+            this.dgvOrderDefPr.HeaderText = "Խոտան գին";
+            this.dgvOrderDefPr.Name = "dgvOrderDefPr";
+            this.dgvOrderDefPr.Width = 60;
+            // 
+            // dgvOrderDefVal
+            // 
+            this.dgvOrderDefVal.HeaderText = "Խոտան արժեք";
+            this.dgvOrderDefVal.Name = "dgvOrderDefVal";
+            this.dgvOrderDefVal.Width = 80;
+            // 
+            // NOlyuv
+            // 
+            this.NOlyuv.HeaderText = "Օղ. քան.";
+            this.NOlyuv.Name = "NOlyuv";
+            this.NOlyuv.Width = 40;
+            // 
+            // NOlyuvprc
+            // 
+            this.NOlyuvprc.HeaderText = "Օղ. գին";
+            this.NOlyuvprc.Name = "NOlyuvprc";
+            this.NOlyuvprc.Width = 60;
+            // 
+            // NOlyuvval
+            // 
+            this.NOlyuvval.HeaderText = "Օղ. արժեք";
+            this.NOlyuvval.Name = "NOlyuvval";
+            this.NOlyuvval.Width = 80;
+            // 
+            // dgvOrderAdt
+            // 
+            this.dgvOrderAdt.HeaderText = "Լրացուցիչ";
+            this.dgvOrderAdt.Name = "dgvOrderAdt";
+            this.dgvOrderAdt.Width = 150;
+            // 
+            // dgvOrderAdtQnt
+            // 
+            this.dgvOrderAdtQnt.HeaderText = "Լրաց. քան.";
+            this.dgvOrderAdtQnt.Name = "dgvOrderAdtQnt";
+            this.dgvOrderAdtQnt.Width = 40;
+            // 
+            // dgvOrderAdtPrc
+            // 
+            this.dgvOrderAdtPrc.HeaderText = "Լրաց. գին";
+            this.dgvOrderAdtPrc.Name = "dgvOrderAdtPrc";
+            this.dgvOrderAdtPrc.Width = 60;
+            // 
+            // dgvOrderAdtVal
+            // 
+            this.dgvOrderAdtVal.HeaderText = "Լրաց. արժեք";
+            this.dgvOrderAdtVal.Name = "dgvOrderAdtVal";
+            this.dgvOrderAdtVal.Width = 80;
+            // 
+            // dgvOrderCost
+            // 
+            this.dgvOrderCost.HeaderText = "Ծախս";
+            this.dgvOrderCost.Name = "dgvOrderCost";
+            this.dgvOrderCost.Width = 150;
+            // 
+            // dgvOrderCostQnt
+            // 
+            this.dgvOrderCostQnt.HeaderText = "Ծախս քան";
+            this.dgvOrderCostQnt.Name = "dgvOrderCostQnt";
+            this.dgvOrderCostQnt.Width = 40;
+            // 
+            // dgvOrderCostPrc
+            // 
+            this.dgvOrderCostPrc.HeaderText = "Ծախս գին";
+            this.dgvOrderCostPrc.Name = "dgvOrderCostPrc";
+            this.dgvOrderCostPrc.Width = 60;
+            // 
+            // dgvOrderCostVal
+            // 
+            this.dgvOrderCostVal.HeaderText = "Ծախս արժեք";
+            this.dgvOrderCostVal.Name = "dgvOrderCostVal";
+            this.dgvOrderCostVal.Width = 80;
+            // 
+            // NOsale
+            // 
+            this.NOsale.HeaderText = "Զեղչ";
+            this.NOsale.Name = "NOsale";
+            this.NOsale.Width = 60;
+            // 
+            // NOtot
+            // 
+            this.NOtot.HeaderText = "Արժեք";
+            this.NOtot.Name = "NOtot";
+            this.NOtot.Width = 80;
+            // 
+            // NOcomment
+            // 
+            this.NOcomment.HeaderText = "Մեկնաբանություն";
+            this.NOcomment.Name = "NOcomment";
+            this.NOcomment.Width = 150;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Կողմն";
+            this.Column2.Name = "Column2";
             // 
             // cmbNOprMash
             // 
@@ -569,6 +744,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.Gray;
+            this.panel1.Controls.Add(this.txtDebtId);
+            this.panel1.Controls.Add(this.txtAction);
+            this.panel1.Controls.Add(this.txtDraft);
+            this.panel1.Controls.Add(this.cbDraft);
+            this.panel1.Controls.Add(this.label28);
             this.panel1.Controls.Add(this.txtPayType);
             this.panel1.Controls.Add(this.label24);
             this.panel1.Controls.Add(this.label23);
@@ -587,17 +767,75 @@
             this.panel1.Controls.Add(this.dtpNO);
             this.panel1.Controls.Add(this.txtNOval);
             this.panel1.Controls.Add(this.cmbNOclient);
-            this.panel1.Controls.Add(this.button17);
             this.panel1.Controls.Add(this.txtNOid);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txtNOagent);
             this.panel1.Controls.Add(this.btnNODel);
             this.panel1.Controls.Add(this.btnNOEdit);
             this.panel1.Controls.Add(this.btnNOAdd);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1187, 146);
             this.panel1.TabIndex = 53;
+            // 
+            // txtDebtId
+            // 
+            this.txtDebtId.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDebtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtDebtId.Location = new System.Drawing.Point(130, 0);
+            this.txtDebtId.Multiline = true;
+            this.txtDebtId.Name = "txtDebtId";
+            this.txtDebtId.Size = new System.Drawing.Size(66, 28);
+            this.txtDebtId.TabIndex = 121;
+            this.txtDebtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDebtId.Visible = false;
+            // 
+            // txtAction
+            // 
+            this.txtAction.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtAction.Location = new System.Drawing.Point(3, 0);
+            this.txtAction.Multiline = true;
+            this.txtAction.Name = "txtAction";
+            this.txtAction.Size = new System.Drawing.Size(123, 28);
+            this.txtAction.TabIndex = 120;
+            this.txtAction.Text = "Վաճառք";
+            this.txtAction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAction.Visible = false;
+            // 
+            // txtDraft
+            // 
+            this.txtDraft.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDraft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtDraft.Location = new System.Drawing.Point(988, 27);
+            this.txtDraft.Multiline = true;
+            this.txtDraft.Name = "txtDraft";
+            this.txtDraft.Size = new System.Drawing.Size(50, 28);
+            this.txtDraft.TabIndex = 119;
+            this.txtDraft.Text = "Պ";
+            this.txtDraft.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDraft.Visible = false;
+            // 
+            // cbDraft
+            // 
+            this.cbDraft.AutoSize = true;
+            this.cbDraft.Location = new System.Drawing.Point(1094, 43);
+            this.cbDraft.Name = "cbDraft";
+            this.cbDraft.Size = new System.Drawing.Size(15, 14);
+            this.cbDraft.TabIndex = 118;
+            this.cbDraft.UseVisualStyleBackColor = true;
+            this.cbDraft.CheckedChanged += new System.EventHandler(this.cbDraft_CheckedChanged);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label28.ForeColor = System.Drawing.Color.Coral;
+            this.label28.Location = new System.Drawing.Point(1033, 27);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(139, 13);
+            this.label28.TabIndex = 117;
+            this.label28.Text = "Պահել որպես սևագիր";
             // 
             // txtPayType
             // 
@@ -817,25 +1055,6 @@
             this.cmbNOclient.Size = new System.Drawing.Size(278, 24);
             this.cmbNOclient.TabIndex = 95;
             // 
-            // button17
-            // 
-            this.button17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button17.BackColor = System.Drawing.Color.Orange;
-            this.button17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button17.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button17.FlatAppearance.BorderSize = 0;
-            this.button17.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button17.Image = ((System.Drawing.Image)(resources.GetObject("button17.Image")));
-            this.button17.Location = new System.Drawing.Point(1131, 27);
-            this.button17.Name = "button17";
-            this.button17.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button17.Size = new System.Drawing.Size(42, 40);
-            this.button17.TabIndex = 55;
-            this.button17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button17.UseVisualStyleBackColor = false;
-            // 
             // txtNOid
             // 
             this.txtNOid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -877,7 +1096,7 @@
             this.btnNODel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNODel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNODel.Image = ((System.Drawing.Image)(resources.GetObject("btnNODel.Image")));
-            this.btnNODel.Location = new System.Drawing.Point(1131, 89);
+            this.btnNODel.Location = new System.Drawing.Point(1132, 89);
             this.btnNODel.Name = "btnNODel";
             this.btnNODel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNODel.Size = new System.Drawing.Size(42, 40);
@@ -897,7 +1116,7 @@
             this.btnNOEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOEdit.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnNOEdit.Image")));
-            this.btnNOEdit.Location = new System.Drawing.Point(1086, 89);
+            this.btnNOEdit.Location = new System.Drawing.Point(1087, 89);
             this.btnNOEdit.Name = "btnNOEdit";
             this.btnNOEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOEdit.Size = new System.Drawing.Size(42, 40);
@@ -917,7 +1136,7 @@
             this.btnNOAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnNOAdd.Image")));
-            this.btnNOAdd.Location = new System.Drawing.Point(1041, 89);
+            this.btnNOAdd.Location = new System.Drawing.Point(1042, 89);
             this.btnNOAdd.Name = "btnNOAdd";
             this.btnNOAdd.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOAdd.Size = new System.Drawing.Size(42, 40);
@@ -1667,11 +1886,11 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label25.Location = new System.Drawing.Point(526, 425);
+            this.label25.Location = new System.Drawing.Point(542, 425);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(66, 16);
+            this.label25.Size = new System.Drawing.Size(50, 16);
             this.label25.TabIndex = 110;
-            this.label25.Text = "Ծախսեր";
+            this.label25.Text = "Ծախս";
             // 
             // txtNOcostVal
             // 
@@ -1747,177 +1966,6 @@
             this.txtStandKoxm.Text = "Վ";
             this.txtStandKoxm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtStandKoxm.Visible = false;
-            // 
-            // NOdate
-            // 
-            this.NOdate.HeaderText = "Ամսաթիվ";
-            this.NOdate.Name = "NOdate";
-            // 
-            // dgvOrderN
-            // 
-            this.dgvOrderN.HeaderText = "Պատ. համար";
-            this.dgvOrderN.Name = "dgvOrderN";
-            this.dgvOrderN.Width = 80;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Տող";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 30;
-            // 
-            // dgvOrderPr
-            // 
-            this.dgvOrderPr.HeaderText = "ՏՄ";
-            this.dgvOrderPr.Name = "dgvOrderPr";
-            this.dgvOrderPr.Width = 40;
-            // 
-            // dgvOrderMat
-            // 
-            this.dgvOrderMat.HeaderText = "Նյութ";
-            this.dgvOrderMat.Name = "dgvOrderMat";
-            this.dgvOrderMat.Width = 200;
-            // 
-            // dgvOrderpW
-            // 
-            this.dgvOrderpW.HeaderText = "Լայնք";
-            this.dgvOrderpW.Name = "dgvOrderpW";
-            this.dgvOrderpW.Width = 40;
-            // 
-            // dgvOrderpH
-            // 
-            this.dgvOrderpH.HeaderText = "Բարձ.";
-            this.dgvOrderpH.Name = "dgvOrderpH";
-            this.dgvOrderpH.Width = 40;
-            // 
-            // dgvOrderQnt
-            // 
-            this.dgvOrderQnt.HeaderText = "Քանակ";
-            this.dgvOrderQnt.Name = "dgvOrderQnt";
-            this.dgvOrderQnt.Width = 50;
-            // 
-            // dgvOrderpSM
-            // 
-            this.dgvOrderpSM.HeaderText = "ՔՄ";
-            this.dgvOrderpSM.Name = "dgvOrderpSM";
-            this.dgvOrderpSM.Width = 60;
-            // 
-            // dgvOrderpPrice
-            // 
-            this.dgvOrderpPrice.HeaderText = "Գին";
-            this.dgvOrderpPrice.Name = "dgvOrderpPrice";
-            this.dgvOrderpPrice.Width = 80;
-            // 
-            // dgvOrderpValue
-            // 
-            this.dgvOrderpValue.HeaderText = "Տպ արժեք";
-            this.dgvOrderpValue.Name = "dgvOrderpValue";
-            // 
-            // dgvOrderDefSM
-            // 
-            this.dgvOrderDefSM.HeaderText = "Խոտան քմ";
-            this.dgvOrderDefSM.Name = "dgvOrderDefSM";
-            this.dgvOrderDefSM.Width = 40;
-            // 
-            // dgvOrderDefPr
-            // 
-            this.dgvOrderDefPr.HeaderText = "Խոտան գին";
-            this.dgvOrderDefPr.Name = "dgvOrderDefPr";
-            this.dgvOrderDefPr.Width = 60;
-            // 
-            // dgvOrderDefVal
-            // 
-            this.dgvOrderDefVal.HeaderText = "Խոտան արժեք";
-            this.dgvOrderDefVal.Name = "dgvOrderDefVal";
-            this.dgvOrderDefVal.Width = 80;
-            // 
-            // NOlyuv
-            // 
-            this.NOlyuv.HeaderText = "Օղ. քան.";
-            this.NOlyuv.Name = "NOlyuv";
-            this.NOlyuv.Width = 40;
-            // 
-            // NOlyuvprc
-            // 
-            this.NOlyuvprc.HeaderText = "Օղ. գին";
-            this.NOlyuvprc.Name = "NOlyuvprc";
-            this.NOlyuvprc.Width = 60;
-            // 
-            // NOlyuvval
-            // 
-            this.NOlyuvval.HeaderText = "Օղ. արժեք";
-            this.NOlyuvval.Name = "NOlyuvval";
-            this.NOlyuvval.Width = 80;
-            // 
-            // dgvOrderAdt
-            // 
-            this.dgvOrderAdt.HeaderText = "Լրացուցիչ";
-            this.dgvOrderAdt.Name = "dgvOrderAdt";
-            this.dgvOrderAdt.Width = 150;
-            // 
-            // dgvOrderAdtQnt
-            // 
-            this.dgvOrderAdtQnt.HeaderText = "Լրաց. քան.";
-            this.dgvOrderAdtQnt.Name = "dgvOrderAdtQnt";
-            this.dgvOrderAdtQnt.Width = 40;
-            // 
-            // dgvOrderAdtPrc
-            // 
-            this.dgvOrderAdtPrc.HeaderText = "Լրաց. գին";
-            this.dgvOrderAdtPrc.Name = "dgvOrderAdtPrc";
-            this.dgvOrderAdtPrc.Width = 60;
-            // 
-            // dgvOrderAdtVal
-            // 
-            this.dgvOrderAdtVal.HeaderText = "Լրաց. արժեք";
-            this.dgvOrderAdtVal.Name = "dgvOrderAdtVal";
-            this.dgvOrderAdtVal.Width = 80;
-            // 
-            // dgvOrderCost
-            // 
-            this.dgvOrderCost.HeaderText = "Ծախս";
-            this.dgvOrderCost.Name = "dgvOrderCost";
-            this.dgvOrderCost.Width = 150;
-            // 
-            // dgvOrderCostQnt
-            // 
-            this.dgvOrderCostQnt.HeaderText = "Ծախս քան";
-            this.dgvOrderCostQnt.Name = "dgvOrderCostQnt";
-            this.dgvOrderCostQnt.Width = 40;
-            // 
-            // dgvOrderCostPrc
-            // 
-            this.dgvOrderCostPrc.HeaderText = "Ծախս գին";
-            this.dgvOrderCostPrc.Name = "dgvOrderCostPrc";
-            this.dgvOrderCostPrc.Width = 60;
-            // 
-            // dgvOrderCostVal
-            // 
-            this.dgvOrderCostVal.HeaderText = "Ծախս արժեք";
-            this.dgvOrderCostVal.Name = "dgvOrderCostVal";
-            this.dgvOrderCostVal.Width = 80;
-            // 
-            // NOsale
-            // 
-            this.NOsale.HeaderText = "Զեղչ";
-            this.NOsale.Name = "NOsale";
-            this.NOsale.Width = 60;
-            // 
-            // NOtot
-            // 
-            this.NOtot.HeaderText = "Արժեք";
-            this.NOtot.Name = "NOtot";
-            this.NOtot.Width = 80;
-            // 
-            // NOcomment
-            // 
-            this.NOcomment.HeaderText = "Մեկնաբանություն";
-            this.NOcomment.Name = "NOcomment";
-            this.NOcomment.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Կողմն";
-            this.Column2.Name = "Column2";
             // 
             // NewOrder
             // 
@@ -2092,7 +2140,6 @@
         private System.Windows.Forms.Button btnNOstndSave;
         private System.Windows.Forms.Button btnNOstndDel;
         private System.Windows.Forms.Button btnNOstndAdd;
-        private System.Windows.Forms.Button button17;
         private System.Windows.Forms.TextBox txtDefTotalSM;
         private System.Windows.Forms.ComboBox cmbNOclient;
         private System.Windows.Forms.TextBox txtNOagent;
@@ -2174,5 +2221,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NOtot;
         private System.Windows.Forms.DataGridViewTextBoxColumn NOcomment;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.CheckBox cbDraft;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox txtDraft;
+        private System.Windows.Forms.TextBox txtAction;
+        private System.Windows.Forms.TextBox txtDebtId;
     }
 }
