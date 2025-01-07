@@ -67,6 +67,7 @@
             this.dgvCashFlow.Size = new System.Drawing.Size(379, 579);
             this.dgvCashFlow.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvCashFlow.TabIndex = 5;
+            this.dgvCashFlow.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCashFlow_CellDoubleClick);
             // 
             // TabDebts
             // 

@@ -73,9 +73,9 @@ namespace ABCPrintInventory.Add
         }
         private void FillGrid()
         {
-            cmbNPCatBan.SelectedIndex = 4;
+            cmbNPCatBan.SelectedIndex = 0;
             con.Open();
-            da = new SqlDataAdapter("select * from TblPurchasing order by Կոդ asc", con);
+            da = new SqlDataAdapter("select * from TblPurchasing order by Ամսաթիվ desc, Կոդ desc", con);
             con.Close();
 
             SqlCommandBuilder cb = new SqlCommandBuilder(da);
@@ -161,7 +161,7 @@ namespace ABCPrintInventory.Add
             }
             else if (cmbNPCatBan.Text == "Այլ")
             {
-                panelBan.Visible = true;
+                panelBan.Visible = false;
                 panelSt.Visible = false;
                 panelLuv.Visible = false;
                 panelCol.Visible = false;
@@ -371,34 +371,8 @@ namespace ABCPrintInventory.Add
         //------Պարտքերի կառվարման աղյուսակի համար կոդ
         private void GetDebtItemId()
         {
-            string codePrefix = "ՊԿ";
-            string codeNumber;
-
-            con.Open();
-
-            // Use CAST or TRY_CAST to extract the numeric part after the prefix for correct sorting
-            cmd = new SqlCommand(@"SELECT MAX(CAST(SUBSTRING(hh, LEN(@codePrefix) + 1, LEN(hh)) AS INT))
-                                FROM TblDebtsControl WHERE hh LIKE @codePrefix + '%'", con);
-
-            cmd.Parameters.AddWithValue("@codePrefix", codePrefix);
-            object result = cmd.ExecuteScalar();
-            con.Close();
-
-            if (result != DBNull.Value && result != null)
-            {
-                // Increment the numeric part
-                int lastNumber = Convert.ToInt32(result);
-                codeNumber = (lastNumber + 1).ToString();
-            }
-            else
-            {
-                // Start from 1 if no records are found
-                codeNumber = "01";
-            }
-
-            // Combine the prefix and the incremented number
-            string newCode = codePrefix + codeNumber;
-            txtNPid.Text = newCode;
+            Test newTest = new Test();
+            txtNPid.Text = newTest.GetItemId();
         }
 
         //------------վանդակների մաքրելը
@@ -427,12 +401,17 @@ namespace ABCPrintInventory.Add
             txtNPothVal.Text = "";
             txtnewPurchCom.Text = "";
             txtNPothUn.Text = "";
+            txtNPTotVal.Text = "";
+            txtNPvalNds.Text = "";
+            txtNPvalTotal.Text = "";
         }
         //------------Ավելացնել, խմբագրել, հեռացնել
         private void btnAddban_Click(object sender, EventArgs e)
         {
+            GetDebtItemId();
+            AddItemToPurchDepts();
             AddItemToPurchBan();
-            AddItemToStockBan();
+            AddItemToStockBan();            
             FillGrid();
             BanClearText();
             GetItemId();
@@ -454,10 +433,11 @@ namespace ABCPrintInventory.Add
 
                 // First insert command
                 using (SqlCommand cmd1 = new SqlCommand("INSERT INTO TblPurchasing " +
-                    "(Կոդ, Ամսաթիվ, Մատակարար, Կատեգորիա, Նյութ, [ՔՄ մուտք], [ՔՄ գին], [ՔՄ արժեք], [Կոճգամ մուտք], [Կոճգամ գին], [Կոճգամ արժեք], Վահանակ, [Վ մուտք], [Վ գին], [Վ արժեք], Ներկ, [Ներկ մուտք], [Ներկ գին], [Ներկ արժեք], Այլ, [Այլ մուտք], [Այլ գին], [Այլ արժեք], [Ընդ արժեք], Մեկնաբանություն) VALUES " +
-                    "(@Column1, @Column2, @Column3, @Column5, @Column6, @Column7, @Column8, @Column9, @Column10, @Column11, @Column12, @Column13, @Column14, @Column15, @Column16, @Column17, @Column18, @Column19, @Column20, @Column21, @Column22, @Column23, @Column24, @Column25, @Column26)", con))
+                    "(Կոդ, [վ/ե], Ամսաթիվ, Մատակարար, Կատեգորիա, Նյութ, [ՔՄ մուտք], [ՔՄ գին], [ՔՄ արժեք], [Կոճգամ մուտք], [Կոճգամ գին], [Կոճգամ արժեք], Վահանակ, [Վ մուտք], [Վ գին], [Վ արժեք], Ներկ, [Ներկ մուտք], [Ներկ գին], [Ներկ արժեք], Այլ, [Այլ մուտք], [Այլ գին], [Այլ արժեք], [Ընդ արժեք], Մեկնաբանություն) VALUES " +
+                    "(@Column1, @ColumnP, @Column2, @Column3, @Column5, @Column6, @Column7, @Column8, @Column9, @Column10, @Column11, @Column12, @Column13, @Column14, @Column15, @Column16, @Column17, @Column18, @Column19, @Column20, @Column21, @Column22, @Column23, @Column24, @Column25, @Column26)", con))
                 {
                     cmd1.Parameters.AddWithValue("@Column1", txtNPcod.Text);
+                    cmd1.Parameters.AddWithValue("@ColumnP", cmbnewPurchPaySys.Text);
                     cmd1.Parameters.AddWithValue("@Column2", date1);
                     cmd1.Parameters.AddWithValue("@Column3", cmbnewPurchPur.Text);
                     cmd1.Parameters.AddWithValue("@Column5", cmbNPCatBan.Text);
@@ -569,7 +549,7 @@ namespace ABCPrintInventory.Add
 
                 // First insert command
                 using (SqlCommand cmd1 = new SqlCommand("INSERT INTO TblDebtsControl (hh, Գործողություն, [վ/ե], Ամսաթիվ, Կոդ, Մատակարար, Արժեք, ԱԱՀ, Ընդհանուր, Մեկնաբանություն)" +
-                        "VALUES (@ColumnID, @Column1, @Column2, @Column3, @Column4, @Column5, @Column6, @Column7, @Column8, @Column9, @Column10)", con))
+                        "VALUES (@Column1, @Column2, @Column3, @Column4, @Column5, @Column6, @Column7, @Column8, @Column9, @Column10)", con))
 
                 {
                     cmd1.Parameters.AddWithValue("@Column1", txtNPid.Text);
@@ -611,41 +591,54 @@ namespace ABCPrintInventory.Add
             i = e.RowIndex;
             DataGridViewRow row = dgvPurchasing.Rows[i];
             txtNPcod.Text = row.Cells[0].Value.ToString();
-            dtpNO.Text = row.Cells[1].Value.ToString();
-            cmbnewPurchPur.Text = row.Cells[2].Value.ToString();
-            cmbNPCatBan.Text = row.Cells[3].Value.ToString();
-            txtnewPurchCom.Text = row.Cells[24].Value.ToString();
+            cmbnewPurchPaySys.Text = row.Cells[1].Value.ToString();
+            dtpNO.Text = row.Cells[2].Value.ToString();
+            cmbnewPurchPur.Text = row.Cells[3].Value.ToString();
+            cmbNPCatBan.Text = row.Cells[4].Value.ToString();
+            txtnewPurchCom.Text = row.Cells[25].Value.ToString();
             PanelChange();
-            cmbNPban.Text = row.Cells[4].Value.ToString();
-            txtNPbanQnt.Text = row.Cells[5].Value.ToString();
-            txtNPbanPrice.Text = row.Cells[6].Value.ToString();
-            txtNPbanVal.Text = row.Cells[7].Value.ToString();
-            txtNPluvQnt.Text = row.Cells[8].Value.ToString();
-            txtNPluvPrice.Text = row.Cells[9].Value.ToString();
-            txtNPluvVal.Text = row.Cells[10].Value.ToString();
-            cmbNPst.Text = row.Cells[11].Value.ToString();
-            txtNPstQnt.Text = row.Cells[12].Value.ToString();
-            txtNPstPrice.Text = row.Cells[13].Value.ToString();
-            txtNPstVal.Text = row.Cells[14].Value.ToString();
-            cmbNPcol.Text = row.Cells[15].Value.ToString();
-            txtNPcolQnt.Text = row.Cells[16].Value.ToString();
-            txtNPcolPrice.Text = row.Cells[17].Value.ToString();
-            txtNPcolVal.Text = row.Cells[18].Value.ToString();
-            txtNPoth.Text = row.Cells[19].Value.ToString();
-            txtNPothQnt.Text = row.Cells[20].Value.ToString();
-            txtNPothPrice.Text = row.Cells[21].Value.ToString();
-            txtNPothVal.Text = row.Cells[22].Value.ToString();
+            cmbNPban.Text = row.Cells[5].Value.ToString();
+            txtNPbanQnt.Text = row.Cells[6].Value.ToString();
+            txtNPbanPrice.Text = row.Cells[7].Value.ToString();
+            txtNPbanVal.Text = row.Cells[8].Value.ToString();
+            txtNPluvQnt.Text = row.Cells[9].Value.ToString();
+            txtNPluvPrice.Text = row.Cells[10].Value.ToString();
+            txtNPluvVal.Text = row.Cells[11].Value.ToString();
+            cmbNPst.Text = row.Cells[12].Value.ToString();
+            txtNPstQnt.Text = row.Cells[13].Value.ToString();
+            txtNPstPrice.Text = row.Cells[14].Value.ToString();
+            txtNPstVal.Text = row.Cells[15].Value.ToString();
+            cmbNPcol.Text = row.Cells[16].Value.ToString();
+            txtNPcolQnt.Text = row.Cells[17].Value.ToString();
+            txtNPcolPrice.Text = row.Cells[18].Value.ToString();
+            txtNPcolVal.Text = row.Cells[19].Value.ToString();
+            txtNPoth.Text = row.Cells[20].Value.ToString();
+            txtNPothQnt.Text = row.Cells[21].Value.ToString();
+            txtNPothPrice.Text = row.Cells[22].Value.ToString();
+            txtNPothVal.Text = row.Cells[23].Value.ToString();
             TotValResolution();
         }
         private void btnEditban_Click(object sender, EventArgs e)
+        {           
+            EditPurchasing();
+            EditStockFlow();
+            EditPurchDepts();
+            FillGrid();
+            GetItemId();
+            BanClearText();
+            btnAddban.Enabled = true;
+        }
+        private void EditPurchasing()
         {
             try
             {
+
                 DateTime date1 = dtpNO.Value.Date;
                 con.Open();
-                cmd = new SqlCommand("UPDATE TblPurchasing SET Ամսաթիվ = @Column2, Մատակարար = @Column3, Կատեգորիա = @Column5, Նյութ = @Column6, [ՔՄ մուտք] = @Column7, [ՔՄ գին] = @Column8, [ՔՄ արժեք] = @Column9, [Կոճգամ մուտք] = @Column10, [Կոճգամ գին] = @Column11, [Կոճգամ արժեք] = @Column12, " +
+                cmd = new SqlCommand("UPDATE TblPurchasing SET [վ/ե] = @ColumnP, Ամսաթիվ = @Column2, Մատակարար = @Column3, Կատեգորիա = @Column5, Նյութ = @Column6, [ՔՄ մուտք] = @Column7, [ՔՄ գին] = @Column8, [ՔՄ արժեք] = @Column9, [Կոճգամ մուտք] = @Column10, [Կոճգամ գին] = @Column11, [Կոճգամ արժեք] = @Column12, " +
                                      "Վահանակ = @Column13, [Վ մուտք] = @Column14, [Վ գին] = @Column15, [Վ արժեք] = @Column16, Ներկ = @Column17, [Ներկ մուտք] = @Column18, [Ներկ գին] = @Column19, [Ներկ արժեք] = @Column20, Այլ = @Column21, [Այլ մուտք] = @Column22, [Այլ գին] = @Column23, [Այլ արժեք] = @Column24, [Ընդ արժեք] = @Column25, Մեկնաբանություն = @Column26 WHERE Կոդ = @Column1", con);
                 cmd.Parameters.AddWithValue("@Column1", txtNPcod.Text);
+                cmd.Parameters.AddWithValue("@ColumnP", cmbnewPurchPaySys.Text);
                 cmd.Parameters.AddWithValue("@Column2", date1);
                 cmd.Parameters.AddWithValue("@Column3", cmbnewPurchPur.Text);
                 cmd.Parameters.AddWithValue("@Column5", cmbNPCatBan.Text);
@@ -670,24 +663,20 @@ namespace ABCPrintInventory.Add
                 cmd.Parameters.AddWithValue("@Column24", txtNPothVal.Text);
                 cmd.Parameters.AddWithValue("@Column25", txtNPTotVal.Text);
                 cmd.Parameters.AddWithValue("@Column26", txtnewPurchCom.Text);
-                
+
                 cmd.ExecuteNonQuery();
                 int rowsAffected = cmd.ExecuteNonQuery();
                 con.Close();
                 if (rowsAffected > 0)
                 {
+
                     MessageBox.Show("Պատվերը թարմացվե՛ց:");
                 }
                 else
                 {
                     MessageBox.Show("Խմբագրման համար ընտրե՛ք տող:");
                 }
-                EditStockFlow();
-                EditPurchDepts();
-                FillGrid();
-                GetItemId();
-                BanClearText();
-                btnAddban.Enabled = true;
+                
             }
             catch (Exception ex)
             {
@@ -699,7 +688,7 @@ namespace ABCPrintInventory.Add
                 return; // Exit the method if required fields are not filled
             }
 
-            
+
         }
         private void EditStockFlow()
         {
@@ -726,8 +715,8 @@ namespace ABCPrintInventory.Add
                 cmd1.Parameters.AddWithValue("@Column15", txtNPothQnt.Text);
                 cmd1.Parameters.AddWithValue("@Column16", txtNPothVal.Text);
 
-                cmd.ExecuteNonQuery();
-                int rowsAffected = cmd.ExecuteNonQuery();
+                cmd1.ExecuteNonQuery();
+                int rowsAffected = cmd1.ExecuteNonQuery();
                 con.Close();
                 
             }
@@ -743,19 +732,20 @@ namespace ABCPrintInventory.Add
             {
                 DateTime date1 = dtpNO.Value.Date;
                 con.Open();
-                SqlCommand cmd1 = new SqlCommand("UPDATE TblPurchForDebts SET Ամսաթիվ = @Column2, Մատակարար = @Column3, [ՔՄ արժեք] = @Column4, [Կոճգամ արժեք] = @Column5, [Վ արժեք] = @Column6, [Ներկ արժեք] = @Column7, [Այլ արժեք] = @Column8, [Ընդ արժեք] = @Column9 WHERE Կոդ = @Column1", con);
-                cmd1.Parameters.AddWithValue("@Column1", txtNPcod.Text);
-                cmd1.Parameters.AddWithValue("@Column2", date1);
-                cmd1.Parameters.AddWithValue("@Column3", cmbnewPurchPur.Text);
-                cmd1.Parameters.AddWithValue("@Column4", txtNPbanVal.Text);
-                cmd1.Parameters.AddWithValue("@Column5", txtNPluvVal.Text);
-                cmd1.Parameters.AddWithValue("@Column6", txtNPstVal.Text);
-                cmd1.Parameters.AddWithValue("@Column7", txtNPcolVal.Text);
-                cmd1.Parameters.AddWithValue("@Column8", txtNPothVal.Text);
-                cmd1.Parameters.AddWithValue("@Column9", txtNPTotVal.Text);
+                SqlCommand cmd1 = new SqlCommand("UPDATE TblDebtsControl SET Գործողություն = @ColumnT, [վ/ե] = @Column2,  Ամսաթիվ = @Column3, Կոդ = @Column4, Մատակարար = @Column5, Արժեք = @Column6, ԱԱՀ = @Column7, Ընդհանուր = @Column8, Մեկնաբանություն = @Column9 WHERE hh = @Column1", con);
+                cmd1.Parameters.AddWithValue("@Column1", txtNPid.Text);
+                cmd1.Parameters.AddWithValue("@ColumnT", txtAction.Text);
+                cmd1.Parameters.AddWithValue("@Column2", cmbnewPurchPaySys.Text);
+                cmd1.Parameters.AddWithValue("@Column3", date1);
+                cmd1.Parameters.AddWithValue("@Column4", txtNPcod.Text);
+                cmd1.Parameters.AddWithValue("@Column5", cmbnewPurchPur.Text);
+                cmd1.Parameters.AddWithValue("@Column6", txtNPTotVal.Text);
+                cmd1.Parameters.AddWithValue("@Column7", txtNPvalNds.Text);
+                cmd1.Parameters.AddWithValue("@Column8", txtNPvalTotal.Text);
+                cmd1.Parameters.AddWithValue("@Column9", txtnewPurchCom.Text);
 
-                cmd.ExecuteNonQuery();
-                int rowsAffected = cmd.ExecuteNonQuery();
+                cmd1.ExecuteNonQuery();
+                int rowsAffected = cmd1.ExecuteNonQuery();
                 con.Close();
 
             }
@@ -763,7 +753,6 @@ namespace ABCPrintInventory.Add
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
         private void btnDelban_Click(object sender, EventArgs e)
         {
@@ -786,8 +775,8 @@ namespace ABCPrintInventory.Add
                         int rowsAffectedPurch = cmdForPurch.ExecuteNonQuery();
 
                         // Delete from TblDebts
-                        SqlCommand cmdForDebts = new SqlCommand("DELETE FROM TblPurchForDebts WHERE Կոդ = @PurchId", con);
-                        cmdForPurch.Parameters.AddWithValue("@PurchId", txtNPcod.Text);
+                        SqlCommand cmdForDebts = new SqlCommand("DELETE FROM TblDebtsControl WHERE Կոդ = @PurchId", con);
+                        cmdForDebts.Parameters.AddWithValue("@PurchId", txtNPcod.Text);
                         int rowsAffectedDepts = cmdForDebts.ExecuteNonQuery();
 
                         con.Close();
@@ -818,7 +807,10 @@ namespace ABCPrintInventory.Add
             }
         }
 
-        
+        private void btnRef_Click(object sender, EventArgs e)
+        {
+            NewPurchasing_Load(sender, e);
+        }
     }
 
 }

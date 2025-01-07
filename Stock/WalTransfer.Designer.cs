@@ -34,7 +34,7 @@
             this.cmbWTin = new System.Windows.Forms.ComboBox();
             this.cmbWTout = new System.Windows.Forms.ComboBox();
             this.dtpWT = new System.Windows.Forms.DateTimePicker();
-            this.txtDebtId = new System.Windows.Forms.TextBox();
+            this.txtDebtIdexit = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,6 +43,11 @@
             this.txtAction = new System.Windows.Forms.TextBox();
             this.cmbWTcom = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtDebtIdenter = new System.Windows.Forms.TextBox();
+            this.btnNODel = new System.Windows.Forms.Button();
+            this.btnNOEdit = new System.Windows.Forms.Button();
+            this.txtForEdit = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label2
@@ -50,11 +55,11 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(70, 12);
+            this.label2.Location = new System.Drawing.Point(21, 17);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 166;
-            this.label2.Text = "Կոդ";
+            this.label2.Text = "Կոդ ելք";
             this.label2.Visible = false;
             // 
             // txtTotVal
@@ -92,18 +97,16 @@
             this.dtpWT.Size = new System.Drawing.Size(93, 20);
             this.dtpWT.TabIndex = 162;
             // 
-            // txtDebtId
+            // txtDebtIdexit
             // 
-            this.txtDebtId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtDebtId.Enabled = false;
-            this.txtDebtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtDebtId.Location = new System.Drawing.Point(117, 12);
-            this.txtDebtId.Multiline = true;
-            this.txtDebtId.Name = "txtDebtId";
-            this.txtDebtId.Size = new System.Drawing.Size(93, 21);
-            this.txtDebtId.TabIndex = 160;
-            this.txtDebtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtDebtId.Visible = false;
+            this.txtDebtIdexit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtDebtIdexit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtDebtIdexit.Location = new System.Drawing.Point(117, 12);
+            this.txtDebtIdexit.Multiline = true;
+            this.txtDebtIdexit.Name = "txtDebtIdexit";
+            this.txtDebtIdexit.Size = new System.Drawing.Size(93, 21);
+            this.txtDebtIdexit.TabIndex = 160;
+            this.txtDebtIdexit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
@@ -160,7 +163,7 @@
             this.btnNOAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnNOAdd.Image")));
-            this.btnNOAdd.Location = new System.Drawing.Point(272, 354);
+            this.btnNOAdd.Location = new System.Drawing.Point(204, 361);
             this.btnNOAdd.Name = "btnNOAdd";
             this.btnNOAdd.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOAdd.Size = new System.Drawing.Size(93, 40);
@@ -202,12 +205,91 @@
             this.label6.TabIndex = 174;
             this.label6.Text = "Մեկնաբանություն";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(21, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 13);
+            this.label7.TabIndex = 176;
+            this.label7.Text = "Կոդ մուտք";
+            this.label7.Visible = false;
+            // 
+            // txtDebtIdenter
+            // 
+            this.txtDebtIdenter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtDebtIdenter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtDebtIdenter.Location = new System.Drawing.Point(117, 39);
+            this.txtDebtIdenter.Multiline = true;
+            this.txtDebtIdenter.Name = "txtDebtIdenter";
+            this.txtDebtIdenter.Size = new System.Drawing.Size(93, 21);
+            this.txtDebtIdenter.TabIndex = 175;
+            this.txtDebtIdenter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnNODel
+            // 
+            this.btnNODel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnNODel.BackColor = System.Drawing.Color.Maroon;
+            this.btnNODel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNODel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNODel.FlatAppearance.BorderSize = 0;
+            this.btnNODel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnNODel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnNODel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnNODel.Image = ((System.Drawing.Image)(resources.GetObject("btnNODel.Image")));
+            this.btnNODel.Location = new System.Drawing.Point(355, 361);
+            this.btnNODel.Name = "btnNODel";
+            this.btnNODel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnNODel.Size = new System.Drawing.Size(45, 40);
+            this.btnNODel.TabIndex = 178;
+            this.btnNODel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNODel.UseVisualStyleBackColor = false;
+            this.btnNODel.Click += new System.EventHandler(this.btnNODel_Click);
+            // 
+            // btnNOEdit
+            // 
+            this.btnNOEdit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnNOEdit.BackColor = System.Drawing.Color.Teal;
+            this.btnNOEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNOEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNOEdit.FlatAppearance.BorderSize = 0;
+            this.btnNOEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnNOEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnNOEdit.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnNOEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnNOEdit.Image")));
+            this.btnNOEdit.Location = new System.Drawing.Point(303, 361);
+            this.btnNOEdit.Name = "btnNOEdit";
+            this.btnNOEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnNOEdit.Size = new System.Drawing.Size(46, 40);
+            this.btnNOEdit.TabIndex = 177;
+            this.btnNOEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNOEdit.UseVisualStyleBackColor = false;
+            this.btnNOEdit.Click += new System.EventHandler(this.btnNOEdit_Click);
+            // 
+            // txtForEdit
+            // 
+            this.txtForEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtForEdit.Location = new System.Drawing.Point(24, 68);
+            this.txtForEdit.Multiline = true;
+            this.txtForEdit.Name = "txtForEdit";
+            this.txtForEdit.Size = new System.Drawing.Size(31, 27);
+            this.txtForEdit.TabIndex = 179;
+            this.txtForEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtForEdit.Visible = false;
+            // 
             // WalTransfer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.ClientSize = new System.Drawing.Size(513, 450);
+            this.Controls.Add(this.txtForEdit);
+            this.Controls.Add(this.btnNODel);
+            this.Controls.Add(this.btnNOEdit);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtDebtIdenter);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbWTcom);
             this.Controls.Add(this.txtAction);
@@ -220,7 +302,7 @@
             this.Controls.Add(this.cmbWTin);
             this.Controls.Add(this.cmbWTout);
             this.Controls.Add(this.dtpWT);
-            this.Controls.Add(this.txtDebtId);
+            this.Controls.Add(this.txtDebtIdexit);
             this.Controls.Add(this.label5);
             this.Name = "WalTransfer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -243,9 +325,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnNOAdd;
-        private System.Windows.Forms.TextBox txtDebtId;
+        private System.Windows.Forms.TextBox txtDebtIdexit;
         private System.Windows.Forms.TextBox txtAction;
         private System.Windows.Forms.TextBox cmbWTcom;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtDebtIdenter;
+        private System.Windows.Forms.Button btnNODel;
+        private System.Windows.Forms.Button btnNOEdit;
+        private System.Windows.Forms.TextBox txtForEdit;
     }
 }

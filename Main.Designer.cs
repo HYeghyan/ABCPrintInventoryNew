@@ -44,12 +44,15 @@
             this.նորՊատվերToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPurchasingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OrdersPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.costPayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cashFlowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.newCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newEmpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnUnd = new System.Windows.Forms.Button();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +63,7 @@
             this.ավելացնելToolStripMenuItem,
             this.գործընկերToolStripMenuItem,
             this.նորՊատվերToolStripMenuItem,
+            this.OrdersPageToolStripMenuItem,
             this.StockToolStripMenuItem,
             this.deptsToolStripMenuItem,
             this.costPayToolStripMenuItem,
@@ -145,7 +149,8 @@
             // 
             this.գործընկերToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientToolStripMenuItem,
-            this.մատակարարToolStripMenuItem});
+            this.մատակարարToolStripMenuItem,
+            this.newEmpToolStripMenuItem});
             this.գործընկերToolStripMenuItem.Name = "գործընկերToolStripMenuItem";
             this.գործընկերToolStripMenuItem.Size = new System.Drawing.Size(83, 19);
             this.գործընկերToolStripMenuItem.Text = "Գործընկեր";
@@ -153,14 +158,14 @@
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clientToolStripMenuItem.Text = "Հաճախորդ";
             this.clientToolStripMenuItem.Click += new System.EventHandler(this.clientToolStripMenuItem_Click);
             // 
             // մատակարարToolStripMenuItem
             // 
             this.մատակարարToolStripMenuItem.Name = "մատակարարToolStripMenuItem";
-            this.մատակարարToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.մատակարարToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.մատակարարToolStripMenuItem.Text = "Մատակարար";
             // 
             // նորՊատվերToolStripMenuItem
@@ -176,16 +181,30 @@
             // newOrderToolStripMenuItem
             // 
             this.newOrderToolStripMenuItem.Name = "newOrderToolStripMenuItem";
-            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newOrderToolStripMenuItem.Text = "Վաճառք";
             this.newOrderToolStripMenuItem.Click += new System.EventHandler(this.newOrderToolStripMenuItem_Click);
             // 
             // newPurchasingToolStripMenuItem
             // 
             this.newPurchasingToolStripMenuItem.Name = "newPurchasingToolStripMenuItem";
-            this.newPurchasingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newPurchasingToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newPurchasingToolStripMenuItem.Text = "Ձեռք բերում";
             this.newPurchasingToolStripMenuItem.Click += new System.EventHandler(this.newPurchasingToolStripMenuItem_Click);
+            // 
+            // newCostToolStripMenuItem
+            // 
+            this.newCostToolStripMenuItem.Name = "newCostToolStripMenuItem";
+            this.newCostToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.newCostToolStripMenuItem.Text = "Ծախս";
+            this.newCostToolStripMenuItem.Click += new System.EventHandler(this.newCostToolStripMenuItem_Click);
+            // 
+            // OrdersPageToolStripMenuItem
+            // 
+            this.OrdersPageToolStripMenuItem.Name = "OrdersPageToolStripMenuItem";
+            this.OrdersPageToolStripMenuItem.Size = new System.Drawing.Size(90, 19);
+            this.OrdersPageToolStripMenuItem.Text = "Պատվերներ";
+            this.OrdersPageToolStripMenuItem.Click += new System.EventHandler(this.OrdersPageToolStripMenuItem_Click);
             // 
             // StockToolStripMenuItem
             // 
@@ -226,12 +245,26 @@
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             this.tabControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseClick);
             // 
-            // newCostToolStripMenuItem
+            // newEmpToolStripMenuItem
             // 
-            this.newCostToolStripMenuItem.Name = "newCostToolStripMenuItem";
-            this.newCostToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.newCostToolStripMenuItem.Text = "Ծախս";
-            this.newCostToolStripMenuItem.Click += new System.EventHandler(this.newCostToolStripMenuItem_Click);
+            this.newEmpToolStripMenuItem.Name = "newEmpToolStripMenuItem";
+            this.newEmpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newEmpToolStripMenuItem.Text = "Աշխատակից";
+            this.newEmpToolStripMenuItem.Click += new System.EventHandler(this.newEmpToolStripMenuItem_Click);
+            // 
+            // btnUnd
+            // 
+            this.btnUnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUnd.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnUnd.BackgroundImage = global::ABCPrintInventory.Properties.Resources.iconUndo;
+            this.btnUnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnUnd.ForeColor = System.Drawing.Color.Khaki;
+            this.btnUnd.Location = new System.Drawing.Point(890, 6);
+            this.btnUnd.Name = "btnUnd";
+            this.btnUnd.Size = new System.Drawing.Size(35, 31);
+            this.btnUnd.TabIndex = 71;
+            this.btnUnd.UseVisualStyleBackColor = false;
             // 
             // Main
             // 
@@ -239,6 +272,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1107, 617);
+            this.Controls.Add(this.btnUnd);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip2);
             this.IsMdiContainer = true;
@@ -276,5 +310,8 @@
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem costPayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newCostToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OrdersPageToolStripMenuItem;
+        private System.Windows.Forms.Button btnUnd;
+        private System.Windows.Forms.ToolStripMenuItem newEmpToolStripMenuItem;
     }
 }

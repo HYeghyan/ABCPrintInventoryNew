@@ -32,6 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewCost));
             this.dgvCost = new Zuby.ADGV.AdvancedDataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtNPvalTotal = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtNPvalNds = new System.Windows.Forms.TextBox();
             this.txtNCcom = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -45,16 +49,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpNO = new System.Windows.Forms.DateTimePicker();
-            this.cmbNCpur = new System.Windows.Forms.ComboBox();
+            this.cmbNCemp = new System.Windows.Forms.ComboBox();
             this.txtNCcod = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnEditban = new System.Windows.Forms.Button();
             this.btnAddban = new System.Windows.Forms.Button();
             this.btnDelban = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtNPvalTotal = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtNPvalNds = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCost)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +82,7 @@
             this.dgvCost.Size = new System.Drawing.Size(1227, 581);
             this.dgvCost.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvCost.TabIndex = 55;
+            this.dgvCost.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCost_CellDoubleClick);
             // 
             // panel1
             // 
@@ -109,13 +110,57 @@
             this.panel1.Controls.Add(this.btnDelban);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dtpNO);
-            this.panel1.Controls.Add(this.cmbNCpur);
+            this.panel1.Controls.Add(this.cmbNCemp);
             this.panel1.Controls.Add(this.txtNCcod);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1227, 141);
             this.panel1.TabIndex = 54;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(1054, 17);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(85, 13);
+            this.label14.TabIndex = 166;
+            this.label14.Text = "ԸՆԴՀԱՆՈՒՐ";
+            this.label14.Visible = false;
+            // 
+            // txtNPvalTotal
+            // 
+            this.txtNPvalTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtNPvalTotal.Location = new System.Drawing.Point(1050, 32);
+            this.txtNPvalTotal.Multiline = true;
+            this.txtNPvalTotal.Name = "txtNPvalTotal";
+            this.txtNPvalTotal.Size = new System.Drawing.Size(93, 21);
+            this.txtNPvalTotal.TabIndex = 165;
+            this.txtNPvalTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNPvalTotal.Visible = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(975, 17);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(33, 13);
+            this.label13.TabIndex = 164;
+            this.label13.Text = "ԱԱՀ";
+            this.label13.Visible = false;
+            // 
+            // txtNPvalNds
+            // 
+            this.txtNPvalNds.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtNPvalNds.Location = new System.Drawing.Point(960, 32);
+            this.txtNPvalNds.Multiline = true;
+            this.txtNPvalNds.Name = "txtNPvalNds";
+            this.txtNPvalNds.Size = new System.Drawing.Size(75, 21);
+            this.txtNPvalNds.TabIndex = 163;
+            this.txtNPvalNds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNPvalNds.Visible = false;
             // 
             // txtNCcom
             // 
@@ -207,7 +252,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(303, 18);
+            this.label10.Location = new System.Drawing.Point(553, 18);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(122, 13);
             this.label10.TabIndex = 112;
@@ -216,7 +261,7 @@
             // cmbNCart
             // 
             this.cmbNCart.FormattingEnabled = true;
-            this.cmbNCart.Location = new System.Drawing.Point(251, 33);
+            this.cmbNCart.Location = new System.Drawing.Point(501, 33);
             this.cmbNCart.Name = "cmbNCart";
             this.cmbNCart.Size = new System.Drawing.Size(227, 21);
             this.cmbNCart.TabIndex = 108;
@@ -225,21 +270,21 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(425, 77);
+            this.label4.Location = new System.Drawing.Point(468, 77);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 13);
+            this.label4.Size = new System.Drawing.Size(42, 13);
             this.label4.TabIndex = 47;
-            this.label4.Text = "Մեկնաբանություն";
+            this.label4.Text = "Նշում";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(581, 18);
+            this.label1.Location = new System.Drawing.Point(326, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 13);
+            this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 45;
-            this.label1.Text = "Գործընկեր";
+            this.label1.Text = "Կատարող";
             // 
             // dtpNO
             // 
@@ -249,13 +294,13 @@
             this.dtpNO.Size = new System.Drawing.Size(104, 20);
             this.dtpNO.TabIndex = 101;
             // 
-            // cmbNCpur
+            // cmbNCemp
             // 
-            this.cmbNCpur.FormattingEnabled = true;
-            this.cmbNCpur.Location = new System.Drawing.Point(507, 33);
-            this.cmbNCpur.Name = "cmbNCpur";
-            this.cmbNCpur.Size = new System.Drawing.Size(221, 21);
-            this.cmbNCpur.TabIndex = 55;
+            this.cmbNCemp.FormattingEnabled = true;
+            this.cmbNCemp.Location = new System.Drawing.Point(251, 32);
+            this.cmbNCemp.Name = "cmbNCemp";
+            this.cmbNCemp.Size = new System.Drawing.Size(221, 21);
+            this.cmbNCemp.TabIndex = 55;
             // 
             // txtNCcod
             // 
@@ -297,6 +342,7 @@
             this.btnEditban.TabIndex = 6;
             this.btnEditban.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditban.UseVisualStyleBackColor = false;
+            this.btnEditban.Click += new System.EventHandler(this.btnEditban_Click);
             // 
             // btnAddban
             // 
@@ -336,50 +382,7 @@
             this.btnDelban.TabIndex = 7;
             this.btnDelban.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDelban.UseVisualStyleBackColor = false;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(1054, 17);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(85, 13);
-            this.label14.TabIndex = 166;
-            this.label14.Text = "ԸՆԴՀԱՆՈՒՐ";
-            this.label14.Visible = false;
-            // 
-            // txtNPvalTotal
-            // 
-            this.txtNPvalTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtNPvalTotal.Location = new System.Drawing.Point(1050, 32);
-            this.txtNPvalTotal.Multiline = true;
-            this.txtNPvalTotal.Name = "txtNPvalTotal";
-            this.txtNPvalTotal.Size = new System.Drawing.Size(93, 21);
-            this.txtNPvalTotal.TabIndex = 165;
-            this.txtNPvalTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtNPvalTotal.Visible = false;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(975, 17);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(33, 13);
-            this.label13.TabIndex = 164;
-            this.label13.Text = "ԱԱՀ";
-            this.label13.Visible = false;
-            // 
-            // txtNPvalNds
-            // 
-            this.txtNPvalNds.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtNPvalNds.Location = new System.Drawing.Point(960, 32);
-            this.txtNPvalNds.Multiline = true;
-            this.txtNPvalNds.Name = "txtNPvalNds";
-            this.txtNPvalNds.Size = new System.Drawing.Size(75, 21);
-            this.txtNPvalNds.TabIndex = 163;
-            this.txtNPvalNds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtNPvalNds.Visible = false;
+            this.btnDelban.Click += new System.EventHandler(this.btnDelban_Click);
             // 
             // NewCost
             // 
@@ -421,7 +424,7 @@
         private System.Windows.Forms.Button btnDelban;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpNO;
-        private System.Windows.Forms.ComboBox cmbNCpur;
+        private System.Windows.Forms.ComboBox cmbNCemp;
         private System.Windows.Forms.TextBox txtNCcod;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label14;

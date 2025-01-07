@@ -23,7 +23,7 @@ namespace ABCPrintInventory.Add
         }
         private void PayPurchDebts_Load(object sender, EventArgs e)
         {
-            GetItemId();            
+            GetDebtItemId();            
             ProdComboboxComplate();
             GetRestVal();
             PopulateDgvClientDebtsOrders();
@@ -38,38 +38,17 @@ namespace ABCPrintInventory.Add
             get { return txtPDInvCom.Text; }
             set { txtPDInvCom.Text = value; }
         }
-        private void GetItemId()
+        public string txtDebtIdText
         {
-            string codePrefix = "ՊԿ";
-            string codeNumber;
-
-            con.Open();
-
-            // Use CAST or TRY_CAST to extract the numeric part after the prefix for correct sorting
-            cmd = new SqlCommand(@"SELECT MAX(CAST(SUBSTRING(hh, LEN(@codePrefix) + 1, LEN(hh)) AS INT))
-                                FROM TblDebtsControl WHERE hh LIKE @codePrefix + '%'", con);
-
-            cmd.Parameters.AddWithValue("@codePrefix", codePrefix);
-            object result = cmd.ExecuteScalar();
-            con.Close();
-
-            if (result != DBNull.Value && result != null)
-            {
-                // Increment the numeric part
-                int lastNumber = Convert.ToInt32(result);
-                codeNumber = (lastNumber + 1).ToString();
-            }
-            else
-            {
-                // Start from 1 if no records are found
-                codeNumber = "01";
-            }
-
-            // Combine the prefix and the incremented number
-            string newCode = codePrefix + codeNumber;
-            txtDebtId.Text = newCode;
+            get { return txtDebtId.Text; }
+            set { txtDebtId.Text = value; }
         }
-        
+        private void GetDebtItemId()
+        {
+            Test newTest = new Test();
+            txtDebtId.Text = newTest.GetItemId();
+        }
+
         //Դրամարկղի կոմբոն
         private void ProdComboboxComplate()
         {
@@ -187,10 +166,12 @@ namespace ABCPrintInventory.Add
                 try
                 {
                     con.Open();
+                    DateTime orderDate = dtpPD.Value.Date;
+
                     cmd = new SqlCommand("INSERT INTO TblDebtsControl (hh, Գործողություն, [վ/ե], Ամսաթիվ, Կոդ, Մատակարար, Ելք, Դրամարկղ, Մեկնաբանություն) VALUES (@Column1, @Column2, @Column3, @Column4, @Column5, @Column6, @Column7, @Column8, @Column9)", con);
                     // Get DateTimePicker value outside the loop
-                    DateTimePicker dtp = new DateTimePicker();
-                    DateTime orderDate = dtp.Value;
+                    //DateTimePicker dtp = new DateTimePicker();
+                    
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@Column1", txtDebtId.Text);
                     cmd.Parameters.AddWithValue("@Column2", txtPDInvAc.Text);

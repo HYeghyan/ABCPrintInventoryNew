@@ -26,101 +26,194 @@ namespace ABCPrintInventory.Add
         private void Test_Load(object sender, EventArgs e)
         {
             GetItemId();
-            GetDebtId();
-            BanComboboxComplate();
+            FillGrid();
         }
-        private void GetItemId()
+        public string GetItemId()
+        {
+            string codePrefix = "ՊԿ";
+            string codeNumber;
+            string newCode = string.Empty;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon))
+                {
+                    con.Open();
+
+                    string query = @"
+                SELECT MAX(CAST(SUBSTRING(hh, LEN(@codePrefix) + 1, 
+                    PATINDEX('%[^0-9]%', SUBSTRING(hh, LEN(@codePrefix) + 1, LEN(hh) + 1) + 'a') - 1) AS INT))
+                FROM TblDebtsControl
+                WHERE hh LIKE @codePrefix + '%'";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@codePrefix", codePrefix);
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != DBNull.Value && result != null)
+                        {
+                            int lastNumber = Convert.ToInt32(result);
+                            codeNumber = (lastNumber + 1).ToString("D2");
+                        }
+                        else
+                        {
+                            codeNumber = "01";
+                        }
+
+                        newCode = codePrefix + codeNumber;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return newCode;
+        }
+        private void GetDebtItemIdOld()
         {
             string codePrefix = "ՊԿ";
             string codeNumber;
 
-            con.Open();
-
-            cmd = new SqlCommand("SELECT MAX(hh) FROM TblDebtsControl WHERE hh LIKE @codePrefix", con);
-            cmd.Parameters.AddWithValue("@codePrefix", codePrefix + "%");
-            object result = cmd.ExecuteScalar();
-            con.Close();
-
-            if (result != DBNull.Value && result != null)
-            {
-                string lastCode = result.ToString();
-                string lastNumberStr = lastCode.Substring(codePrefix.Length);
-                int lastNumber = int.Parse(lastNumberStr);
-                codeNumber = (lastNumber + 1).ToString("00");
-            }
-            else
-            {
-                codeNumber = "01";
-            }
-
-            string newCode = codePrefix + codeNumber;
-            txtID.Text = newCode;
-        }
-        private int currentCodeNumber = 3;
-        private void GetDebtId()
-        {
-            string codePrefix = "300924-";
-            string codeNumber = currentCodeNumber.ToString("00"); // Convert current number to a 2-digit string
-
-            string newCode = codePrefix + codeNumber;
-            txtCode.Text = newCode;
-
-            currentCodeNumber++;
-        }
-        private void BanComboboxComplate()
-        {
-            SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT DISTINCT(Անուն) FROM TblClient", con);
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
-            {
-                cmbNOclient.Items.Add(dr.GetValue(0).ToString());
-            }
-            dr.Close();
-            con.Close();
-        }
-        private void Cleartext()
-        {
-            cmbNOclient.Text = "";
-            txtDebt.Text = "";
-        }
-        private void btnNOAdd_Click(object sender, EventArgs e)
-        {
-            AddItemToGridview();
-            GetItemId();
-            GetDebtId();
-        }
-        private void AddItemToGridview()
-        {
             try
             {
-                con.Open();
-                cmd = new SqlCommand("INSERT INTO TblDebtsControl (hh, Գործողություն, [վ/ե], Ամսաթիվ, Կոդ, Հաճախորդ, Արժեք) VALUES (@ColumnID, @ColumnAC, @ColumnP, @Column1, @Column2, @Column3, @Column4)", con);
-                DateTime selectedDateo = dtpNO.Value;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@ColumnID", txtID.Text);
-                cmd.Parameters.AddWithValue("@ColumnAC", txtAc.Text);
-                cmd.Parameters.AddWithValue("@ColumnP", cmbPaySys.Text);
-                cmd.Parameters.AddWithValue("@Column1", selectedDateo);
-                cmd.Parameters.AddWithValue("@Column2", txtCode.Text);
-                cmd.Parameters.AddWithValue("@Column3", cmbNOclient.Text);
-                cmd.Parameters.AddWithValue("@Column4", txtDebt.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
-                Cleartext();
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon))
+                {
+                    con.Open();
+
+                    // SQL query to extract the numeric part before any suffix
+                    string query = @"
+                SELECT MAX(CAST(SUBSTRING(hh, LEN(@codePrefix) + 1, 
+                    PATINDEX('%[^0-9]%', SUBSTRING(hh, LEN(@codePrefix) + 1, LEN(hh) + 1) + 'a') - 1) AS INT))
+                FROM TblDebtsControl
+                WHERE hh LIKE @codePrefix + '%'";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@codePrefix", codePrefix);
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != DBNull.Value && result != null)
+                        {
+                            // Increment the numeric part
+                            int lastNumber = Convert.ToInt32(result);
+                            codeNumber = (lastNumber + 1).ToString("D2"); // Ensure at least 2 digits
+                        }
+                        else
+                        {
+                            // Start from 01 if no records are found
+                            codeNumber = "01";
+                        }
+                    }
+                }
+
+                // Combine the prefix and the incremented number
+                string newCode = codePrefix + codeNumber;
+
+                // Assign new ID to text box
+                txtID.Text = newCode;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+        private void FillGrid()
+        {
+            con.Open();
+            da = new SqlDataAdapter("select * from TblDebtsControl order by hh asc", con);
+            con.Close();
+
+            SqlCommandBuilder cb = new SqlCommandBuilder(da);
+            dt = new DataTable();
+            da.Fill(dt);
+            dgvDeptscontrol.DataSource = dt;
+            dgvDeptscontrol.Columns["Կոդ"].Width = 70;
+            dgvDeptscontrol.Columns["Կոդ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Ensure the DataTable is filled
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                MessageBox.Show("No data to search for duplicates.");
+                return;
+            }
 
+            // Use LINQ to find duplicate values in the 'hh' column
+            var duplicates = dt.AsEnumerable()
+                .GroupBy(row => row["hh"].ToString()) // Group by 'hh' column
+                .Where(group => group.Count() > 1)   // Filter groups with more than 1 occurrence
+                .Select(group => group.Key)          // Select the duplicate 'hh' values
+                .ToList();
+
+            if (duplicates.Count == 0)
+            {
+                MessageBox.Show("No duplicate codes found in column 'hh'.");
+                return;
+            }
+
+            // Create a new DataTable to hold the duplicate rows
+            DataTable duplicateTable = dt.Clone(); // Clone the structure of the original table
+
+            foreach (var duplicate in duplicates)
+            {
+                var duplicateRows = dt.AsEnumerable()
+                    .Where(row => row["hh"].ToString() == duplicate);
+
+                foreach (var row in duplicateRows)
+                {
+                    duplicateTable.ImportRow(row);
+                }
+            }
+
+            // Display the duplicate rows in a new DataGridView or the same one (as needed)
+            dgvDeptscontrol.DataSource = duplicateTable; // Or use another DataGridView
+            MessageBox.Show($"{duplicates.Count} duplicate codes found in column 'hh'.");
+            //try
+            //{
+            //    DateTime date1 = dtpNO.Value.Date;
+
+            //    // Open the database connection
+            //    con.Open();
+
+            //    // Prepare the SQL UPDATE command
+            //    cmd = new SqlCommand("UPDATE TblDebtsControl SET hh = @ItemId WHERE Կոդ = @ItemCod AND Ամսաթիվ = @ItemDat", con);
+            //    cmd.Parameters.AddWithValue("@ItemId", txtID.Text);
+            //    cmd.Parameters.AddWithValue("@ItemCod", txtCode.Text);
+            //    cmd.Parameters.AddWithValue("@ItemDat", date1);
+
+            //    // Execute the command
+            //    int rowsAffected = cmd.ExecuteNonQuery();
+
+            //    // Provide feedback to the user
+            //    if (rowsAffected > 0)
+            //    {
+            //        MessageBox.Show("Տվյալները հաջողությամբ թարմացվեցին:");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Տվյալներ չեն գտնվել թարմացման համար:");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Սխալ: " + ex.Message);
+            //}
+            //finally
+            //{
+            //    // Ensure the connection is closed
+            //    if (con.State == ConnectionState.Open)
+            //    {
+            //        con.Close();
+            //    }
+            //}
         }
     }
-
+    
 }

@@ -35,13 +35,12 @@ namespace ABCPrintInventory.Stock
         {
             using (SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon))
             {
-                //SqlDataAdapter da = new SqlDataAdapter("select * from TblStockBan order by hh asc", con);
-                //SqlCommandBuilder cb = new SqlCommandBuilder(da);
-                //DataTable dt = new DataTable();
-                //da.Fill(dt);
-                //dgvBannerStock.DataSource = dt;
-                //dgvBannerStock.Columns["hh"].Width = 60;
-                //dgvBannerStock.Columns["hh"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                SqlDataAdapter da = new SqlDataAdapter("select * from TblStockFlow order by Ամսաթիվ asc", con);
+                SqlCommandBuilder cb = new SqlCommandBuilder(da);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgvStockFlow.DataSource = dt;
+                
             }
         }
 
@@ -71,7 +70,11 @@ namespace ABCPrintInventory.Stock
         }
         public void PopulateUnitPriceGridView()
         {
-            const string StockBanQuery = "SELECT * FROM TblStockBan";
+            const string StockBanQuery =
+        "SELECT sb.*, mb.hh FROM TblStockBan sb " +
+        "JOIN TblMaterialBan mb ON sb.Նյութ = mb.Name " +
+        "ORDER BY mb.hh ASC";
+
             const string ColumnItem = "Նյութ";
             const string ColumnIn = "ՔՄ մուտք";
             const string ColumnPrint = "ՔՄ տպ";
@@ -284,6 +287,18 @@ namespace ABCPrintInventory.Stock
         public DataGridView GetStockGridViewStand()
         {
             return dgvStandStock;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            SqlCommand deleteCmd = new SqlCommand("DELETE FROM TblStockFlow where Կոդ = N'ՍՄ01'  ", con);
+            deleteCmd.ExecuteNonQuery();
+        }
+
+        private void btnRef_Click(object sender, EventArgs e)
+        {
+            StockFlow_Load(sender, e);
         }
     }
 }

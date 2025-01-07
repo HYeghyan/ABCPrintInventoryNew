@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPurchForDebts = new Zuby.ADGV.AdvancedDataGridView();
             this.TabDebts = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvDebtsByClient = new Zuby.ADGV.AdvancedDataGridView();
             this.DebtsPay = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnRef = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurchForDebts)).BeginInit();
             this.TabDebts.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -47,15 +48,15 @@
             this.dgvPurchForDebts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPurchForDebts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPurchForDebts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPurchForDebts.ColumnHeadersHeight = 30;
             this.dgvPurchForDebts.FilterAndSortEnabled = true;
             this.dgvPurchForDebts.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
@@ -65,6 +66,7 @@
             this.dgvPurchForDebts.Size = new System.Drawing.Size(379, 579);
             this.dgvPurchForDebts.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvPurchForDebts.TabIndex = 3;
+            this.dgvPurchForDebts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurchForDebts_CellDoubleClick);
             // 
             // TabDebts
             // 
@@ -95,14 +97,14 @@
             this.dgvDebtsByClient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Brown;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDebtsByClient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Brown;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDebtsByClient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDebtsByClient.ColumnHeadersHeight = 24;
             this.dgvDebtsByClient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DebtsPay});
@@ -144,11 +146,22 @@
             this.btnRef.UseVisualStyleBackColor = false;
             this.btnRef.Click += new System.EventHandler(this.btnRef_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(492, 55);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(206, 49);
+            this.button1.TabIndex = 71;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // PurchDepts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1225, 710);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRef);
             this.Controls.Add(this.dgvPurchForDebts);
             this.Controls.Add(this.TabDebts);
@@ -173,5 +186,6 @@
         private Zuby.ADGV.AdvancedDataGridView dgvDebtsByClient;
         private System.Windows.Forms.DataGridViewButtonColumn DebtsPay;
         private System.Windows.Forms.Button btnRef;
+        private System.Windows.Forms.Button button1;
     }
 }

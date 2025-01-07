@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace ABCPrintInventory.Stock
 {
@@ -26,37 +27,51 @@ namespace ABCPrintInventory.Stock
             GetItemId();
             OutWalComboboxComplate();
             InWalComboboxComplate();
+            ButtonsAvailabel();
         }
         private void GetItemId()
         {
             string codePrefix = "ՊԿ";
-            string codeNumber;
+            string baseCodeNumber;
 
-            con.Open();
-
-            // Use CAST or TRY_CAST to extract the numeric part after the prefix for correct sorting
-            cmd = new SqlCommand(@"SELECT MAX(CAST(SUBSTRING(hh, LEN(@codePrefix) + 1, LEN(hh)) AS INT))
-                                FROM TblDebtsControl WHERE hh LIKE @codePrefix + '%'", con);
-
-            cmd.Parameters.AddWithValue("@codePrefix", codePrefix);
-            object result = cmd.ExecuteScalar();
-            con.Close();
-
-            if (result != DBNull.Value && result != null)
+            try
             {
-                // Increment the numeric part
-                int lastNumber = Convert.ToInt32(result);
-                codeNumber = (lastNumber + 1).ToString();
-            }
-            else
-            {
-                // Start from 1 if no records are found
-                codeNumber = "01";
-            }
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon))
+                {
+                    con.Open();
+                    string query = @"SELECT MAX(TRY_CAST(SUBSTRING(hh, LEN(@codePrefix) + 1, LEN(hh)) AS INT))
+                             FROM TblDebtsControl 
+                             WHERE hh LIKE @codePrefix + '%'";
 
-            // Combine the prefix and the incremented number
-            string newCode = codePrefix + codeNumber;
-            txtDebtId.Text = newCode;
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@codePrefix", codePrefix);
+                        object lastCodeNumber = cmd.ExecuteScalar();
+
+                        if (lastCodeNumber != DBNull.Value && lastCodeNumber != null)
+                        {
+                            int lastNumber = Convert.ToInt32(lastCodeNumber);
+                            baseCodeNumber = (lastNumber + 1).ToString("D2");
+                        }
+                        else
+                        {
+                            baseCodeNumber = "01"; // Start sequence if no records exist
+                        }
+                    }
+                }
+
+                // Generate IDs
+                string newCode = codePrefix + baseCodeNumber; 
+                string newCodeWithSuffix = newCode + "a";     
+
+                // Assign to text boxes
+                txtDebtIdexit.Text = newCode;
+                txtDebtIdenter.Text = newCodeWithSuffix;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void OutWalComboboxComplate()
         {
@@ -133,7 +148,7 @@ namespace ABCPrintInventory.Stock
                     cmd = new SqlCommand("INSERT INTO TblDebtsControl (hh, Գործողություն, Ամսաթիվ, Դրամարկղ, Ելք, Մեկնաբանություն) VALUES (@Column1, @Column2, @Column3, @Column4, @Column5, @Column6)", con);
                     DateTime orderDate = dtpWT.Value;
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@Column1", txtDebtId.Text);
+                    cmd.Parameters.AddWithValue("@Column1", txtDebtIdexit.Text);
                     cmd.Parameters.AddWithValue("@Column2", txtAction.Text);
                     cmd.Parameters.AddWithValue("@Column3", orderDate);
                     cmd.Parameters.AddWithValue("@Column4", cmbWTout.Text);
@@ -144,7 +159,7 @@ namespace ABCPrintInventory.Stock
                     // Second INSERT statement
                     cmd = new SqlCommand("INSERT INTO TblDebtsControl (hh, Գործողություն, Ամսաթիվ, Դրամարկղ, Մուտք, Մեկնաբանություն) VALUES (@Column1, @Column2, @Column3, @Column4, @Column5, @Column6)", con);
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@Column1", txtDebtId.Text);
+                    cmd.Parameters.AddWithValue("@Column1", txtDebtIdenter.Text);
                     cmd.Parameters.AddWithValue("@Column2", txtAction.Text);
                     cmd.Parameters.AddWithValue("@Column3", orderDate);
                     cmd.Parameters.AddWithValue("@Column4", cmbWTin.Text);
@@ -161,5 +176,148 @@ namespace ABCPrintInventory.Stock
             }
         }
 
+        //Խմբագրել
+        public string dtpWText
+        {
+            get { return dtpWT.Text; }
+            set { dtpWT.Text = value; }
+        }
+        public string cmbWToutText
+        {
+            get { return cmbWTout.Text; }
+            set { cmbWTout.Text = value; }
+        }
+        public string cmbWTinText
+        {
+            get { return cmbWTin.Text; }
+            set { cmbWTin.Text = value; }
+        }
+        public string txtTotValText
+        {
+            get { return txtTotVal.Text; }
+            set { txtTotVal.Text = value; }
+        }
+        public string txtDebtIdexitText
+        {
+            get { return txtDebtIdexit.Text; }
+            set { txtDebtIdexit.Text = value; }
+        }
+        public string txtDebtIdenterText
+        {
+            get { return txtDebtIdenter.Text; }
+            set { txtDebtIdenter.Text = value; }
+        }
+        public string txtForEditText
+        {
+            get { return txtForEdit.Text; }
+            set { txtForEdit.Text = value; }
+        }
+        public string cmbWTcomText
+        {
+            get { return cmbWTcom.Text; }
+            set { cmbWTcom.Text = value; }
+        }
+        public void ButtonsAvailabel()
+        {
+            if (txtForEdit.Text == "Խ")
+            {
+                btnNOAdd.Enabled = false;
+                btnNOEdit.Enabled = true;
+                btnNODel.Enabled = true;
+            }
+            else if (txtForEdit.Text == "")
+            {
+                btnNOAdd.Enabled = true;
+                btnNOEdit.Enabled = false;
+                btnNODel.Enabled = false;
+            }
+        }
+        private void btnNOEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtDebtIdexit.Text == "" || txtDebtIdenter.Text == "" || cmbWTout.Text == "" || cmbWTin.Text == "")
+                {
+                    MessageBox.Show("Բոլոր պարտադիր դաշտերը լրացված չեն:");
+                    return; // Exit the method if required fields are not filled
+                }
+
+                con.Open();
+
+                cmd = new SqlCommand("DELETE FROM TblDebtsControl WHERE hh = @hhExit", con);
+                cmd.Parameters.AddWithValue("@hhExit", txtDebtIdexit.Text);
+                int rowsAffectedExit = cmd.ExecuteNonQuery();
+
+                // Delete where hh matches txtDebtIdenter
+                cmd = new SqlCommand("DELETE FROM TblDebtsControl WHERE hh = @hhEnter", con);
+                cmd.Parameters.AddWithValue("@hhEnter", txtDebtIdenter.Text);
+                int rowsAffectedEnter = cmd.ExecuteNonQuery();
+                con.Close();
+
+                AddItemToGridview();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Սխալ: " + ex.Message);
+            }
+            finally
+            {
+                // Ensure the connection is closed
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        //Ջնջել       
+        private void btnNODel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbWTout.Text != "" && cmbWTin.Text != "")
+                {
+                    if (MessageBox.Show("Ցանկանո՞ւմ եք հեռացնել Վճարումը:", "Հեռացնել վճարումը", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        con.Open();
+
+                        // Delete where hh matches txtDebtIdexit
+                        cmd = new SqlCommand("DELETE FROM TblDebtsControl WHERE hh = @hhExit", con);
+                        cmd.Parameters.AddWithValue("@hhExit", txtDebtIdexit.Text);
+                        int rowsAffectedExit = cmd.ExecuteNonQuery();
+
+                        //Delete where hh matches txtDebtIdenter
+                       cmd = new SqlCommand("DELETE FROM TblDebtsControl WHERE hh = @hhEnter", con);
+                        cmd.Parameters.AddWithValue("@hhEnter", txtDebtIdenter.Text);
+                        int rowsAffectedEnter = cmd.ExecuteNonQuery();
+
+                        con.Close();
+
+                        // Notify user
+                        if (rowsAffectedExit > 0 && rowsAffectedEnter > 0)
+                        {
+                            MessageBox.Show("Վճարումը հեռացվե՛ց");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Հեռացման համար տող չի ընտրվել:");
+                        }
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ընտրե՛ք վճարում ջնջելու համար:");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            this.Close();
+        }
+
+        
     }
 }

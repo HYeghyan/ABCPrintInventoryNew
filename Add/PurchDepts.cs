@@ -194,6 +194,39 @@ namespace ABCPrintInventory.Add
             PurchDepts_Load(sender, e);
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dgvPurchForDebts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Check if a valid cell is double-clicked
+            {
+                DataGridViewRow selectedRow = dgvPurchForDebts.Rows[e.RowIndex];
+                foreach (DataGridViewCell cell in selectedRow.Cells)
+                {
+                    if (cell.ColumnIndex == 10 && string.IsNullOrWhiteSpace(cell.Value?.ToString()))
+                    {
+                        MessageBox.Show("Տվյալ տողը խմբագրման ենթակա չէ", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                }
+
+                EditPurchPay editPurchPay = new EditPurchPay();
+                editPurchPay.Show();
+
+                editPurchPay.txtEPidText = selectedRow.Cells[0].Value?.ToString();
+                editPurchPay.cmbPaySysText = selectedRow.Cells["վ/ե"].Value?.ToString();
+                editPurchPay.dtpEPText = selectedRow.Cells["Ամսաթիվ"].Value?.ToString();
+                editPurchPay.txtEPnumText = selectedRow.Cells["Կոդ"].Value?.ToString();
+                editPurchPay.cmbEPclientText = selectedRow.Cells["Մատակարար"].Value?.ToString();
+                editPurchPay.txtEPvalText = selectedRow.Cells["Ելք"].Value?.ToString();
+                editPurchPay.txtEPwallet = selectedRow.Cells["Դրամարկղ"].Value?.ToString();
+                editPurchPay.txtPDInvComText = selectedRow.Cells["Մեկնաբանություն"].Value?.ToString();
+            }
+
+        }
     }
 }

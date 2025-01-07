@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvBannerStock = new Zuby.ADGV.AdvancedDataGridView();
             this.txtLyuvName = new System.Windows.Forms.TextBox();
             this.txtLyuvIn = new System.Windows.Forms.TextBox();
@@ -47,13 +48,18 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgvStandStock = new Zuby.ADGV.AdvancedDataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dgvStockFlow = new Zuby.ADGV.AdvancedDataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnRef = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBannerStock)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStandStock)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStockFlow)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvBannerStock
@@ -253,16 +259,6 @@
             this.tabPage2.Text = "Վահանակ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1211, 599);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Ներկ";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
             // dgvStandStock
             // 
             this.dgvStandStock.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -287,11 +283,72 @@
             this.dgvStandStock.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvStandStock.TabIndex = 2;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dgvStockFlow);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1211, 599);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Ներկ";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dgvStockFlow
+            // 
+            this.dgvStockFlow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStockFlow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvStockFlow.ColumnHeadersHeight = 24;
+            this.dgvStockFlow.FilterAndSortEnabled = true;
+            this.dgvStockFlow.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
+            this.dgvStockFlow.Location = new System.Drawing.Point(-4, 48);
+            this.dgvStockFlow.Name = "dgvStockFlow";
+            this.dgvStockFlow.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgvStockFlow.Size = new System.Drawing.Size(1218, 502);
+            this.dgvStockFlow.SortStringChangedInvokeBeforeDatasourceUpdate = true;
+            this.dgvStockFlow.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(536, 38);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(197, 34);
+            this.button1.TabIndex = 71;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnRef
+            // 
+            this.btnRef.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnRef.BackgroundImage = global::ABCPrintInventory.Properties.Resources.ref1;
+            this.btnRef.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnRef.ForeColor = System.Drawing.Color.Khaki;
+            this.btnRef.Location = new System.Drawing.Point(44, 12);
+            this.btnRef.Name = "btnRef";
+            this.btnRef.Size = new System.Drawing.Size(49, 45);
+            this.btnRef.TabIndex = 72;
+            this.btnRef.UseVisualStyleBackColor = false;
+            this.btnRef.Click += new System.EventHandler(this.btnRef_Click);
+            // 
             // StockFlow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 708);
+            this.Controls.Add(this.btnRef);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StockFlow";
@@ -304,6 +361,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStandStock)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStockFlow)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -329,5 +388,8 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private Zuby.ADGV.AdvancedDataGridView dgvStandStock;
+        private System.Windows.Forms.Button button1;
+        private Zuby.ADGV.AdvancedDataGridView dgvStockFlow;
+        private System.Windows.Forms.Button btnRef;
     }
 }

@@ -166,7 +166,7 @@ namespace ABCPrintInventory
         {
             Orders orders = new Orders();
             orders.MdiParent = this;
-            TabPage newTabPage = new TabPage("Պատվերներ");
+            TabPage newTabPage = new TabPage("Ավելացնել պատվեր");
             newTabPage.Controls.Add(orders);
 
             tabControl1.TabPages.Add(newTabPage);
@@ -238,7 +238,17 @@ namespace ABCPrintInventory
             tabControl1.SelectedTab = newTabPage;
             newCost.Show();
         }
+        private void newEmpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateEmployer createEmployer = new CreateEmployer();
+            createEmployer.MdiParent = this;
+            TabPage newTabPage = new TabPage("Աշխատակիցներ");
+            newTabPage.Controls.Add(createEmployer);
 
+            tabControl1.TabPages.Add(newTabPage);
+            tabControl1.SelectedTab = newTabPage;
+            createEmployer.Show();
+        }
         private void StockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StockFlow stockFlow = new StockFlow();
@@ -275,7 +285,19 @@ namespace ABCPrintInventory
             cashFlow.Show();
         }
 
-       
+        private void OrdersPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OrdersFilter ordersFilter = new OrdersFilter();
+            ordersFilter.MdiParent = this;
+            TabPage newTabPage = new TabPage("Պատվերներ");
+            newTabPage.Controls.Add(ordersFilter);
+
+            tabControl1.TabPages.Add(newTabPage);
+            tabControl1.SelectedTab = newTabPage;
+            ordersFilter.Show();
+        }
+
+        
     }
     
 }

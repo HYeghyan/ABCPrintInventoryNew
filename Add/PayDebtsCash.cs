@@ -32,6 +32,7 @@ namespace ABCPrintInventory.Add
             DesignDataGridView();
             ProdComboboxComplate();
             GetRestVal();
+
         }
         private void DesignDataGridView()
         {
@@ -43,7 +44,9 @@ namespace ABCPrintInventory.Add
             dgvClientDebtsOrders.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
             dgvClientDebtsOrders.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
             dgvClientDebtsOrders.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
-            dgvClientDebtsOrders.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+            dgvClientDebtsOrders.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //dgvClientDebtsOrders.Sort(dgvClientDebtsOrders.Columns[3], System.ComponentModel.ListSortDirection.Ascending);
+
         }
         //Դրամարկղի կոմբոն
         private void ProdComboboxComplate()
@@ -57,7 +60,7 @@ namespace ABCPrintInventory.Add
             {
                 cmbWallet.Items.Add(dr.GetValue(0).ToString());
             }
-            cmbWallet.SelectedIndex = 3;
+            cmbWallet.SelectedIndex = 4;
             dr.Close();
             con.Close();
         }
@@ -66,7 +69,7 @@ namespace ABCPrintInventory.Add
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT [վ/ե], CONVERT(varchar(10), Ամսաթիվ, 105) AS ShortDate, Կոդ, Հաճախորդ, Պատվեր, Մուտք FROM TblOrderForDepts WHERE Հաճախորդ = @Cell2Value", con);
+                SqlCommand cmd = new SqlCommand("SELECT [վ/ե], CONVERT(varchar(10), Ամսաթիվ, 105) AS ShortDate, Կոդ, Հաճախորդ, Պատվեր, Մուտք  FROM TblOrderForDepts WHERE Հաճախորդ = @Cell2Value", con);
                 cmd.Parameters.AddWithValue("@Cell2Value", cmbNOclient.Text);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable table = new DataTable();
@@ -96,6 +99,7 @@ namespace ABCPrintInventory.Add
                                   };
 
                 dgvClientDebtsOrders.Rows.Clear();
+                
                 foreach (var group in groupedData)
                 {
                     decimal remainingBalance = group.TotalOrderAmount - group.TotalPaymentAmount;
@@ -112,9 +116,13 @@ namespace ABCPrintInventory.Add
                         dgvRow.Cells[6].Value = group.TotalPaymentAmount.ToString("#,0");
                         dgvRow.Cells[7].Value = remainingBalance.ToString("#,0");
                         dgvRow.Cells[8].Value = 0;
-                    }
-                }
+                        dgvRow.Cells[3].Value = DateTime.ParseExact(group.Orders.FirstOrDefault()["ShortDate"].ToString(), "dd-MM-yyyy", null);
 
+                    }
+
+                    dgvClientDebtsOrders.Sort(dgvClientDebtsOrders.Columns[3], System.ComponentModel.ListSortDirection.Ascending);
+                }
+                
                 con.Close();
             }
             catch (Exception ex)
@@ -179,39 +187,57 @@ namespace ABCPrintInventory.Add
         private void GetItemId()
         {
             string codePrefix = "ՊԿ";
-            int startingNumber;
+            string codeNumber;
 
-            con.Open();
-
-            // Modify the query to extract the numeric part and sort it numerically
-            cmd = new SqlCommand(@" SELECT MAX(CAST(SUBSTRING(hh, LEN(@codePrefix) + 1, LEN(hh) - LEN(@codePrefix)) AS INT))
-                                    FROM TblDebtsControl WHERE hh LIKE @codePrefix + '%'", con);
-
-            cmd.Parameters.AddWithValue("@codePrefix", codePrefix);
-            object result = cmd.ExecuteScalar();
-            con.Close();
-
-            if (result != DBNull.Value && result != null)
+            try
             {
-                // Increment from the last found number
-                int lastNumber = Convert.ToInt32(result);
-                startingNumber = lastNumber + 1;
-            }
-            else
-            {
-                // Start from 1 if no matching records found
-                startingNumber = 1;
-            }
-
-            foreach (DataGridViewRow row in dgvClientDebtsOrders.Rows)
-            {
-                if (row.Cells[6].Value != null && decimal.TryParse(row.Cells[6].Value.ToString(), out decimal cellValue) && cellValue > 0)
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon))
                 {
-                    // Generate and assign the new code
-                    string newCode = codePrefix + startingNumber.ToString();
-                    row.Cells[1].Value = newCode;
-                    startingNumber++;  // Increment for the next row
+                    con.Open();
+
+                    // SQL query to extract the numeric part before any suffix
+                    string query = @"
+                SELECT MAX(CAST(SUBSTRING(hh, LEN(@codePrefix) + 1, 
+                    PATINDEX('%[^0-9]%', SUBSTRING(hh, LEN(@codePrefix) + 1, LEN(hh) + 1) + 'a') - 1) AS INT))
+                FROM TblDebtsControl
+                WHERE hh LIKE @codePrefix + '%'";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@codePrefix", codePrefix);
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != DBNull.Value && result != null)
+                        {
+                            // Increment the numeric part
+                            int lastNumber = Convert.ToInt32(result);
+                            codeNumber = (lastNumber + 1).ToString("D2"); // Ensure at least 2 digits
+                        }
+                        else
+                        {
+                            // Start from 01 if no records are found
+                            codeNumber = "01";
+                        }
+                    }
                 }
+
+                string newCode = codePrefix + codeNumber;
+                int startingNumber = int.Parse(codeNumber);
+
+                foreach (DataGridViewRow row in dgvClientDebtsOrders.Rows)
+                {
+                    if (row.Cells[6].Value != null && decimal.TryParse(row.Cells[6].Value.ToString(), out decimal cellValue) && cellValue > 0)
+                    {
+                        // Generate and assign the new code for the current row
+                        string rowCode = codePrefix + startingNumber.ToString("D2");
+                        row.Cells[1].Value = rowCode;
+                        startingNumber++; // Increment for the next row
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         //Աղյուսակի չեքբոքսը և աղյուսկում վճարման փոփոխությունները

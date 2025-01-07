@@ -48,39 +48,60 @@ namespace ABCPrintInventory.Add
         private void GetItemId()
         {
             string codePrefix = "ՊԿ";
-            int startingNumber;
+            string codeNumber;
 
-            con.Open();
-
-            // Get the maximum existing code from the database
-            cmd = new SqlCommand("SELECT MAX(hh) FROM TblDebtsControl WHERE hh LIKE @codePrefix", con);
-            cmd.Parameters.AddWithValue("@codePrefix", codePrefix + "%");
-            object result = cmd.ExecuteScalar();
-            con.Close();
-
-            if (result != DBNull.Value && result != null)
+            try
             {
-                string lastCode = result.ToString();
-                string lastNumberStr = lastCode.Substring(codePrefix.Length);
-                startingNumber = int.Parse(lastNumberStr) + 1;  // Start from the next number
-            }
-            else
-            {
-                startingNumber = 1;  // Start from 01 if no codes exist
-            }
-
-            for (int i = 0; i < dgvClientDebtsOrdersInv.Rows.Count; i++)
-            {
-                var row = dgvClientDebtsOrdersInv.Rows[i];
-
-                if (row.Cells[6].Value != null && Convert.ToDecimal(row.Cells[6].Value) > 0)
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon))
                 {
-                    // Generate and assign the new code
-                    string newCode = codePrefix + startingNumber.ToString("00");
-                    row.Cells[1].Value = newCode;
-                    startingNumber++;  // Increment the number for the next row
+                    con.Open();
+
+                    // SQL query to extract the numeric part before any suffix
+                    string query = @"
+                SELECT MAX(CAST(SUBSTRING(hh, LEN(@codePrefix) + 1, 
+                    PATINDEX('%[^0-9]%', SUBSTRING(hh, LEN(@codePrefix) + 1, LEN(hh) + 1) + 'a') - 1) AS INT))
+                FROM TblDebtsControl
+                WHERE hh LIKE @codePrefix + '%'";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@codePrefix", codePrefix);
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != DBNull.Value && result != null)
+                        {
+                            // Increment the numeric part
+                            int lastNumber = Convert.ToInt32(result);
+                            codeNumber = (lastNumber + 1).ToString("D2"); // Ensure at least 2 digits
+                        }
+                        else
+                        {
+                            // Start from 01 if no records are found
+                            codeNumber = "01";
+                        }
+                    }
                 }
-               
+
+                // Combine the prefix and the incremented number
+                string newCode = codePrefix + codeNumber;
+
+                // Initialize startingNumber from the numeric part of newCode
+                int startingNumber = int.Parse(codeNumber);
+
+                foreach (DataGridViewRow row in dgvClientDebtsOrdersInv.Rows)
+                {
+                    if (row.Cells[6].Value != null && decimal.TryParse(row.Cells[6].Value.ToString(), out decimal cellValue) && cellValue > 0)
+                    {
+                        // Generate and assign the new code for the current row
+                        string rowCode = codePrefix + startingNumber.ToString("D2");
+                        row.Cells[1].Value = rowCode;
+                        startingNumber++; // Increment for the next row
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         //Դրամարկղի կոմբոն

@@ -143,6 +143,16 @@ namespace ABCPrintInventory.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconUndo {
+            get {
+                object obj = ResourceManager.GetObject("iconUndo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Microsoft_Excel_Logo_wine {
             get {
                 object obj = ResourceManager.GetObject("Microsoft_Excel-Logo.wine", resourceCulture);

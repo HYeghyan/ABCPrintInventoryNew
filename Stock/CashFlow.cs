@@ -54,7 +54,7 @@ namespace ABCPrintInventory.Stock
         private void FillGridWall()
         {
             //con.Open();
-            da = new SqlDataAdapter("select * from TblCashFlow order by Ամսաթիվ asc", con);
+            da = new SqlDataAdapter("select * from TblCashFlow order by Ամսաթիվ desc, hh desc", con);
 
             con.Close();
 
@@ -134,6 +134,64 @@ namespace ABCPrintInventory.Stock
             CashFlow_Load(sender, e);
         }
 
+       //Խմբագրելու համար
+        private void dgvCashFlow_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            DataGridViewRow clickedRow = dgvCashFlow.Rows[e.RowIndex];
+
+            // Check if the first column contains "Փոխանցում"
+            if (clickedRow.Cells[1].Value?.ToString() == "Փոխանցում")
+            {
+                EditWalTransfer(sender, e); // Call your method
+            }
+        }
+        private void EditWalTransfer(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex >= dgvCashFlow.Rows.Count) return; // Ensure valid row index
+
+            WalTransfer walTransfer = new WalTransfer();
+            walTransfer.Show();
+           
+            DataGridViewRow selectedrow = dgvCashFlow.Rows[e.RowIndex];
+            DataGridViewRow selectedNextrow = null;
+            DataGridViewRow selectedPrevrow = null;
+
+            // Safely get the next row if it exists
+            if (e.RowIndex + 1 < dgvCashFlow.Rows.Count)
+            {
+                selectedNextrow = dgvCashFlow.Rows[e.RowIndex + 1];
+            }
+
+            // Safely get the previous row if it exists
+            if (e.RowIndex - 1 >= 0)
+            {
+                selectedPrevrow = dgvCashFlow.Rows[e.RowIndex - 1];
+            }
+
+            // Populate WalTransfer fields
+            walTransfer.dtpWText = selectedrow.Cells[2].Value?.ToString();
+            walTransfer.cmbWTcomText = selectedrow.Cells[7].Value?.ToString();
+            walTransfer.txtForEditText = "Խ";
+
+            if (string.IsNullOrEmpty(selectedrow.Cells[4].Value?.ToString()))
+            {
+                walTransfer.txtTotValText = selectedrow.Cells[5].Value?.ToString();
+                walTransfer.txtDebtIdexitText = selectedrow.Cells[0].Value?.ToString();
+                walTransfer.txtDebtIdenterText = selectedNextrow?.Cells[0].Value?.ToString(); // Use null-check
+                walTransfer.cmbWToutText = selectedrow.Cells[3].Value?.ToString();
+                walTransfer.cmbWTinText = selectedNextrow?.Cells[3].Value?.ToString(); // Use null-check
+            }
+            else
+            {
+                walTransfer.txtTotValText = selectedrow.Cells[4].Value?.ToString();
+                walTransfer.txtDebtIdenterText = selectedrow.Cells[0].Value?.ToString();
+                walTransfer.txtDebtIdexitText = selectedPrevrow?.Cells[0].Value?.ToString(); // Use null-check
+                walTransfer.cmbWTinText = selectedrow.Cells[3].Value?.ToString();
+                walTransfer.cmbWToutText = selectedPrevrow?.Cells[3].Value?.ToString(); // Use null-check
+            }
+            walTransfer.ButtonsAvailabel();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             con.Open();
@@ -142,5 +200,6 @@ namespace ABCPrintInventory.Stock
             cmd.ExecuteNonQuery();
             con.Close();
         }
+
     }
 }

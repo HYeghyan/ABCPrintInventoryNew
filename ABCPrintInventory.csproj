@@ -108,6 +108,12 @@
     <Compile Include="Add\EditPay.Designer.cs">
       <DependentUpon>EditPay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Add\EditPurchPay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add\EditPurchPay.Designer.cs">
+      <DependentUpon>EditPurchPay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add\InvoiceCreator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,12 @@
     </Compile>
     <Compile Include="Add\NewOrder.Designer.cs">
       <DependentUpon>NewOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add\OrdersFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add\OrdersFilter.Designer.cs">
+      <DependentUpon>OrdersFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="Add\PayDebtsInv.cs">
       <SubType>Form</SubType>
@@ -167,6 +179,12 @@
     </Compile>
     <Compile Include="Add\Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Create\CreateEmployer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Create\CreateEmployer.Designer.cs">
+      <DependentUpon>CreateEmployer.cs</DependentUpon>
     </Compile>
     <Compile Include="Create\CreateExpArticle.cs">
       <SubType>Form</SubType>
@@ -243,6 +261,9 @@
     <EmbeddedResource Include="Add\EditPay.resx">
       <DependentUpon>EditPay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Add\EditPurchPay.resx">
+      <DependentUpon>EditPurchPay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Add\InvoiceCreator.resx">
       <DependentUpon>InvoiceCreator.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add\NewOrder.resx">
       <DependentUpon>NewOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add\OrdersFilter.resx">
+      <DependentUpon>OrdersFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Add\PayDebtsInv.resx">
       <DependentUpon>PayDebtsInv.cs</DependentUpon>
@@ -272,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Create\CreateEmployer.resx">
+      <DependentUpon>CreateEmployer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Create\CreateExpArticle.resx">
       <DependentUpon>CreateExpArticle.cs</DependentUpon>
@@ -388,6 +415,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WalTr2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconUndo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

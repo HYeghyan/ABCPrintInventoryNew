@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewOrder));
             this.dgvNOorder = new System.Windows.Forms.DataGridView();
             this.NOdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,6 +96,7 @@
             this.txtNOdefWightMat = new System.Windows.Forms.TextBox();
             this.txtNOdefLenghtNeed = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtNOidForEdit = new System.Windows.Forms.TextBox();
             this.txtDebtId = new System.Windows.Forms.TextBox();
             this.txtAction = new System.Windows.Forms.TextBox();
             this.txtDraft = new System.Windows.Forms.TextBox();
@@ -147,16 +148,12 @@
             this.btnNOprAdd = new System.Windows.Forms.Button();
             this.btnNOprDel = new System.Windows.Forms.Button();
             this.btnNOprSave = new System.Windows.Forms.Button();
-            this.btnNOdefSave = new System.Windows.Forms.Button();
             this.btnNOdefDel = new System.Windows.Forms.Button();
             this.btnNOdefAdd = new System.Windows.Forms.Button();
-            this.btnNOservSave = new System.Windows.Forms.Button();
             this.btnNOservDel = new System.Windows.Forms.Button();
             this.btnNOservAdd = new System.Windows.Forms.Button();
-            this.btnNOluvSave = new System.Windows.Forms.Button();
             this.btnNOluvDel = new System.Windows.Forms.Button();
             this.btnNOluvAdd = new System.Windows.Forms.Button();
-            this.btnNOstndSave = new System.Windows.Forms.Button();
             this.btnNOstndDel = new System.Windows.Forms.Button();
             this.btnNOstndAdd = new System.Windows.Forms.Button();
             this.txtDefTotalSM = new System.Windows.Forms.TextBox();
@@ -165,14 +162,12 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.cbLuv = new System.Windows.Forms.CheckBox();
             this.btnNOluvCount = new System.Windows.Forms.Button();
-            this.btnNOsaleSave = new System.Windows.Forms.Button();
             this.btnNOsaleDel = new System.Windows.Forms.Button();
             this.btnNOsaleAdd = new System.Windows.Forms.Button();
             this.txtNOsale = new System.Windows.Forms.TextBox();
             this.txtNOnote = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.btnNOcostSave = new System.Windows.Forms.Button();
             this.btnNOcostDel = new System.Windows.Forms.Button();
             this.btnNOcostAdd = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
@@ -183,6 +178,9 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtServKoxm = new System.Windows.Forms.TextBox();
             this.txtStandKoxm = new System.Windows.Forms.TextBox();
+            this.txtKoxm = new System.Windows.Forms.TextBox();
+            this.txtTotalQM = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNOorder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNOdefect)).BeginInit();
             this.panel1.SuspendLayout();
@@ -192,14 +190,14 @@
             // 
             this.dgvNOorder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNOorder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNOorder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvNOorder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNOorder.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NOdate,
@@ -233,7 +231,7 @@
             this.Column2});
             this.dgvNOorder.Location = new System.Drawing.Point(0, 515);
             this.dgvNOorder.Name = "dgvNOorder";
-            this.dgvNOorder.Size = new System.Drawing.Size(1187, 334);
+            this.dgvNOorder.Size = new System.Drawing.Size(1187, 293);
             this.dgvNOorder.TabIndex = 0;
             this.dgvNOorder.TabStop = false;
             this.dgvNOorder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNOorder_CellDoubleClick);
@@ -423,9 +421,9 @@
             // 
             this.cmbNOprMat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cmbNOprMat.FormattingEnabled = true;
-            this.cmbNOprMat.Location = new System.Drawing.Point(291, 176);
+            this.cmbNOprMat.Location = new System.Drawing.Point(245, 176);
             this.cmbNOprMat.Name = "cmbNOprMat";
-            this.cmbNOprMat.Size = new System.Drawing.Size(301, 24);
+            this.cmbNOprMat.Size = new System.Drawing.Size(347, 24);
             this.cmbNOprMat.TabIndex = 2;
             this.cmbNOprMat.SelectedIndexChanged += new System.EventHandler(this.cmbMat_SelectedIndexChanged);
             // 
@@ -473,6 +471,7 @@
             // 
             // txtNOluvVal
             // 
+            this.txtNOluvVal.Enabled = false;
             this.txtNOluvVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtNOluvVal.Location = new System.Drawing.Point(967, 274);
             this.txtNOluvVal.Multiline = true;
@@ -515,6 +514,7 @@
             // 
             // txtNOdefVal
             // 
+            this.txtNOdefVal.Enabled = false;
             this.txtNOdefVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtNOdefVal.Location = new System.Drawing.Point(967, 225);
             this.txtNOdefVal.Multiline = true;
@@ -558,14 +558,14 @@
             // dgvNOdefect
             // 
             this.dgvNOdefect.Anchor = System.Windows.Forms.AnchorStyles.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNOdefect.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNOdefect.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvNOdefect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNOdefect.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvDeftm,
@@ -577,9 +577,9 @@
             this.Column3,
             this.Lyuvers,
             this.տող});
-            this.dgvNOdefect.Location = new System.Drawing.Point(12, 225);
+            this.dgvNOdefect.Location = new System.Drawing.Point(-1, 274);
             this.dgvNOdefect.Name = "dgvNOdefect";
-            this.dgvNOdefect.Size = new System.Drawing.Size(472, 222);
+            this.dgvNOdefect.Size = new System.Drawing.Size(472, 185);
             this.dgvNOdefect.TabIndex = 21;
             this.dgvNOdefect.Visible = false;
             // 
@@ -638,6 +638,7 @@
             // 
             // txtNOservVal
             // 
+            this.txtNOservVal.Enabled = false;
             this.txtNOservVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtNOservVal.Location = new System.Drawing.Point(967, 323);
             this.txtNOservVal.Multiline = true;
@@ -744,6 +745,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.Gray;
+            this.panel1.Controls.Add(this.txtNOidForEdit);
             this.panel1.Controls.Add(this.txtDebtId);
             this.panel1.Controls.Add(this.txtAction);
             this.panel1.Controls.Add(this.txtDraft);
@@ -777,6 +779,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1187, 146);
             this.panel1.TabIndex = 53;
+            // 
+            // txtNOidForEdit
+            // 
+            this.txtNOidForEdit.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNOidForEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtNOidForEdit.Location = new System.Drawing.Point(202, 0);
+            this.txtNOidForEdit.Multiline = true;
+            this.txtNOidForEdit.Name = "txtNOidForEdit";
+            this.txtNOidForEdit.Size = new System.Drawing.Size(83, 28);
+            this.txtNOidForEdit.TabIndex = 122;
+            this.txtNOidForEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNOidForEdit.Visible = false;
             // 
             // txtDebtId
             // 
@@ -916,13 +930,14 @@
             this.rbNOpayHdm.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.rbNOpayHdm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rbNOpayHdm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.rbNOpayHdm.Location = new System.Drawing.Point(751, 27);
+            this.rbNOpayHdm.Location = new System.Drawing.Point(730, 27);
             this.rbNOpayHdm.Name = "rbNOpayHdm";
             this.rbNOpayHdm.Size = new System.Drawing.Size(37, 30);
             this.rbNOpayHdm.TabIndex = 111;
             this.rbNOpayHdm.Text = "ՀԴՄ";
             this.rbNOpayHdm.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.rbNOpayHdm.UseVisualStyleBackColor = true;
+            this.rbNOpayHdm.Visible = false;
             this.rbNOpayHdm.CheckedChanged += new System.EventHandler(this.rbNOpayHdm_CheckedChanged);
             // 
             // rbNOpayAtm
@@ -931,7 +946,7 @@
             this.rbNOpayAtm.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.rbNOpayAtm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rbNOpayAtm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.rbNOpayAtm.Location = new System.Drawing.Point(815, 27);
+            this.rbNOpayAtm.Location = new System.Drawing.Point(783, 27);
             this.rbNOpayAtm.Name = "rbNOpayAtm";
             this.rbNOpayAtm.Size = new System.Drawing.Size(61, 30);
             this.rbNOpayAtm.TabIndex = 110;
@@ -1279,6 +1294,7 @@
             // 
             // txtNOstandVal
             // 
+            this.txtNOstandVal.Enabled = false;
             this.txtNOstandVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtNOstandVal.Location = new System.Drawing.Point(967, 372);
             this.txtNOstandVal.Multiline = true;
@@ -1382,7 +1398,7 @@
             this.btnNOprDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOprDel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOprDel.Image = ((System.Drawing.Image)(resources.GetObject("btnNOprDel.Image")));
-            this.btnNOprDel.Location = new System.Drawing.Point(1136, 173);
+            this.btnNOprDel.Location = new System.Drawing.Point(1099, 173);
             this.btnNOprDel.Name = "btnNOprDel";
             this.btnNOprDel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOprDel.Size = new System.Drawing.Size(37, 35);
@@ -1402,7 +1418,7 @@
             this.btnNOprSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOprSave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOprSave.Image = ((System.Drawing.Image)(resources.GetObject("btnNOprSave.Image")));
-            this.btnNOprSave.Location = new System.Drawing.Point(1099, 173);
+            this.btnNOprSave.Location = new System.Drawing.Point(1137, 173);
             this.btnNOprSave.Name = "btnNOprSave";
             this.btnNOprSave.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOprSave.Size = new System.Drawing.Size(37, 35);
@@ -1410,26 +1426,6 @@
             this.btnNOprSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNOprSave.UseVisualStyleBackColor = false;
             this.btnNOprSave.Click += new System.EventHandler(this.btnNOprSave_Click);
-            // 
-            // btnNOdefSave
-            // 
-            this.btnNOdefSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNOdefSave.BackColor = System.Drawing.Color.Gray;
-            this.btnNOdefSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNOdefSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNOdefSave.FlatAppearance.BorderSize = 0;
-            this.btnNOdefSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnNOdefSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNOdefSave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnNOdefSave.Image = ((System.Drawing.Image)(resources.GetObject("btnNOdefSave.Image")));
-            this.btnNOdefSave.Location = new System.Drawing.Point(1099, 222);
-            this.btnNOdefSave.Name = "btnNOdefSave";
-            this.btnNOdefSave.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnNOdefSave.Size = new System.Drawing.Size(37, 35);
-            this.btnNOdefSave.TabIndex = 84;
-            this.btnNOdefSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNOdefSave.UseVisualStyleBackColor = false;
-            this.btnNOdefSave.Click += new System.EventHandler(this.btnNOdefSave_Click);
             // 
             // btnNOdefDel
             // 
@@ -1442,7 +1438,7 @@
             this.btnNOdefDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOdefDel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOdefDel.Image = ((System.Drawing.Image)(resources.GetObject("btnNOdefDel.Image")));
-            this.btnNOdefDel.Location = new System.Drawing.Point(1136, 222);
+            this.btnNOdefDel.Location = new System.Drawing.Point(1099, 222);
             this.btnNOdefDel.Name = "btnNOdefDel";
             this.btnNOdefDel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOdefDel.Size = new System.Drawing.Size(37, 35);
@@ -1471,26 +1467,6 @@
             this.btnNOdefAdd.UseVisualStyleBackColor = false;
             this.btnNOdefAdd.Click += new System.EventHandler(this.defAdd_Click);
             // 
-            // btnNOservSave
-            // 
-            this.btnNOservSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNOservSave.BackColor = System.Drawing.Color.Gray;
-            this.btnNOservSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNOservSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNOservSave.FlatAppearance.BorderSize = 0;
-            this.btnNOservSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnNOservSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNOservSave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnNOservSave.Image = ((System.Drawing.Image)(resources.GetObject("btnNOservSave.Image")));
-            this.btnNOservSave.Location = new System.Drawing.Point(1099, 320);
-            this.btnNOservSave.Name = "btnNOservSave";
-            this.btnNOservSave.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnNOservSave.Size = new System.Drawing.Size(37, 35);
-            this.btnNOservSave.TabIndex = 90;
-            this.btnNOservSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNOservSave.UseVisualStyleBackColor = false;
-            this.btnNOservSave.Click += new System.EventHandler(this.btnNOservSave_Click);
-            // 
             // btnNOservDel
             // 
             this.btnNOservDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1502,7 +1478,7 @@
             this.btnNOservDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOservDel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOservDel.Image = ((System.Drawing.Image)(resources.GetObject("btnNOservDel.Image")));
-            this.btnNOservDel.Location = new System.Drawing.Point(1136, 320);
+            this.btnNOservDel.Location = new System.Drawing.Point(1099, 320);
             this.btnNOservDel.Name = "btnNOservDel";
             this.btnNOservDel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOservDel.Size = new System.Drawing.Size(37, 35);
@@ -1531,26 +1507,6 @@
             this.btnNOservAdd.UseVisualStyleBackColor = false;
             this.btnNOservAdd.Click += new System.EventHandler(this.servAdd_Click);
             // 
-            // btnNOluvSave
-            // 
-            this.btnNOluvSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNOluvSave.BackColor = System.Drawing.Color.Gray;
-            this.btnNOluvSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNOluvSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNOluvSave.FlatAppearance.BorderSize = 0;
-            this.btnNOluvSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnNOluvSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNOluvSave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnNOluvSave.Image = ((System.Drawing.Image)(resources.GetObject("btnNOluvSave.Image")));
-            this.btnNOluvSave.Location = new System.Drawing.Point(1099, 271);
-            this.btnNOluvSave.Name = "btnNOluvSave";
-            this.btnNOluvSave.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnNOluvSave.Size = new System.Drawing.Size(37, 35);
-            this.btnNOluvSave.TabIndex = 87;
-            this.btnNOluvSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNOluvSave.UseVisualStyleBackColor = false;
-            this.btnNOluvSave.Click += new System.EventHandler(this.btnNOluvSave_Click);
-            // 
             // btnNOluvDel
             // 
             this.btnNOluvDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1562,7 +1518,7 @@
             this.btnNOluvDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOluvDel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOluvDel.Image = ((System.Drawing.Image)(resources.GetObject("btnNOluvDel.Image")));
-            this.btnNOluvDel.Location = new System.Drawing.Point(1136, 271);
+            this.btnNOluvDel.Location = new System.Drawing.Point(1099, 271);
             this.btnNOluvDel.Name = "btnNOluvDel";
             this.btnNOluvDel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOluvDel.Size = new System.Drawing.Size(37, 35);
@@ -1591,26 +1547,6 @@
             this.btnNOluvAdd.UseVisualStyleBackColor = false;
             this.btnNOluvAdd.Click += new System.EventHandler(this.luvAdd_Click);
             // 
-            // btnNOstndSave
-            // 
-            this.btnNOstndSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNOstndSave.BackColor = System.Drawing.Color.Gray;
-            this.btnNOstndSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNOstndSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNOstndSave.FlatAppearance.BorderSize = 0;
-            this.btnNOstndSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnNOstndSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNOstndSave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnNOstndSave.Image = ((System.Drawing.Image)(resources.GetObject("btnNOstndSave.Image")));
-            this.btnNOstndSave.Location = new System.Drawing.Point(1099, 369);
-            this.btnNOstndSave.Name = "btnNOstndSave";
-            this.btnNOstndSave.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnNOstndSave.Size = new System.Drawing.Size(37, 35);
-            this.btnNOstndSave.TabIndex = 93;
-            this.btnNOstndSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNOstndSave.UseVisualStyleBackColor = false;
-            this.btnNOstndSave.Click += new System.EventHandler(this.btnNOstndSave_Click);
-            // 
             // btnNOstndDel
             // 
             this.btnNOstndDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1622,7 +1558,7 @@
             this.btnNOstndDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOstndDel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOstndDel.Image = ((System.Drawing.Image)(resources.GetObject("btnNOstndDel.Image")));
-            this.btnNOstndDel.Location = new System.Drawing.Point(1136, 369);
+            this.btnNOstndDel.Location = new System.Drawing.Point(1099, 369);
             this.btnNOstndDel.Name = "btnNOstndDel";
             this.btnNOstndDel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOstndDel.Size = new System.Drawing.Size(37, 35);
@@ -1666,7 +1602,7 @@
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Window;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(217, 176);
+            this.textBox1.Location = new System.Drawing.Point(55, 172);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(50, 28);
@@ -1718,26 +1654,6 @@
             this.btnNOluvCount.Visible = false;
             this.btnNOluvCount.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnNOsaleSave
-            // 
-            this.btnNOsaleSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNOsaleSave.BackColor = System.Drawing.Color.Gray;
-            this.btnNOsaleSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNOsaleSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNOsaleSave.FlatAppearance.BorderSize = 0;
-            this.btnNOsaleSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnNOsaleSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNOsaleSave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnNOsaleSave.Image = ((System.Drawing.Image)(resources.GetObject("btnNOsaleSave.Image")));
-            this.btnNOsaleSave.Location = new System.Drawing.Point(1099, 462);
-            this.btnNOsaleSave.Name = "btnNOsaleSave";
-            this.btnNOsaleSave.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnNOsaleSave.Size = new System.Drawing.Size(37, 35);
-            this.btnNOsaleSave.TabIndex = 102;
-            this.btnNOsaleSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNOsaleSave.UseVisualStyleBackColor = false;
-            this.btnNOsaleSave.Click += new System.EventHandler(this.btnNOsaleSave_Click);
-            // 
             // btnNOsaleDel
             // 
             this.btnNOsaleDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1749,7 +1665,7 @@
             this.btnNOsaleDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOsaleDel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOsaleDel.Image = ((System.Drawing.Image)(resources.GetObject("btnNOsaleDel.Image")));
-            this.btnNOsaleDel.Location = new System.Drawing.Point(1136, 462);
+            this.btnNOsaleDel.Location = new System.Drawing.Point(1099, 462);
             this.btnNOsaleDel.Name = "btnNOsaleDel";
             this.btnNOsaleDel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOsaleDel.Size = new System.Drawing.Size(37, 35);
@@ -1821,26 +1737,6 @@
             this.label27.Text = "Զեղչ /\r\nՀավելավճ.";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnNOcostSave
-            // 
-            this.btnNOcostSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNOcostSave.BackColor = System.Drawing.Color.Gray;
-            this.btnNOcostSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNOcostSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNOcostSave.FlatAppearance.BorderSize = 0;
-            this.btnNOcostSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnNOcostSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNOcostSave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnNOcostSave.Image = ((System.Drawing.Image)(resources.GetObject("btnNOcostSave.Image")));
-            this.btnNOcostSave.Location = new System.Drawing.Point(1099, 416);
-            this.btnNOcostSave.Name = "btnNOcostSave";
-            this.btnNOcostSave.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnNOcostSave.Size = new System.Drawing.Size(37, 35);
-            this.btnNOcostSave.TabIndex = 113;
-            this.btnNOcostSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNOcostSave.UseVisualStyleBackColor = false;
-            this.btnNOcostSave.Click += new System.EventHandler(this.btnNOcostSave_Click);
-            // 
             // btnNOcostDel
             // 
             this.btnNOcostDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1852,7 +1748,7 @@
             this.btnNOcostDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNOcostDel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnNOcostDel.Image = ((System.Drawing.Image)(resources.GetObject("btnNOcostDel.Image")));
-            this.btnNOcostDel.Location = new System.Drawing.Point(1136, 416);
+            this.btnNOcostDel.Location = new System.Drawing.Point(1099, 416);
             this.btnNOcostDel.Name = "btnNOcostDel";
             this.btnNOcostDel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnNOcostDel.Size = new System.Drawing.Size(37, 35);
@@ -1894,6 +1790,7 @@
             // 
             // txtNOcostVal
             // 
+            this.txtNOcostVal.Enabled = false;
             this.txtNOcostVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtNOcostVal.Location = new System.Drawing.Point(967, 419);
             this.txtNOcostVal.Multiline = true;
@@ -1967,17 +1864,54 @@
             this.txtStandKoxm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtStandKoxm.Visible = false;
             // 
+            // txtKoxm
+            // 
+            this.txtKoxm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtKoxm.Location = new System.Drawing.Point(74, 323);
+            this.txtKoxm.Multiline = true;
+            this.txtKoxm.Name = "txtKoxm";
+            this.txtKoxm.Size = new System.Drawing.Size(50, 28);
+            this.txtKoxm.TabIndex = 118;
+            this.txtKoxm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtKoxm.Visible = false;
+            // 
+            // txtTotalQM
+            // 
+            this.txtTotalQM.BackColor = System.Drawing.Color.White;
+            this.txtTotalQM.Enabled = false;
+            this.txtTotalQM.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtTotalQM.Location = new System.Drawing.Point(144, 174);
+            this.txtTotalQM.Multiline = true;
+            this.txtTotalQM.Name = "txtTotalQM";
+            this.txtTotalQM.Size = new System.Drawing.Size(83, 28);
+            this.txtTotalQM.TabIndex = 122;
+            this.txtTotalQM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label29.Location = new System.Drawing.Point(140, 156);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(90, 13);
+            this.label29.TabIndex = 122;
+            this.label29.Text = "Ընդամենը՝ քմ";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // NewOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1184, 861);
+            this.ClientSize = new System.Drawing.Size(1184, 808);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.txtTotalQM);
+            this.Controls.Add(this.txtKoxm);
             this.Controls.Add(this.txtStandKoxm);
             this.Controls.Add(this.txtServKoxm);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.txtNOcost);
-            this.Controls.Add(this.btnNOcostSave);
             this.Controls.Add(this.btnNOcostDel);
             this.Controls.Add(this.btnNOcostAdd);
             this.Controls.Add(this.label25);
@@ -1987,7 +1921,6 @@
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.txtNOnote);
-            this.Controls.Add(this.btnNOsaleSave);
             this.Controls.Add(this.btnNOsaleDel);
             this.Controls.Add(this.btnNOsaleAdd);
             this.Controls.Add(this.txtNOsale);
@@ -1996,16 +1929,12 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtDefTotalSM);
-            this.Controls.Add(this.btnNOstndSave);
             this.Controls.Add(this.btnNOstndDel);
             this.Controls.Add(this.btnNOstndAdd);
-            this.Controls.Add(this.btnNOservSave);
             this.Controls.Add(this.btnNOservDel);
             this.Controls.Add(this.btnNOservAdd);
-            this.Controls.Add(this.btnNOluvSave);
             this.Controls.Add(this.btnNOluvDel);
             this.Controls.Add(this.btnNOluvAdd);
-            this.Controls.Add(this.btnNOdefSave);
             this.Controls.Add(this.btnNOdefDel);
             this.Controls.Add(this.btnNOdefAdd);
             this.Controls.Add(this.btnNOprSave);
@@ -2128,16 +2057,12 @@
         private System.Windows.Forms.Button btnNOprAdd;
         private System.Windows.Forms.Button btnNOprDel;
         private System.Windows.Forms.Button btnNOprSave;
-        private System.Windows.Forms.Button btnNOdefSave;
         private System.Windows.Forms.Button btnNOdefDel;
         private System.Windows.Forms.Button btnNOdefAdd;
-        private System.Windows.Forms.Button btnNOservSave;
         private System.Windows.Forms.Button btnNOservDel;
         private System.Windows.Forms.Button btnNOservAdd;
-        private System.Windows.Forms.Button btnNOluvSave;
         private System.Windows.Forms.Button btnNOluvDel;
         private System.Windows.Forms.Button btnNOluvAdd;
-        private System.Windows.Forms.Button btnNOstndSave;
         private System.Windows.Forms.Button btnNOstndDel;
         private System.Windows.Forms.Button btnNOstndAdd;
         private System.Windows.Forms.TextBox txtDefTotalSM;
@@ -2164,14 +2089,12 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.CheckBox cbLuv;
         private System.Windows.Forms.Button btnNOluvCount;
-        private System.Windows.Forms.Button btnNOsaleSave;
         private System.Windows.Forms.Button btnNOsaleDel;
         private System.Windows.Forms.Button btnNOsaleAdd;
         private System.Windows.Forms.TextBox txtNOsale;
         private System.Windows.Forms.TextBox txtNOnote;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Button btnNOcostSave;
         private System.Windows.Forms.Button btnNOcostDel;
         private System.Windows.Forms.Button btnNOcostAdd;
         private System.Windows.Forms.Label label25;
@@ -2226,5 +2149,9 @@
         private System.Windows.Forms.TextBox txtDraft;
         private System.Windows.Forms.TextBox txtAction;
         private System.Windows.Forms.TextBox txtDebtId;
+        private System.Windows.Forms.TextBox txtKoxm;
+        private System.Windows.Forms.TextBox txtTotalQM;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox txtNOidForEdit;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Test));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.txtDebt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,6 +43,8 @@
             this.txtAc = new System.Windows.Forms.TextBox();
             this.cmbPaySys = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.dgvDeptscontrol = new Zuby.ADGV.AdvancedDataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDeptscontrol)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCode
@@ -129,7 +132,6 @@
             this.btnNOAdd.TabIndex = 106;
             this.btnNOAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNOAdd.UseVisualStyleBackColor = false;
-            this.btnNOAdd.Click += new System.EventHandler(this.btnNOAdd_Click);
             // 
             // txtID
             // 
@@ -162,7 +164,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(379, 218);
+            this.button1.Location = new System.Drawing.Point(971, 69);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 83);
             this.button1.TabIndex = 116;
@@ -170,12 +172,37 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // dgvDeptscontrol
+            // 
+            this.dgvDeptscontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDeptscontrol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDeptscontrol.ColumnHeadersHeight = 24;
+            this.dgvDeptscontrol.FilterAndSortEnabled = true;
+            this.dgvDeptscontrol.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
+            this.dgvDeptscontrol.Location = new System.Drawing.Point(0, 193);
+            this.dgvDeptscontrol.Name = "dgvDeptscontrol";
+            this.dgvDeptscontrol.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgvDeptscontrol.Size = new System.Drawing.Size(1200, 415);
+            this.dgvDeptscontrol.SortStringChangedInvokeBeforeDatasourceUpdate = true;
+            this.dgvDeptscontrol.TabIndex = 117;
+            // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1199, 450);
+            this.ClientSize = new System.Drawing.Size(1199, 607);
+            this.Controls.Add(this.dgvDeptscontrol);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cmbPaySys);
             this.Controls.Add(this.txtAc);
@@ -192,6 +219,7 @@
             this.Name = "Test";
             this.Text = "Test";
             this.Load += new System.EventHandler(this.Test_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDeptscontrol)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,5 +239,6 @@
         private System.Windows.Forms.TextBox txtAc;
         private System.Windows.Forms.ComboBox cmbPaySys;
         private System.Windows.Forms.Button button1;
+        private Zuby.ADGV.AdvancedDataGridView dgvDeptscontrol;
     }
 }

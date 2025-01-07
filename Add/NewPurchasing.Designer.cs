@@ -28,35 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewPurchasing));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtAction = new System.Windows.Forms.TextBox();
-            this.txtNPid = new System.Windows.Forms.TextBox();
-            this.txtNPTotVal = new System.Windows.Forms.TextBox();
-            this.panelOth = new System.Windows.Forms.Panel();
-            this.txtNPoth = new System.Windows.Forms.TextBox();
-            this.txtNPothVal = new System.Windows.Forms.TextBox();
-            this.txtNPothPrice = new System.Windows.Forms.TextBox();
-            this.txtNPothQnt = new System.Windows.Forms.TextBox();
-            this.txtNPothUn = new System.Windows.Forms.TextBox();
+            this.btnRef = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtNPvalTotal = new System.Windows.Forms.TextBox();
+            this.txtnewPurchCom = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.panelCol = new System.Windows.Forms.Panel();
             this.cmbNPcol = new System.Windows.Forms.ComboBox();
             this.txtNPcolVal = new System.Windows.Forms.TextBox();
             this.txtNPcolPrice = new System.Windows.Forms.TextBox();
             this.txtNPcolQnt = new System.Windows.Forms.TextBox();
             this.txtNPcolUn = new System.Windows.Forms.TextBox();
-            this.panelLuv = new System.Windows.Forms.Panel();
-            this.txtNPluvVal = new System.Windows.Forms.TextBox();
-            this.txtNPluvPrice = new System.Windows.Forms.TextBox();
-            this.txtNPluvQnt = new System.Windows.Forms.TextBox();
-            this.txtNPluvUn = new System.Windows.Forms.TextBox();
             this.panelSt = new System.Windows.Forms.Panel();
             this.cmbNPst = new System.Windows.Forms.ComboBox();
             this.txtNPstVal = new System.Windows.Forms.TextBox();
             this.txtNPstPrice = new System.Windows.Forms.TextBox();
             this.txtNPstQnt = new System.Windows.Forms.TextBox();
             this.txtNPstUn = new System.Windows.Forms.TextBox();
+            this.panelOth = new System.Windows.Forms.Panel();
+            this.txtNPoth = new System.Windows.Forms.TextBox();
+            this.txtNPothVal = new System.Windows.Forms.TextBox();
+            this.txtNPothPrice = new System.Windows.Forms.TextBox();
+            this.txtNPothQnt = new System.Windows.Forms.TextBox();
+            this.txtNPothUn = new System.Windows.Forms.TextBox();
+            this.panelLuv = new System.Windows.Forms.Panel();
+            this.txtNPluvVal = new System.Windows.Forms.TextBox();
+            this.txtNPluvPrice = new System.Windows.Forms.TextBox();
+            this.txtNPluvQnt = new System.Windows.Forms.TextBox();
+            this.txtNPluvUn = new System.Windows.Forms.TextBox();
+            this.txtNPvalNds = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtAction = new System.Windows.Forms.TextBox();
+            this.txtNPid = new System.Windows.Forms.TextBox();
+            this.txtNPTotVal = new System.Windows.Forms.TextBox();
             this.panelBan = new System.Windows.Forms.Panel();
             this.cmbNPban = new System.Windows.Forms.ComboBox();
             this.txtNPbanVal = new System.Windows.Forms.TextBox();
@@ -70,30 +78,23 @@
             this.cmbnewPurchPaySys = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtnewPurchCom = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnEditban = new System.Windows.Forms.Button();
             this.cmbnewPurchPur = new System.Windows.Forms.ComboBox();
+            this.btnAddban = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnDelban = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpNO = new System.Windows.Forms.DateTimePicker();
             this.cmbNPCatBan = new System.Windows.Forms.ComboBox();
             this.txtNPcod = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvPurchasing = new Zuby.ADGV.AdvancedDataGridView();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtNPvalNds = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtNPvalTotal = new System.Windows.Forms.TextBox();
-            this.btnEditban = new System.Windows.Forms.Button();
-            this.btnAddban = new System.Windows.Forms.Button();
-            this.btnDelban = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            this.panelOth.SuspendLayout();
             this.panelCol.SuspendLayout();
-            this.panelLuv.SuspendLayout();
             this.panelSt.SuspendLayout();
+            this.panelOth.SuspendLayout();
+            this.panelLuv.SuspendLayout();
             this.panelBan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurchasing)).BeginInit();
             this.SuspendLayout();
@@ -104,10 +105,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.btnRef);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.txtNPvalTotal);
             this.panel1.Controls.Add(this.txtnewPurchCom);
             this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.panelCol);
+            this.panel1.Controls.Add(this.panelSt);
+            this.panel1.Controls.Add(this.panelOth);
+            this.panel1.Controls.Add(this.panelLuv);
             this.panel1.Controls.Add(this.txtNPvalNds);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label11);
@@ -135,43 +141,174 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(-3, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1271, 141);
+            this.panel1.Size = new System.Drawing.Size(1271, 151);
             this.panel1.TabIndex = 52;
             // 
-            // txtAction
+            // btnRef
             // 
-            this.txtAction.BackColor = System.Drawing.SystemColors.Window;
-            this.txtAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtAction.Location = new System.Drawing.Point(1098, 22);
-            this.txtAction.Multiline = true;
-            this.txtAction.Name = "txtAction";
-            this.txtAction.Size = new System.Drawing.Size(123, 28);
-            this.txtAction.TabIndex = 156;
-            this.txtAction.Text = "Առք";
-            this.txtAction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAction.Visible = false;
+            this.btnRef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRef.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnRef.BackgroundImage = global::ABCPrintInventory.Properties.Resources.ref1;
+            this.btnRef.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnRef.ForeColor = System.Drawing.Color.Khaki;
+            this.btnRef.Location = new System.Drawing.Point(1202, 10);
+            this.btnRef.Name = "btnRef";
+            this.btnRef.Size = new System.Drawing.Size(49, 45);
+            this.btnRef.TabIndex = 163;
+            this.btnRef.UseVisualStyleBackColor = false;
+            this.btnRef.Click += new System.EventHandler(this.btnRef_Click);
             // 
-            // txtNPid
+            // label14
             // 
-            this.txtNPid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtNPid.Enabled = false;
-            this.txtNPid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtNPid.Location = new System.Drawing.Point(1023, 23);
-            this.txtNPid.Multiline = true;
-            this.txtNPid.Name = "txtNPid";
-            this.txtNPid.Size = new System.Drawing.Size(69, 25);
-            this.txtNPid.TabIndex = 155;
-            this.txtNPid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(801, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(85, 13);
+            this.label14.TabIndex = 162;
+            this.label14.Text = "ԸՆԴՀԱՆՈՒՐ";
             // 
-            // txtNPTotVal
+            // txtNPvalTotal
             // 
-            this.txtNPTotVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtNPTotVal.Location = new System.Drawing.Point(613, 33);
-            this.txtNPTotVal.Multiline = true;
-            this.txtNPTotVal.Name = "txtNPTotVal";
-            this.txtNPTotVal.Size = new System.Drawing.Size(75, 21);
-            this.txtNPTotVal.TabIndex = 150;
-            this.txtNPTotVal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNPvalTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtNPvalTotal.Location = new System.Drawing.Point(798, 32);
+            this.txtNPvalTotal.Multiline = true;
+            this.txtNPvalTotal.Name = "txtNPvalTotal";
+            this.txtNPvalTotal.Size = new System.Drawing.Size(93, 21);
+            this.txtNPvalTotal.TabIndex = 161;
+            this.txtNPvalTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtnewPurchCom
+            // 
+            this.txtnewPurchCom.Location = new System.Drawing.Point(907, 83);
+            this.txtnewPurchCom.Multiline = true;
+            this.txtnewPurchCom.Name = "txtnewPurchCom";
+            this.txtnewPurchCom.Size = new System.Drawing.Size(333, 40);
+            this.txtnewPurchCom.TabIndex = 114;
+            this.txtnewPurchCom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(722, 18);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(33, 13);
+            this.label13.TabIndex = 160;
+            this.label13.Text = "ԱԱՀ";
+            // 
+            // panelCol
+            // 
+            this.panelCol.Controls.Add(this.cmbNPcol);
+            this.panelCol.Controls.Add(this.txtNPcolVal);
+            this.panelCol.Controls.Add(this.txtNPcolPrice);
+            this.panelCol.Controls.Add(this.txtNPcolQnt);
+            this.panelCol.Controls.Add(this.txtNPcolUn);
+            this.panelCol.Location = new System.Drawing.Point(248, 80);
+            this.panelCol.Name = "panelCol";
+            this.panelCol.Size = new System.Drawing.Size(654, 29);
+            this.panelCol.TabIndex = 154;
+            // 
+            // cmbNPcol
+            // 
+            this.cmbNPcol.FormattingEnabled = true;
+            this.cmbNPcol.Location = new System.Drawing.Point(10, 4);
+            this.cmbNPcol.Name = "cmbNPcol";
+            this.cmbNPcol.Size = new System.Drawing.Size(260, 21);
+            this.cmbNPcol.TabIndex = 139;
+            // 
+            // txtNPcolVal
+            // 
+            this.txtNPcolVal.Location = new System.Drawing.Point(550, 4);
+            this.txtNPcolVal.Multiline = true;
+            this.txtNPcolVal.Name = "txtNPcolVal";
+            this.txtNPcolVal.Size = new System.Drawing.Size(93, 21);
+            this.txtNPcolVal.TabIndex = 141;
+            this.txtNPcolVal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtNPcolPrice
+            // 
+            this.txtNPcolPrice.Location = new System.Drawing.Point(460, 4);
+            this.txtNPcolPrice.Multiline = true;
+            this.txtNPcolPrice.Name = "txtNPcolPrice";
+            this.txtNPcolPrice.Size = new System.Drawing.Size(75, 21);
+            this.txtNPcolPrice.TabIndex = 140;
+            this.txtNPcolPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtNPcolQnt
+            // 
+            this.txtNPcolQnt.Location = new System.Drawing.Point(366, 3);
+            this.txtNPcolQnt.Multiline = true;
+            this.txtNPcolQnt.Name = "txtNPcolQnt";
+            this.txtNPcolQnt.Size = new System.Drawing.Size(75, 21);
+            this.txtNPcolQnt.TabIndex = 138;
+            this.txtNPcolQnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtNPcolUn
+            // 
+            this.txtNPcolUn.Location = new System.Drawing.Point(290, 4);
+            this.txtNPcolUn.Multiline = true;
+            this.txtNPcolUn.Name = "txtNPcolUn";
+            this.txtNPcolUn.Size = new System.Drawing.Size(60, 21);
+            this.txtNPcolUn.TabIndex = 142;
+            this.txtNPcolUn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // panelSt
+            // 
+            this.panelSt.Controls.Add(this.cmbNPst);
+            this.panelSt.Controls.Add(this.txtNPstVal);
+            this.panelSt.Controls.Add(this.txtNPstPrice);
+            this.panelSt.Controls.Add(this.txtNPstQnt);
+            this.panelSt.Controls.Add(this.txtNPstUn);
+            this.panelSt.Location = new System.Drawing.Point(248, 80);
+            this.panelSt.Name = "panelSt";
+            this.panelSt.Size = new System.Drawing.Size(654, 29);
+            this.panelSt.TabIndex = 151;
+            // 
+            // cmbNPst
+            // 
+            this.cmbNPst.FormattingEnabled = true;
+            this.cmbNPst.Location = new System.Drawing.Point(10, 4);
+            this.cmbNPst.Name = "cmbNPst";
+            this.cmbNPst.Size = new System.Drawing.Size(260, 21);
+            this.cmbNPst.TabIndex = 124;
+            // 
+            // txtNPstVal
+            // 
+            this.txtNPstVal.Location = new System.Drawing.Point(550, 4);
+            this.txtNPstVal.Multiline = true;
+            this.txtNPstVal.Name = "txtNPstVal";
+            this.txtNPstVal.Size = new System.Drawing.Size(93, 21);
+            this.txtNPstVal.TabIndex = 126;
+            this.txtNPstVal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtNPstPrice
+            // 
+            this.txtNPstPrice.Location = new System.Drawing.Point(460, 4);
+            this.txtNPstPrice.Multiline = true;
+            this.txtNPstPrice.Name = "txtNPstPrice";
+            this.txtNPstPrice.Size = new System.Drawing.Size(75, 21);
+            this.txtNPstPrice.TabIndex = 125;
+            this.txtNPstPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtNPstQnt
+            // 
+            this.txtNPstQnt.Location = new System.Drawing.Point(366, 4);
+            this.txtNPstQnt.Multiline = true;
+            this.txtNPstQnt.Name = "txtNPstQnt";
+            this.txtNPstQnt.Size = new System.Drawing.Size(75, 21);
+            this.txtNPstQnt.TabIndex = 121;
+            this.txtNPstQnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtNPstUn
+            // 
+            this.txtNPstUn.Location = new System.Drawing.Point(290, 3);
+            this.txtNPstUn.Multiline = true;
+            this.txtNPstUn.Name = "txtNPstUn";
+            this.txtNPstUn.Size = new System.Drawing.Size(60, 21);
+            this.txtNPstUn.TabIndex = 130;
+            this.txtNPstUn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panelOth
             // 
@@ -180,11 +317,10 @@
             this.panelOth.Controls.Add(this.txtNPothPrice);
             this.panelOth.Controls.Add(this.txtNPothQnt);
             this.panelOth.Controls.Add(this.txtNPothUn);
-            this.panelOth.Location = new System.Drawing.Point(0, 0);
+            this.panelOth.Location = new System.Drawing.Point(248, 80);
             this.panelOth.Name = "panelOth";
             this.panelOth.Size = new System.Drawing.Size(654, 29);
             this.panelOth.TabIndex = 153;
-            this.panelOth.Visible = false;
             // 
             // txtNPoth
             // 
@@ -231,75 +367,16 @@
             this.txtNPothUn.TabIndex = 148;
             this.txtNPothUn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // panelCol
-            // 
-            this.panelCol.Controls.Add(this.cmbNPcol);
-            this.panelCol.Controls.Add(this.txtNPcolVal);
-            this.panelCol.Controls.Add(this.txtNPcolPrice);
-            this.panelCol.Controls.Add(this.txtNPcolQnt);
-            this.panelCol.Controls.Add(this.txtNPcolUn);
-            this.panelCol.Controls.Add(this.panelSt);
-            this.panelCol.Location = new System.Drawing.Point(0, 0);
-            this.panelCol.Name = "panelCol";
-            this.panelCol.Size = new System.Drawing.Size(654, 29);
-            this.panelCol.TabIndex = 154;
-            this.panelCol.Visible = false;
-            // 
-            // cmbNPcol
-            // 
-            this.cmbNPcol.FormattingEnabled = true;
-            this.cmbNPcol.Location = new System.Drawing.Point(10, 4);
-            this.cmbNPcol.Name = "cmbNPcol";
-            this.cmbNPcol.Size = new System.Drawing.Size(260, 21);
-            this.cmbNPcol.TabIndex = 139;
-            // 
-            // txtNPcolVal
-            // 
-            this.txtNPcolVal.Location = new System.Drawing.Point(550, 4);
-            this.txtNPcolVal.Multiline = true;
-            this.txtNPcolVal.Name = "txtNPcolVal";
-            this.txtNPcolVal.Size = new System.Drawing.Size(93, 21);
-            this.txtNPcolVal.TabIndex = 141;
-            this.txtNPcolVal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtNPcolPrice
-            // 
-            this.txtNPcolPrice.Location = new System.Drawing.Point(460, 4);
-            this.txtNPcolPrice.Multiline = true;
-            this.txtNPcolPrice.Name = "txtNPcolPrice";
-            this.txtNPcolPrice.Size = new System.Drawing.Size(75, 21);
-            this.txtNPcolPrice.TabIndex = 140;
-            this.txtNPcolPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtNPcolQnt
-            // 
-            this.txtNPcolQnt.Location = new System.Drawing.Point(366, 3);
-            this.txtNPcolQnt.Multiline = true;
-            this.txtNPcolQnt.Name = "txtNPcolQnt";
-            this.txtNPcolQnt.Size = new System.Drawing.Size(75, 21);
-            this.txtNPcolQnt.TabIndex = 138;
-            this.txtNPcolQnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtNPcolUn
-            // 
-            this.txtNPcolUn.Location = new System.Drawing.Point(290, 4);
-            this.txtNPcolUn.Multiline = true;
-            this.txtNPcolUn.Name = "txtNPcolUn";
-            this.txtNPcolUn.Size = new System.Drawing.Size(60, 21);
-            this.txtNPcolUn.TabIndex = 142;
-            this.txtNPcolUn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // panelLuv
             // 
             this.panelLuv.Controls.Add(this.txtNPluvVal);
             this.panelLuv.Controls.Add(this.txtNPluvPrice);
             this.panelLuv.Controls.Add(this.txtNPluvQnt);
             this.panelLuv.Controls.Add(this.txtNPluvUn);
-            this.panelLuv.Location = new System.Drawing.Point(0, 0);
+            this.panelLuv.Location = new System.Drawing.Point(248, 80);
             this.panelLuv.Name = "panelLuv";
             this.panelLuv.Size = new System.Drawing.Size(654, 29);
             this.panelLuv.TabIndex = 152;
-            this.panelLuv.Visible = false;
             // 
             // txtNPluvVal
             // 
@@ -337,62 +414,71 @@
             this.txtNPluvUn.TabIndex = 136;
             this.txtNPluvUn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // panelSt
+            // txtNPvalNds
             // 
-            this.panelSt.Controls.Add(this.cmbNPst);
-            this.panelSt.Controls.Add(this.txtNPstVal);
-            this.panelSt.Controls.Add(this.txtNPstPrice);
-            this.panelSt.Controls.Add(this.txtNPstQnt);
-            this.panelSt.Controls.Add(this.txtNPstUn);
-            this.panelSt.Location = new System.Drawing.Point(0, 0);
-            this.panelSt.Name = "panelSt";
-            this.panelSt.Size = new System.Drawing.Size(654, 29);
-            this.panelSt.TabIndex = 151;
-            this.panelSt.Visible = false;
+            this.txtNPvalNds.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtNPvalNds.Location = new System.Drawing.Point(707, 33);
+            this.txtNPvalNds.Multiline = true;
+            this.txtNPvalNds.Name = "txtNPvalNds";
+            this.txtNPvalNds.Size = new System.Drawing.Size(75, 21);
+            this.txtNPvalNds.TabIndex = 159;
+            this.txtNPvalNds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmbNPst
+            // label12
             // 
-            this.cmbNPst.FormattingEnabled = true;
-            this.cmbNPst.Location = new System.Drawing.Point(10, 4);
-            this.cmbNPst.Name = "cmbNPst";
-            this.cmbNPst.Size = new System.Drawing.Size(260, 21);
-            this.cmbNPst.TabIndex = 124;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(146, 18);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(62, 13);
+            this.label12.TabIndex = 158;
+            this.label12.Text = "Ամսաթիվ";
             // 
-            // txtNPstVal
+            // label11
             // 
-            this.txtNPstVal.Location = new System.Drawing.Point(550, 4);
-            this.txtNPstVal.Multiline = true;
-            this.txtNPstVal.Name = "txtNPstVal";
-            this.txtNPstVal.Size = new System.Drawing.Size(93, 21);
-            this.txtNPstVal.TabIndex = 126;
-            this.txtNPstVal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Location = new System.Drawing.Point(628, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(52, 13);
+            this.label11.TabIndex = 157;
+            this.label11.Text = "ԱՐԺԵՔ";
             // 
-            // txtNPstPrice
+            // txtAction
             // 
-            this.txtNPstPrice.Location = new System.Drawing.Point(460, 4);
-            this.txtNPstPrice.Multiline = true;
-            this.txtNPstPrice.Name = "txtNPstPrice";
-            this.txtNPstPrice.Size = new System.Drawing.Size(75, 21);
-            this.txtNPstPrice.TabIndex = 125;
-            this.txtNPstPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAction.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtAction.Location = new System.Drawing.Point(1098, 22);
+            this.txtAction.Multiline = true;
+            this.txtAction.Name = "txtAction";
+            this.txtAction.Size = new System.Drawing.Size(123, 28);
+            this.txtAction.TabIndex = 156;
+            this.txtAction.Text = "Առք";
+            this.txtAction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAction.Visible = false;
             // 
-            // txtNPstQnt
+            // txtNPid
             // 
-            this.txtNPstQnt.Location = new System.Drawing.Point(366, 4);
-            this.txtNPstQnt.Multiline = true;
-            this.txtNPstQnt.Name = "txtNPstQnt";
-            this.txtNPstQnt.Size = new System.Drawing.Size(75, 21);
-            this.txtNPstQnt.TabIndex = 121;
-            this.txtNPstQnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNPid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtNPid.Enabled = false;
+            this.txtNPid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtNPid.Location = new System.Drawing.Point(1023, 23);
+            this.txtNPid.Multiline = true;
+            this.txtNPid.Name = "txtNPid";
+            this.txtNPid.Size = new System.Drawing.Size(69, 25);
+            this.txtNPid.TabIndex = 155;
+            this.txtNPid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNPid.Visible = false;
             // 
-            // txtNPstUn
+            // txtNPTotVal
             // 
-            this.txtNPstUn.Location = new System.Drawing.Point(290, 3);
-            this.txtNPstUn.Multiline = true;
-            this.txtNPstUn.Name = "txtNPstUn";
-            this.txtNPstUn.Size = new System.Drawing.Size(60, 21);
-            this.txtNPstUn.TabIndex = 130;
-            this.txtNPstUn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNPTotVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtNPTotVal.Location = new System.Drawing.Point(613, 33);
+            this.txtNPTotVal.Multiline = true;
+            this.txtNPTotVal.Name = "txtNPTotVal";
+            this.txtNPTotVal.Size = new System.Drawing.Size(75, 21);
+            this.txtNPTotVal.TabIndex = 150;
+            this.txtNPTotVal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panelBan
             // 
@@ -400,11 +486,8 @@
             this.panelBan.Controls.Add(this.txtNPbanVal);
             this.panelBan.Controls.Add(this.txtNPbanPrice);
             this.panelBan.Controls.Add(this.txtNPbanQnt);
-            this.panelBan.Controls.Add(this.panelCol);
             this.panelBan.Controls.Add(this.txtNPbanUn);
-            this.panelBan.Controls.Add(this.panelLuv);
-            this.panelBan.Controls.Add(this.panelOth);
-            this.panelBan.Location = new System.Drawing.Point(247, 80);
+            this.panelBan.Location = new System.Drawing.Point(248, 80);
             this.panelBan.Name = "panelBan";
             this.panelBan.Size = new System.Drawing.Size(654, 29);
             this.panelBan.TabIndex = 150;
@@ -525,15 +608,6 @@
             this.label8.TabIndex = 107;
             this.label8.Text = "Արժեք";
             // 
-            // txtnewPurchCom
-            // 
-            this.txtnewPurchCom.Location = new System.Drawing.Point(907, 83);
-            this.txtnewPurchCom.Multiline = true;
-            this.txtnewPurchCom.Name = "txtnewPurchCom";
-            this.txtnewPurchCom.Size = new System.Drawing.Size(333, 40);
-            this.txtnewPurchCom.TabIndex = 114;
-            this.txtnewPurchCom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -544,6 +618,26 @@
             this.label10.TabIndex = 112;
             this.label10.Text = "Մատակարար";
             // 
+            // btnEditban
+            // 
+            this.btnEditban.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditban.BackColor = System.Drawing.Color.Teal;
+            this.btnEditban.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEditban.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditban.FlatAppearance.BorderSize = 0;
+            this.btnEditban.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnEditban.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnEditban.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEditban.Image = ((System.Drawing.Image)(resources.GetObject("btnEditban.Image")));
+            this.btnEditban.Location = new System.Drawing.Point(1176, 83);
+            this.btnEditban.Name = "btnEditban";
+            this.btnEditban.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnEditban.Size = new System.Drawing.Size(42, 40);
+            this.btnEditban.TabIndex = 6;
+            this.btnEditban.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditban.UseVisualStyleBackColor = false;
+            this.btnEditban.Click += new System.EventHandler(this.btnEditban_Click);
+            // 
             // cmbnewPurchPur
             // 
             this.cmbnewPurchPur.FormattingEnabled = true;
@@ -551,6 +645,26 @@
             this.cmbnewPurchPur.Name = "cmbnewPurchPur";
             this.cmbnewPurchPur.Size = new System.Drawing.Size(261, 21);
             this.cmbnewPurchPur.TabIndex = 108;
+            // 
+            // btnAddban
+            // 
+            this.btnAddban.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddban.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnAddban.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddban.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddban.FlatAppearance.BorderSize = 0;
+            this.btnAddban.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnAddban.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAddban.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAddban.Image = ((System.Drawing.Image)(resources.GetObject("btnAddban.Image")));
+            this.btnAddban.Location = new System.Drawing.Point(1132, 83);
+            this.btnAddban.Name = "btnAddban";
+            this.btnAddban.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnAddban.Size = new System.Drawing.Size(42, 40);
+            this.btnAddban.TabIndex = 5;
+            this.btnAddban.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddban.UseVisualStyleBackColor = false;
+            this.btnAddban.Click += new System.EventHandler(this.btnAddban_Click);
             // 
             // label4
             // 
@@ -561,6 +675,26 @@
             this.label4.Size = new System.Drawing.Size(116, 13);
             this.label4.TabIndex = 47;
             this.label4.Text = "Մեկնաբանություն";
+            // 
+            // btnDelban
+            // 
+            this.btnDelban.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelban.BackColor = System.Drawing.Color.Maroon;
+            this.btnDelban.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDelban.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelban.FlatAppearance.BorderSize = 0;
+            this.btnDelban.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnDelban.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDelban.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDelban.Image = ((System.Drawing.Image)(resources.GetObject("btnDelban.Image")));
+            this.btnDelban.Location = new System.Drawing.Point(1219, 83);
+            this.btnDelban.Name = "btnDelban";
+            this.btnDelban.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnDelban.Size = new System.Drawing.Size(42, 40);
+            this.btnDelban.TabIndex = 7;
+            this.btnDelban.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDelban.UseVisualStyleBackColor = false;
+            this.btnDelban.Click += new System.EventHandler(this.btnDelban_Click);
             // 
             // label1
             // 
@@ -598,7 +732,6 @@
             // txtNPcod
             // 
             this.txtNPcod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtNPcod.Enabled = false;
             this.txtNPcod.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtNPcod.Location = new System.Drawing.Point(36, 33);
             this.txtNPcod.Multiline = true;
@@ -622,145 +755,25 @@
             this.dgvPurchasing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPurchasing.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPurchasing.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPurchasing.ColumnHeadersHeight = 24;
             this.dgvPurchasing.FilterAndSortEnabled = true;
             this.dgvPurchasing.FilterStringChangedInvokeBeforeDatasourceUpdate = true;
-            this.dgvPurchasing.Location = new System.Drawing.Point(-3, 159);
+            this.dgvPurchasing.Location = new System.Drawing.Point(-3, 180);
             this.dgvPurchasing.Name = "dgvPurchasing";
             this.dgvPurchasing.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dgvPurchasing.Size = new System.Drawing.Size(1273, 544);
+            this.dgvPurchasing.Size = new System.Drawing.Size(1273, 523);
             this.dgvPurchasing.SortStringChangedInvokeBeforeDatasourceUpdate = true;
             this.dgvPurchasing.TabIndex = 53;
             this.dgvPurchasing.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurchasing_CellDoubleClick);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(628, 18);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 13);
-            this.label11.TabIndex = 157;
-            this.label11.Text = "ԱՐԺԵՔ";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(146, 18);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(62, 13);
-            this.label12.TabIndex = 158;
-            this.label12.Text = "Ամսաթիվ";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(722, 18);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(33, 13);
-            this.label13.TabIndex = 160;
-            this.label13.Text = "ԱԱՀ";
-            // 
-            // txtNPvalNds
-            // 
-            this.txtNPvalNds.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtNPvalNds.Location = new System.Drawing.Point(707, 33);
-            this.txtNPvalNds.Multiline = true;
-            this.txtNPvalNds.Name = "txtNPvalNds";
-            this.txtNPvalNds.Size = new System.Drawing.Size(75, 21);
-            this.txtNPvalNds.TabIndex = 159;
-            this.txtNPvalNds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(801, 18);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(85, 13);
-            this.label14.TabIndex = 162;
-            this.label14.Text = "ԸՆԴՀԱՆՈՒՐ";
-            // 
-            // txtNPvalTotal
-            // 
-            this.txtNPvalTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtNPvalTotal.Location = new System.Drawing.Point(797, 33);
-            this.txtNPvalTotal.Multiline = true;
-            this.txtNPvalTotal.Name = "txtNPvalTotal";
-            this.txtNPvalTotal.Size = new System.Drawing.Size(93, 21);
-            this.txtNPvalTotal.TabIndex = 161;
-            this.txtNPvalTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnEditban
-            // 
-            this.btnEditban.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditban.BackColor = System.Drawing.Color.Teal;
-            this.btnEditban.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnEditban.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditban.FlatAppearance.BorderSize = 0;
-            this.btnEditban.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnEditban.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnEditban.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEditban.Image = ((System.Drawing.Image)(resources.GetObject("btnEditban.Image")));
-            this.btnEditban.Location = new System.Drawing.Point(1176, 83);
-            this.btnEditban.Name = "btnEditban";
-            this.btnEditban.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnEditban.Size = new System.Drawing.Size(42, 40);
-            this.btnEditban.TabIndex = 6;
-            this.btnEditban.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEditban.UseVisualStyleBackColor = false;
-            this.btnEditban.Click += new System.EventHandler(this.btnEditban_Click);
-            // 
-            // btnAddban
-            // 
-            this.btnAddban.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddban.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnAddban.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddban.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddban.FlatAppearance.BorderSize = 0;
-            this.btnAddban.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnAddban.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAddban.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAddban.Image = ((System.Drawing.Image)(resources.GetObject("btnAddban.Image")));
-            this.btnAddban.Location = new System.Drawing.Point(1132, 83);
-            this.btnAddban.Name = "btnAddban";
-            this.btnAddban.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnAddban.Size = new System.Drawing.Size(42, 40);
-            this.btnAddban.TabIndex = 5;
-            this.btnAddban.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddban.UseVisualStyleBackColor = false;
-            this.btnAddban.Click += new System.EventHandler(this.btnAddban_Click);
-            // 
-            // btnDelban
-            // 
-            this.btnDelban.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelban.BackColor = System.Drawing.Color.Maroon;
-            this.btnDelban.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDelban.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelban.FlatAppearance.BorderSize = 0;
-            this.btnDelban.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnDelban.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnDelban.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnDelban.Image = ((System.Drawing.Image)(resources.GetObject("btnDelban.Image")));
-            this.btnDelban.Location = new System.Drawing.Point(1219, 83);
-            this.btnDelban.Name = "btnDelban";
-            this.btnDelban.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnDelban.Size = new System.Drawing.Size(42, 40);
-            this.btnDelban.TabIndex = 7;
-            this.btnDelban.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDelban.UseVisualStyleBackColor = false;
-            this.btnDelban.Click += new System.EventHandler(this.btnDelban_Click);
             // 
             // NewPurchasing
             // 
@@ -776,14 +789,14 @@
             this.Load += new System.EventHandler(this.NewPurchasing_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panelOth.ResumeLayout(false);
-            this.panelOth.PerformLayout();
             this.panelCol.ResumeLayout(false);
             this.panelCol.PerformLayout();
-            this.panelLuv.ResumeLayout(false);
-            this.panelLuv.PerformLayout();
             this.panelSt.ResumeLayout(false);
             this.panelSt.PerformLayout();
+            this.panelOth.ResumeLayout(false);
+            this.panelOth.PerformLayout();
+            this.panelLuv.ResumeLayout(false);
+            this.panelLuv.PerformLayout();
             this.panelBan.ResumeLayout(false);
             this.panelBan.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurchasing)).EndInit();
@@ -853,5 +866,6 @@
         private System.Windows.Forms.TextBox txtNPvalTotal;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtNPvalNds;
+        private System.Windows.Forms.Button btnRef;
     }
 }

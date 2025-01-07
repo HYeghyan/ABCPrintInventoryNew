@@ -213,7 +213,7 @@ namespace ABCPrintInventory.Add
             dgvCashFlow.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCashFlow.Columns["hh"].Width = 40;
             dgvCashFlow.Columns["hh"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvCashFlow.Columns["hh"].Visible = false;
+            //dgvCashFlow.Columns["hh"].Visible = false;
             dgvCashFlow.Columns["Գործողություն"].Visible = false;
             dgvCashFlow.Columns["վ/ե"].Visible = false;
             dgvCashFlow.Columns["Արժեք"].Visible = false;
@@ -462,7 +462,7 @@ namespace ABCPrintInventory.Add
                 DataGridViewRow selectedRow = dgvCashFlow.Rows[e.RowIndex];
                 foreach (DataGridViewCell cell in selectedRow.Cells)
                 {
-                    if (cell.ColumnIndex == 12 && string.IsNullOrWhiteSpace(cell.Value?.ToString()))
+                    if (cell.ColumnIndex == 9 && string.IsNullOrWhiteSpace(cell.Value?.ToString()))
                     {
                         MessageBox.Show("Տվյալ տողը խմբագրման ենթակա չէ", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
@@ -735,7 +735,43 @@ namespace ABCPrintInventory.Add
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddtoDebtsCash();
+            // Ensure the DataTable is filled
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                MessageBox.Show("No data to search for duplicates.");
+                return;
+            }
+
+            // Use LINQ to find duplicate values in the 'hh' column
+            var duplicates = dt.AsEnumerable()
+                .GroupBy(row => row["hh"].ToString()) // Group by 'hh' column
+                .Where(group => group.Count() > 1)   // Filter groups with more than 1 occurrence
+                .Select(group => group.Key)          // Select the duplicate 'hh' values
+                .ToList();
+
+            if (duplicates.Count == 0)
+            {
+                MessageBox.Show("No duplicate codes found in column 'hh'.");
+                return;
+            }
+
+            // Create a new DataTable to hold the duplicate rows
+            DataTable duplicateTable = dt.Clone(); // Clone the structure of the original table
+
+            foreach (var duplicate in duplicates)
+            {
+                var duplicateRows = dt.AsEnumerable()
+                    .Where(row => row["hh"].ToString() == duplicate);
+
+                foreach (var row in duplicateRows)
+                {
+                    duplicateTable.ImportRow(row);
+                }
+            }
+
+            // Display the duplicate rows in a new DataGridView or the same one (as needed)
+            dgvCashFlow.DataSource = duplicateTable; // Or use another DataGridView
+            MessageBox.Show($"{duplicates.Count} duplicate codes found in column 'hh'.");
         }
     }
 }

@@ -252,6 +252,7 @@
             this.txtDebtId.Size = new System.Drawing.Size(66, 28);
             this.txtDebtId.TabIndex = 128;
             this.txtDebtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDebtId.Visible = false;
             // 
             // label4
             // 
@@ -322,6 +323,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtPDdebts);
             this.Controls.Add(this.btnNOAdd);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "PayPurchDebts";
             this.Text = "Վճարել մատակարարին";
             this.Load += new System.EventHandler(this.PayPurchDebts_Load);

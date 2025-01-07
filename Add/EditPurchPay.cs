@@ -12,13 +12,12 @@ using System.Windows.Forms;
 
 namespace ABCPrintInventory.Add
 {
-    public partial class EditPay : Form
+    public partial class EditPurchPay : Form
     {
         SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon);
         SqlCommand cmd;
         SqlDataAdapter da;
-
-        public EditPay()
+        public EditPurchPay()
         {
             InitializeComponent();
         }
@@ -74,21 +73,48 @@ namespace ABCPrintInventory.Add
             get { return txtPDInvCom.Text; }
             set { txtPDInvCom.Text = value; }
         }
-        //Դրամարկղի կոմբոն
-        private void ProdComboboxComplate()
-        {
-            SqlConnection con = new SqlConnection(Properties.Settings.Default.AbcprintinvCon);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT DISTINCT(Դրամարկղ) FROM TblWallet", con);
-            SqlDataReader dr = cmd.ExecuteReader();
 
-            while (dr.Read())
+        private void btnNOEdit_Click(object sender, EventArgs e)
+        {
+            if (txtEPid.Text == "" || txtEPnum.Text == "")
             {
-                cmbEPWallet.Items.Add(dr.GetValue(0).ToString());
+                MessageBox.Show("Բոլոր պարտադիր դաշտերը լրացված չեն:");
             }
-            dr.Close();
-            con.Close();
+            else
+            {
+                try
+                {
+                    con.Open();
+                    cmd = new SqlCommand("UPDATE TblDebtsControl SET Ամսաթիվ = @Column1, Կոդ = @Column2, Մատակարար = @Column3, Ելք = @Column5, Դրամարկղ = @Column6, Մեկնաբանություն = @Column7  WHERE hh = @ItemId", con);
+                    cmd.Parameters.AddWithValue("@ItemId", txtEPid.Text);
+                    DateTimePicker dtp = new DateTimePicker();
+                    DateTime orderDate = dtpEP.Value;
+                    cmd.Parameters.AddWithValue("@Column1", orderDate);
+                    cmd.Parameters.AddWithValue("@Column2", txtEPnum.Text);
+                    cmd.Parameters.AddWithValue("@Column3", cmbEPclient.Text);
+                    cmd.Parameters.AddWithValue("@Column5", txtEPval.Text);
+                    cmd.Parameters.AddWithValue("@Column6", cmbEPWallet.Text);
+                    cmd.Parameters.AddWithValue("@Column7", txtPDInvCom.Text);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    con.Close();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Վճարումըը թարմացվե՛ց:");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Խմբագրման համար ընտրե՛ք տող:");
+                    }
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
+
         private void btnNODel_Click(object sender, EventArgs e)
         {
             try
@@ -101,7 +127,7 @@ namespace ABCPrintInventory.Add
                         cmd = new SqlCommand("DELETE FROM TblDebtsControl WHERE hh = @hh", con);
                         cmd.Parameters.AddWithValue("@hh", txtEPid.Text.Replace(".", ""));
                         int rowsAffected = cmd.ExecuteNonQuery();
-                      
+
                         con.Close();
 
                         if (rowsAffected > 0)
@@ -125,51 +151,5 @@ namespace ABCPrintInventory.Add
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btnNOEdit_Click(object sender, EventArgs e)
-        {
-            if (txtEPid.Text == "" || txtEPnum.Text == "")
-            {
-                MessageBox.Show("Բոլոր պարտադիր դաշտերը լրացված չեն:");
-            }
-            else
-            {
-                try
-                {
-                    con.Open();
-                    cmd = new SqlCommand("UPDATE TblDebtsControl SET Ամսաթիվ = @Column1, Կոդ = @Column2, Հաճախորդ = @Column3, Մուտք = @Column5, Դրամարկղ = @Column6, Մեկնաբանություն = @Column7  WHERE hh = @ItemId", con);
-                    cmd.Parameters.AddWithValue("@ItemId", txtEPid.Text);
-                    DateTimePicker dtp = new DateTimePicker();
-                    DateTime orderDate = dtpEP.Value;
-                    cmd.Parameters.AddWithValue("@Column1", orderDate);
-                    cmd.Parameters.AddWithValue("@Column2", txtEPnum.Text);
-                    cmd.Parameters.AddWithValue("@Column3", cmbEPclient.Text);
-                    cmd.Parameters.AddWithValue("@Column5", txtEPval.Text);
-                    cmd.Parameters.AddWithValue("@Column6", cmbEPWallet.Text);
-                    cmd.Parameters.AddWithValue("@Column7", txtPDInvCom.Text);
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    con.Close();
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Վճարումըը թարմացվե՛ց:");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Խմբագրման համար ընտրե՛ք տող:");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
-        private void EditPay_Load(object sender, EventArgs e)
-        {
-            ProdComboboxComplate();
-        }
-
     }
 }
